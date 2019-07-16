@@ -1,0 +1,140 @@
+<template>
+	<view>
+		<view class="an-uploadImg-group">
+			<view>
+				<view class="an-img" v-for="(item, index) in imgList" :key="index" @click="perviewImg(index)">
+					<image :src="item" v-if="item"></image>
+					<view class="an-icon-close" @click.stop="handleRemove(index)">
+						<uni-icon type="closeempty" size="45" color="#F00"></uni-icon>
+					</view>
+				</view>
+				<view class="an-img-add" v-if="!showAdd" @click="chooseImage">
+					<uni-icon type="plus" size="36" color="#FFFFFF"></uni-icon>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
+
+	export default {
+		components: {
+			uniIcon
+		},
+		data() {
+			return {
+				imgList: [],
+				imgBase64List: []
+			};
+		},
+		computed: {
+			showAdd() {
+				// return false;
+				return this.imgList.length > 0
+			}
+		},
+		methods: {
+			chooseImage() {
+				console.log('chooseImage');
+				uni.chooseImage({
+					count: 1,
+					success: (chooseImageRes) => {
+						for (var i = 0; i < chooseImageRes.tempFilePaths.length; i++) {
+							this.imgList.push(chooseImageRes.tempFilePaths[i]);
+							uni.getFileSystemManager().readFile({
+								filePath: chooseImageRes.tempFilePaths[i], //选择图片返回的相对路径
+								encoding: 'base64', //编码格式
+								success: res => { //成功的回调
+									let base64 = 'data:image/jpeg;base64,' + res.data //不加上这串字符，在页面无法显示的哦
+									this.imgBase64List.push(base64);
+									console.log(this.imgBase64List);
+								}
+							})
+						}
+					},
+					fail: (err) => {
+						uni.showToast({
+							title: '未选择图片',
+							icon: 'none',
+							duration: 1500
+						});
+						console.log(err);
+					}
+				})
+			},
+			perviewImg(index) {
+				console.log('previewImg');
+				let urls = [];
+				if (index != -1) {
+					urls[0] = this.imgList[index];
+				} else {
+					urls = this.imgList;
+				}
+				uni.previewImage({
+					urls: urls
+				});
+			},
+			handleRemove(index) {
+				console.log('removeImage');
+				let il = [],
+					ibl = [];
+				for (var i = 0; i < this.imgList.length; i++) {
+					if (i != index) {
+						il.push(this.imgList[i]);
+						ibl.push(this.imgBase64List[i]);
+					}
+				}
+				this.imgList = il;
+				this.imgBase64List = ibl;
+				console.log(il, ibl);
+			}
+		}
+	}
+</script>
+
+<style>
+	.show-inline {
+		display: inline-block !important;
+	}
+	.show {
+		display: block !important;
+	}
+	.hide {
+		display: none !important;
+	}
+	
+	.an-uploadImg-group {
+		margin: 5upx 20upx;
+	}
+
+	.an-img {
+		float: left;
+		margin-right: 10upx;
+	}
+
+	.an-img-add {
+		float: left;
+		/* margin-right: 10upx; */
+		height: 45vw;
+		width: 45vw;
+		background-color: #C8C7CC;
+		text-align: center;
+		line-height: 45vw;
+	}
+
+	.an-img>image {
+		/* height: 45vw; */
+		/* width: 45vw; */
+		width: 90vw;
+	}
+
+	.an-icon-close {
+		position: relative;
+		right: 0;
+		top: -45vw;
+		width: 45upx;
+		background-color: #C8C7CC;
+	}
+</style>

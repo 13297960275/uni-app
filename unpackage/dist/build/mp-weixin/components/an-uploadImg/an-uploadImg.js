@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/an-uploadImg/an-uploadImg"],{2650:function(t,n,e){"use strict";var i=e("9472"),a=e.n(i);a.a},9472:function(t,n,e){},"97d9":function(t,n,e){"use strict";var i=function(){var t=this,n=t.$createElement;t._self._c},a=[];e.d(n,"a",function(){return i}),e.d(n,"b",function(){return a})},"9fe0":function(t,n,e){"use strict";(function(t){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var i=function(){return e.e("components/uni-icon/uni-icon").then(e.bind(null,"703c"))},a={name:"AnUploadImg",components:{uniIcon:i},data:function(){return{imgList:[],imgBase64List:[]}},methods:{chooseImage:function(){var n=this;t.chooseImage({success:function(e){for(var i=0;i<e.tempFilePaths.length;i++)n.imgList.push(e.tempFilePaths[i]),t.getFileSystemManager().readFile({filePath:e.tempFilePaths[i],encoding:"base64",success:function(t){var e="data:image/jpeg;base64,"+t.data;n.imgBase64List.push(e)}})}})},perviewImg:function(n){var e=[];-1!=n?e[0]=this.imgList[n]:e=this.imgList,t.previewImage({urls:e})},handleRemove:function(t){for(var n=[],e=[],i=0;i<this.imgList.length;i++)i!=t&&(n.push(this.imgList[i]),e.push(this.imgBase64List[i]));this.imgList=n,this.imgBase64List=e}}};n.default=a}).call(this,e("543d")["default"])},c399:function(t,n,e){"use strict";e.r(n);var i=e("9fe0"),a=e.n(i);for(var s in i)"default"!==s&&function(t){e.d(n,t,function(){return i[t]})}(s);n["default"]=a.a},c9cf:function(t,n,e){"use strict";e.r(n);var i=e("97d9"),a=e("c399");for(var s in a)"default"!==s&&function(t){e.d(n,t,function(){return a[t]})}(s);e("2650");var u=e("2877"),o=Object(u["a"])(a["default"],i["a"],i["b"],!1,null,null,null);n["default"]=o.exports}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/an-uploadImg/an-uploadImg-create-component',
+    {
+        'components/an-uploadImg/an-uploadImg-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("c9cf"))
+        })
+    },
+    [['components/an-uploadImg/an-uploadImg-create-component']]
+]);                

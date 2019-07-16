@@ -1,0 +1,29 @@
+
+.an-uploadImg-group {
+	margin: 5rpx 20rpx;
+}
+.an-img {
+	float: left;
+	margin-right: 10rpx;
+}
+.an-img-add {
+	float: left;
+	/* margin-right: 10upx; */
+	height: 45vw;
+	width: 45vw;
+	background-color: #C8C7CC;
+	text-align: center;
+	line-height: 45vw;
+}
+.an-img>image {
+	height: 45vw;
+	width: 45vw;
+}
+.an-icon-close {
+	position: relative;
+	right: 0;
+	top: -45vw;
+	width: 45rpx;
+	background-color: #C8C7CC;
+}
+
