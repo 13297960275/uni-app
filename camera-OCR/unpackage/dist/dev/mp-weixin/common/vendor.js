@@ -7592,6 +7592,98 @@ createPage(_uploadImg.default);
 "use strict";
 
 
+/***/ }),
+
+/***/ "E:\\workspace\\demo\\vue\\uni-app\\camera-OCR\\utils\\bdAI.js":
+/*!**************************************************************!*\
+  !*** E:/workspace/demo/vue/uni-app/camera-OCR/utils/bdAI.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getAccexxToken = getAccexxToken;exports.getIdCard = getIdCard; // 百度AI开放接口相关方法
+
+// 配置信息
+var apiKey = 'mAgLjoMEGOMPoxdxwtD9vpF0';
+var secretKey = 'SbgFlyhqYfigKF6exxbUoEYePuQzaFcd';
+
+function request(data) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: data.url, // 接口地址。
+      data: data.params || {}, // 请求参数
+      header: data.header || {}, // 请求头信息
+      method: data.method || 'GET', // 请求方法
+      dataType: data.json || 'json', // 如果设为 json，会尝试对返回的数据做一次 JSON.parse
+      success: function success(res) {// 请求成功
+        console.log('请求成功');
+        resolve(res);
+      },
+      fail: function fail(err) {// 请求失败
+        console.log('请求失败');
+        reject(err);
+      } });
+
+  });
+}
+
+// 获取AccessToken
+function getAccexxToken() {
+  try {
+    var accesstoken = uni.getStorageSync('accesstoken_key');
+    var expirein = uni.getStorageSync('expirein_key');
+    var attime = uni.getStorageSync('attime_key');
+    if (accesstoken && expirein && attime) {
+      if (parseInt(attime) > new Date().getTime()) {
+        return accesstoken;
+      }
+    }
+  } catch (e) {
+    // error
+  }
+  var url = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=' + apiKey +
+  '&client_secret=' + secretKey;
+  request({
+    url: url }).
+  then(function (res) {
+    // console.log(res);
+    try {
+      uni.setStorageSync('accesstoken_key', res.data.access_token);
+      uni.setStorageSync('expirein_key', res.data.expires_in);
+      uni.setStorageSync('attime_key', new Date().getTime() + parseInt(res.data.expires_in));
+    } catch (e) {
+      // error
+      uni.setStorage('accesstoken_key', res.data.access_token);
+      uni.setStorage('expirein_key', res.data.expires_in);
+      uni.setStorage('attime_key', new Date().getTime() + parseInt(res.data.expires_in));
+    }
+    return res.data.access_token;
+  });
+}
+
+function getIdCard(img, side) {
+  return new Promise(function (resolve, reject) {
+    var url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard?access_token=' + getAccexxToken();
+    var params = {
+      image: img,
+      id_card_side: side || 'front' };
+
+    request({
+      url: url,
+      params: params,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded' },
+
+      method: 'POST' }).
+    then(function (res) {
+      // console.log('res', res);
+      resolve(res);
+    });
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
+
 /***/ })
 
 }]);

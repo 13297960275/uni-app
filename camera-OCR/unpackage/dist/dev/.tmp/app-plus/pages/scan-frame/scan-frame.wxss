@@ -1,0 +1,44 @@
+
+.an-uploadImg-group {
+	margin: 5rpx 20rpx;
+}
+.an-img {
+	float: left;
+	margin-right: 10rpx;
+}
+.an-img-add {
+	float: left;
+	/* margin-right: 10upx; */
+	height: 45vw;
+	width: 45vw;
+	background-color: #C8C7CC;
+	text-align: center;
+	line-height: 45vw;
+}
+.an-img>image {
+	height: 45vw;
+	width: 45vw;
+}
+.an-icon-close {
+	position: relative;
+	right: 0;
+	top: -45vw;
+	width: 45rpx;
+	background-color: #C8C7CC;
+}
+
+
+.content {
+	background-color: #f2f2f2;
+}
+.scan-img {
+	opacity: 0.4;
+	width: 100%;
+	height: 500rpx;
+}
+.scan-text {
+	font-size: 20px;
+	text-align: center;
+	line-height: 60rpx;
+}
+

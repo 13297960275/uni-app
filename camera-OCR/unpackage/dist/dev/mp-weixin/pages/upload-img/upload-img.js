@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\workspace\\demo\\vue\\uni-app\\camera-OCR\\components\\uni-icon\\uni-icon.vue"));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -25,6 +25,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _bdAI = __webpack_require__(/*! @/utils/bdAI */ "E:\\workspace\\demo\\vue\\uni-app\\camera-OCR\\utils\\bdAI.js");var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\workspace\\demo\\vue\\uni-app\\camera-OCR\\components\\uni-icon\\uni-icon.vue"));};var _default =
 
 
 
@@ -36,8 +52,13 @@
   data: function data() {
     return {
       imgList: [],
-      imgBase64List: [] };
+      imgBase64List: [],
+      words: {} };
 
+  },
+  onLoad: function onLoad() {
+    // console.log(getAccexxToken());
+    console.log('页面加载');
   },
   computed: {
     showAdd: function showAdd() {
@@ -59,7 +80,18 @@
               success: function success(res) {//成功的回调
                 var base64 = 'data:image/jpeg;base64,' + res.data; //不加上这串字符，在页面无法显示的哦
                 _this.imgBase64List.push(base64);
-                console.log(_this.imgBase64List);
+                // console.log(this.imgBase64List);
+                (0, _bdAI.getIdCard)(res.data).then(function (resp) {
+                  _this.words = resp.data.words_result;
+                  console.log(_this.words['姓名'].words);
+
+                }).catch(function (reason) {
+                  uni.showToast({
+                    title: '文字识别失败',
+                    icon: 'none',
+                    duration: 1500 });
+
+                });
               } });
 
           }
@@ -70,7 +102,7 @@
             icon: 'none',
             duration: 1500 });
 
-          console.log(err);
+          // console.log(err);
         } });
 
     },
@@ -98,7 +130,7 @@
       }
       this.imgList = il;
       this.imgBase64List = ibl;
-      console.log(il, ibl);
+      // console.log(il, ibl);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 

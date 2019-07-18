@@ -13,11 +13,27 @@
 				</view>
 			</view>
 		</view>
+
+		<view v-if="showAdd">
+			<view class="c-list">
+				<view class="c-row b-b" v-for="(value, key, index) in words" :key="key">
+					<text class="tit">{{key}}</text>
+					<view class="con-list">
+						<text>{{words[key].words}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+
 	</view>
 </template>
 
 <script>
 	import uniIcon from '@/components/uni-icon/uni-icon.vue'
+	import {
+		getAccexxToken,
+		getIdCard
+	} from '@/utils/bdAI'
 
 	export default {
 		components: {
@@ -26,8 +42,13 @@
 		data() {
 			return {
 				imgList: [],
-				imgBase64List: []
+				imgBase64List: [],
+				words: {}
 			};
+		},
+		onLoad() {
+			// console.log(getAccexxToken());
+			console.log('页面加载')
 		},
 		computed: {
 			showAdd() {
@@ -49,7 +70,18 @@
 								success: res => { //成功的回调
 									let base64 = 'data:image/jpeg;base64,' + res.data //不加上这串字符，在页面无法显示的哦
 									this.imgBase64List.push(base64);
-									console.log(this.imgBase64List);
+									// console.log(this.imgBase64List);
+									getIdCard(res.data).then(resp => {
+										this.words = resp.data.words_result
+										console.log(this.words['姓名'].words);
+										
+									}).catch(function(reason) {
+										uni.showToast({
+											title: '文字识别失败',
+											icon: 'none',
+											duration: 1500
+										})
+									});
 								}
 							})
 						}
@@ -60,7 +92,7 @@
 							icon: 'none',
 							duration: 1500
 						});
-						console.log(err);
+						// console.log(err);
 					}
 				})
 			},
@@ -88,7 +120,7 @@
 				}
 				this.imgList = il;
 				this.imgBase64List = ibl;
-				console.log(il, ibl);
+				// console.log(il, ibl);
 			}
 		}
 	}
@@ -98,13 +130,15 @@
 	.show-inline {
 		display: inline-block !important;
 	}
+
 	.show {
 		display: block !important;
 	}
+
 	.hide {
 		display: none !important;
 	}
-	
+
 	.an-uploadImg-group {
 		margin: 5upx 20upx;
 	}
@@ -136,5 +170,46 @@
 		top: -45vw;
 		width: 45upx;
 		background-color: #C8C7CC;
+	}
+
+	.c-list {
+		/* font-size: $font-sm + 2upx; */
+		/* color: $font-color-base; */
+		background: #fff;
+	}
+
+	.c-row {
+		display: flex;
+		align-items: center;
+		padding: 20upx 30upx;
+		position: relative;
+	}
+
+	.tit {
+		width: 8rem;
+	}
+
+	.con {
+		flex: 1;
+		color: dark;
+	}
+
+	.bz-list {
+		height: 40upx;
+		/* font-size: $font-sm+2upx; */
+		color: dark;
+	}
+
+	.bz-list text {
+		display: inline-block;
+		margin-right: 30upx;
+	}
+
+	.con-list {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		color: dark;
+		line-height: 40upx;
 	}
 </style>
