@@ -119,7 +119,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style>
 	.active {
 		color: #f00;
 	}

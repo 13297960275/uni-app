@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "uni-app",
+  "navigationBarTitleText": "打开箱机",
   "usingComponents": {
     "an-upload-img": "/components/an-uploadImg/an-uploadImg"
   }

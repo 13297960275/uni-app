@@ -9,6 +9,7 @@
 					</view>
 				</view>
 				<view class="an-img-add" v-if="!showAdd" @click="chooseImage">
+					<view class="">身份证正面照</view>
 					<uni-icon type="plus" size="36" color="#FFFFFF"></uni-icon>
 				</view>
 			</view>
@@ -74,7 +75,6 @@
 									getIdCard(res.data).then(resp => {
 										this.words = resp.data.words_result
 										console.log(this.words['姓名'].words);
-										
 									}).catch(function(reason) {
 										uni.showToast({
 											title: '文字识别失败',
@@ -165,11 +165,11 @@
 	}
 
 	.an-icon-close {
-		position: relative;
-		right: 0;
-		top: -45vw;
-		width: 45upx;
-		background-color: #C8C7CC;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 45px;
+		/* background-color: #C8C7CC; */
 	}
 
 	.c-list {

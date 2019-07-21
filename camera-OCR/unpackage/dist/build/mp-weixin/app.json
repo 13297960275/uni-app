@@ -1,11 +1,14 @@
 {
   "pages": [
-    "pages/scan-frame/scan-frame"
+    "pages/index/index",
+    "pages/upload-img/upload-img",
+    "pages/scan-frame/scan-frame",
+    "pages/test/test"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "OCR",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

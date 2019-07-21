@@ -8,20 +8,22 @@
 }
 .an-img-add {
 	float: left;
-	margin-right: 10rpx;
-	height: 100rpx;
-	width: 100rpx;
+	/* margin-right: 10upx; */
+	height: 45vw;
+	width: 45vw;
 	background-color: #C8C7CC;
 	text-align: center;
-	line-height: 110rpx;
+	line-height: 45vw;
 }
 .an-img>image {
-	height: 100rpx;
-	width: 100rpx;
+	height: 45vw;
+	width: 45vw;
 }
 .an-icon-close {
 	position: relative;
-	right: -50rpx;
-	top: -120rpx;
+	right: 0;
+	top: -45vw;
+	width: 45rpx;
+	background-color: #C8C7CC;
 }
 
