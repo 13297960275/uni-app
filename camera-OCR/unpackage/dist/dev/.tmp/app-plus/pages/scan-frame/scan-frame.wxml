@@ -1,2 +1,0 @@
-<import src="./scan-frame.vue.wxml" />
-    <template is="aa5b2fd6" data="{{ ...$root['0'], $root }}"/>
