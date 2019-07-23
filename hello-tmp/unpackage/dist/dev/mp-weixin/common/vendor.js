@@ -10287,6 +10287,159 @@ parseHtml;exports.default = _default;
 
 /***/ }),
 
+/***/ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\common\\imgTools.js":
+/*!******************************************************************!*\
+  !*** E:/workspace/demo/vue/uni-app/hello-tmp/common/imgTools.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.pathToBase64 = pathToBase64;exports.base64ToPath = base64ToPath;exports.getImgSize = getImgSize;function getLocalFilePath(path) {
+  if (path.indexOf('_www') === 0 || path.indexOf('_doc') === 0 || path.indexOf('_documents') === 0 || path.indexOf('_downloads') === 0) {
+    return path;
+  }
+  if (path.indexOf('file://') === 0) {
+    return path;
+  }
+  if (path.indexOf('/storage/emulated/0/') === 0) {
+    return path;
+  }
+  if (path.indexOf('/') === 0) {
+    var localFilePath = plus.io.convertAbsoluteFileSystem(path);
+    if (localFilePath !== path) {
+      return localFilePath;
+    } else {
+      path = path.substr(1);
+    }
+  }
+  return '_www/' + path;
+}
+
+function pathToBase64(path) {
+  return new Promise(function (resolve, reject) {
+    if (typeof window === 'object' && 'document' in window) {
+      var canvas = document.createElement('canvas');
+      var c2x = canvas.getContext('2d');
+      var img = new Image();
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        c2x.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL());
+      };
+      img.onerror = reject;
+      img.src = path;
+      return;
+    }
+    if (typeof plus === 'object') {
+      plus.io.resolveLocalFileSystemURL(getLocalFilePath(path), function (entry) {
+        entry.file(function (file) {
+          var fileReader = new plus.io.FileReader();
+          fileReader.onload = function (data) {
+            resolve(data.target.result);
+          };
+          fileReader.onerror = function (error) {
+            reject(error);
+          };
+          fileReader.readAsDataURL(file);
+        }, function (error) {
+          reject(error);
+        });
+      }, function (error) {
+        reject(error);
+      });
+      return;
+    }
+    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
+      wx.getFileSystemManager().readFile({
+        filePath: path,
+        encoding: 'base64',
+        success: function success(res) {
+          resolve('data:image/png;base64,' + res.data);
+        },
+        fail: function fail(error) {
+          reject(error);
+        } });
+
+      return;
+    }
+    reject(new Error('not support'));
+  });
+}
+
+function base64ToPath(base64) {
+  return new Promise(function (resolve, reject) {
+    if (typeof window === 'object' && 'document' in window) {
+      base64 = base64.split(',');
+      var type = base64[0].match(/:(.*?);/)[1];
+      var str = atob(base64[1]);
+      var n = str.length;
+      var array = new Uint8Array(n);
+      while (n--) {
+        array[n] = str.charCodeAt(n);
+      }
+      return resolve((window.URL || window.webkitURL).createObjectURL(new Blob([array], { type: type })));
+    }
+    var extName = base64.match(/data\:\S+\/(\S+);/);
+    if (extName) {
+      extName = extName[1];
+    } else {
+      reject(new Error('base64 error'));
+    }
+    var fileName = Date.now() + '.' + extName;
+    if (typeof plus === 'object') {
+      var bitmap = new plus.nativeObj.Bitmap('bitmap' + Date.now());
+      bitmap.loadBase64Data(base64, function () {
+        var filePath = '_doc/uniapp_temp/' + fileName;
+        bitmap.save(filePath, {}, function () {
+          bitmap.clear();
+          resolve(filePath);
+        }, function (error) {
+          bitmap.clear();
+          reject(error);
+        });
+      }, function (error) {
+        bitmap.clear();
+        reject(error);
+      });
+      return;
+    }
+    if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
+      var filePath = wx.env.USER_DATA_PATH + '/' + fileName;
+      wx.getFileSystemManager().writeFile({
+        filePath: filePath,
+        data: base64.replace(/^data:\S+\/\S+;base64,/, ''),
+        encoding: 'base64',
+        success: function success() {
+          resolve(filePath);
+        },
+        fail: function fail(error) {
+          reject(error);
+        } });
+
+      return;
+    }
+    reject(new Error('not support'));
+  });
+}
+
+// 获取base64图片大小，返回KB数字
+function getImgSize(base64url) {
+  var str = base64url.replace(/^data:image\/\w+;base64,/, "").replace('=', "");
+
+  var strLength = str.length;
+  var fileLength = parseInt(strLength - strLength / 8 * 2);
+
+  // 由字节转换为KB
+  var size = "";
+  size = (fileLength / 1024).toFixed(2);
+
+  return parseInt(size);
+}
+
+/***/ }),
+
 /***/ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\common\\util.js":
 /*!**************************************************************!*\
   !*** E:/workspace/demo/vue/uni-app/hello-tmp/common/util.js ***!
@@ -31949,6 +32102,23 @@ createPage(_voice.default);
 
 /***/ }),
 
+/***/ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\main.js?{\"page\":\"pages%2Fapplication%2FimgCut%2FimgCut\"}":
+/*!********************************************************************************************************!*\
+  !*** E:/workspace/demo/vue/uni-app/hello-tmp/main.js?{"page":"pages%2Fapplication%2FimgCut%2FimgCut"} ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _imgCut = _interopRequireDefault(__webpack_require__(/*! ./pages/application/imgCut/imgCut.vue */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\pages\\application\\imgCut\\imgCut.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_imgCut.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\main.js?{\"page\":\"pages%2Fapplication%2FocrApi%2FocrApi\"}":
 /*!********************************************************************************************************!*\
   !*** E:/workspace/demo/vue/uni-app/hello-tmp/main.js?{"page":"pages%2Fapplication%2FocrApi%2FocrApi"} ***!
@@ -33549,6 +33719,11 @@ __webpack_require__.r(__webpack_exports__);
 // 配置信息
 var apiKey = 'mAgLjoMEGOMPoxdxwtD9vpF0';
 var secretKey = 'SbgFlyhqYfigKF6exxbUoEYePuQzaFcd';
+var apiUrl = 'https://aip.baidubce.com';
+
+
+
+
 
 function request(data) {
   return new Promise(function (resolve, reject) {
@@ -33586,7 +33761,7 @@ function getAccexxToken() {return _getAccexxToken.apply(this, arguments);}functi
               } catch (e) {
 
               }
-              var url = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=' + apiKey +
+              var url = apiUrl + '/oauth/2.0/token?grant_type=client_credentials&client_id=' + apiKey +
               '&client_secret=' + secretKey;
 
               request({ url: url }).then(function (res) {
@@ -33609,7 +33784,7 @@ function getAccexxToken() {return _getAccexxToken.apply(this, arguments);}functi
 function getIdCard(img, side) {
   return new Promise(function (resolve, reject) {
     getAccexxToken().then(function (res) {
-      var url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard?access_token=' + res;
+      var url = apiUrl + '/rest/2.0/ocr/v1/idcard?access_token=' + res;
       var params = {
         image: img,
         id_card_side: side || 'front' };
@@ -33630,9 +33805,10 @@ function getIdCard(img, side) {
 }
 
 function getOcrInfo(data, type) {
+  data.image = data.image.replace(/^data:image\/\w+;base64,/, "");
   return new Promise(function (resolve, reject) {
     getAccexxToken().then(function (res) {
-      var url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/' + type + '?access_token=' + res;
+      var url = apiUrl + '/rest/2.0/ocr/v1/' + type + '?access_token=' + res;
       request({
         url: url,
         params: data,

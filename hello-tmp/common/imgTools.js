@@ -9,7 +9,7 @@ function getLocalFilePath(path) {
         return path
     }
     if (path.indexOf('/') === 0) {
-        var localFilePath = plus.io.convertAbsoluteFileSystem(path)
+        let localFilePath = plus.io.convertAbsoluteFileSystem(path)
         if (localFilePath !== path) {
             return localFilePath
         } else {
@@ -22,9 +22,9 @@ function getLocalFilePath(path) {
 export function pathToBase64(path) {
     return new Promise(function(resolve, reject) {
         if (typeof window === 'object' && 'document' in window) {
-            var canvas = document.createElement('canvas')
-            var c2x = canvas.getContext('2d')
-            var img = new Image
+            let canvas = document.createElement('canvas')
+            let c2x = canvas.getContext('2d')
+            let img = new Image
             img.onload = function() {
                 canvas.width = img.width
                 canvas.height = img.height
@@ -38,7 +38,7 @@ export function pathToBase64(path) {
         if (typeof plus === 'object') {
             plus.io.resolveLocalFileSystemURL(getLocalFilePath(path), function(entry) {
                 entry.file(function(file) {
-                    var fileReader = new plus.io.FileReader()
+                    let fileReader = new plus.io.FileReader()
                     fileReader.onload = function(data) {
                         resolve(data.target.result)
                     }
@@ -75,26 +75,26 @@ export function base64ToPath(base64) {
     return new Promise(function(resolve, reject) {
         if (typeof window === 'object' && 'document' in window) {
             base64 = base64.split(',')
-            var type = base64[0].match(/:(.*?);/)[1]
-            var str = atob(base64[1])
-            var n = str.length
-            var array = new Uint8Array(n)
+            let type = base64[0].match(/:(.*?);/)[1]
+            let str = atob(base64[1])
+            let n = str.length
+            let array = new Uint8Array(n)
             while (n--) {
                 array[n] = str.charCodeAt(n)
             }
             return resolve((window.URL || window.webkitURL).createObjectURL(new Blob([array], { type: type })))
         }
-        var extName = base64.match(/data\:\S+\/(\S+);/)
+        let extName = base64.match(/data\:\S+\/(\S+);/)
         if (extName) {
             extName = extName[1]
         } else {
             reject(new Error('base64 error'))
         }
-        var fileName = Date.now() + '.' + extName
+        let fileName = Date.now() + '.' + extName
         if (typeof plus === 'object') {
-            var bitmap = new plus.nativeObj.Bitmap('bitmap' + Date.now())
+            let bitmap = new plus.nativeObj.Bitmap('bitmap' + Date.now())
             bitmap.loadBase64Data(base64, function() {
-                var filePath = '_doc/uniapp_temp/' + fileName
+                let filePath = '_doc/uniapp_temp/' + fileName
                 bitmap.save(filePath, {}, function() {
                     bitmap.clear()
                     resolve(filePath)
@@ -109,7 +109,7 @@ export function base64ToPath(base64) {
             return
         }
         if (typeof wx === 'object' && wx.canIUse('getFileSystemManager')) {
-            var filePath = wx.env.USER_DATA_PATH + '/' + fileName
+            let filePath = wx.env.USER_DATA_PATH + '/' + fileName
             wx.getFileSystemManager().writeFile({
                 filePath: filePath,
                 data: base64.replace(/^data:\S+\/\S+;base64,/, ''),
@@ -125,4 +125,18 @@ export function base64ToPath(base64) {
         }
         reject(new Error('not support'))
     })
+}
+
+// 获取base64图片大小，返回KB数字
+export function getImgSize(base64url) {
+    let str = base64url.replace(/^data:image\/\w+;base64,/, "").replace('=', "");
+    
+    let strLength = str.length;
+    let fileLength = parseInt(strLength - (strLength / 8) * 2);
+
+    // 由字节转换为KB
+    let size = "";
+    size = (fileLength / 1024).toFixed(2);
+    
+    return parseInt(size);
 }

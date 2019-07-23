@@ -8,6 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -32,7 +33,37 @@
 //
 //
 //
+//
+//
+var _default =
+{
+  data: function data() {
+    return {};
 
+  },
+  onLoad: function onLoad() {
+
+
+
+  },
+  onReady: function onReady() {
+
+
+
+  },
+  onShareAppMessage: function onShareAppMessage() {
+    return {
+      title: '欢迎体验uni-app',
+      path: '/pages/tabBar/extUI/extUI' };
+
+  },
+  onNavigationBarButtonTap: function onNavigationBarButtonTap(e) {
+    uni.navigateTo({
+      url: '/pages/about/about' });
+
+  },
+  methods: {} };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 

@@ -84,15 +84,17 @@
 
 
 
-var _bdAI = __webpack_require__(/*! @/services/bdAI */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\services\\bdAI.js");var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\components\\uni-icon\\uni-icon.vue"));};var _default =
 
 
 
 
+var _bdAI = __webpack_require__(/*! @/services/bdAI */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\services\\bdAI.js");
+var _imgTools = __webpack_require__(/*! @/common/imgTools */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\common\\imgTools.js");var avatar = function avatar() {return Promise.all(/*! import() | components/yq-avatar/yq-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/yq-avatar/yq-avatar")]).then(__webpack_require__.bind(null, /*! @/components/yq-avatar/yq-avatar */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\components\\yq-avatar\\yq-avatar.vue"));};var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "E:\\workspace\\demo\\vue\\uni-app\\hello-tmp\\components\\uni-icon\\uni-icon.vue"));};var _default =
 
 {
   components: {
-    uniIcon: uniIcon },
+    uniIcon: uniIcon,
+    avatar: avatar },
 
   data: function data() {
     return {
@@ -140,6 +142,56 @@ var _bdAI = __webpack_require__(/*! @/services/bdAI */ "E:\\workspace\\demo\\vue
 
 
   methods: {
+    doBefore: function doBefore() {
+      console.log('doBefore');
+    },
+    doUpload: function doUpload(rsp) {var _this = this;
+      console.log(rsp);
+      this.$set(this.imgList, rsp.index, rsp.path);
+      return;
+      (0, _imgTools.pathToBase64)(rsp.path).then(function (res) {
+        // console.log(res);
+        console.log((0, _imgTools.getImgSize)(res));
+        var size = (0, _imgTools.getImgSize)(res);
+        if (size > 2500) {
+          uni.showToast({
+            title: '图片超过2.5M，请进行裁剪',
+            icon: 'none',
+            duration: 1500 });
+
+          _this.$refs.avatar.fChooseImg(0, {
+            selWidth: '240upx', selHeight: '151upx',
+            expWidth: '480upx', expHeight: '302upx',
+            inner: 'true',
+            canRotate: 'true' },
+          rsp.path);
+        } else {
+          _this.getOcrInfo(res);
+        }
+      }).catch(function (err) {
+        console.log(err);
+        uni.showToast({
+          title: '图片解析失败',
+          icon: 'none',
+          duration: 1500 });
+
+      });
+      return;
+      uni.uploadFile({
+        url: '', //仅为示例，非真实的接口地址
+        filePath: rsp.path,
+        name: 'avatar',
+        formData: {
+          'avatar': rsp.path },
+
+        success: function success(uploadFileRes) {
+          console.log(uploadFileRes.data);
+        },
+        complete: function complete(res) {
+          console.log(res);
+        } });
+
+    },
     radioChange: function radioChange(evt) {
       this.imgList = [];
       for (var i = 0; i < this.types.length; i++) {
@@ -150,44 +202,44 @@ var _bdAI = __webpack_require__(/*! @/services/bdAI */ "E:\\workspace\\demo\\vue
         }
       }
     },
-    chooseImage: function chooseImage() {var _this = this;
+    chooseImage: function chooseImage() {var _this2 = this;
+      this.words = {};
       console.log('chooseImage');
       uni.chooseImage({
-        count: 1,
+        count: 1, //默认9
+        sizeType: ['compressed'], //original 原图，compressed 压缩图，默认二者都有
+        sourceType: ['album', 'camera '], //album 从相册选图，camera 使用相机，默认二者都有
         success: function success(chooseImageRes) {
           for (var i = 0; i < chooseImageRes.tempFilePaths.length; i++) {
-            _this.imgList.push(chooseImageRes.tempFilePaths[i]);
-            uni.getFileSystemManager().readFile({
-              filePath: chooseImageRes.tempFilePaths[i], //选择图片返回的相对路径
-              encoding: 'base64', //编码格式
-              success: function success(res) {//成功的回调
-                var base64 = 'data:image/jpeg;base64,' + res.data; //不加上这串字符，在页面无法显示的哦
-                // this.imgBase64List.push(base64);
-                // console.log(this.imgBase64List);
-                _this.words = {};
-                var dataSet = {
-                  image: res.data };
+            _this2.imgList.push(chooseImageRes.tempFilePaths[i]);
+            (0, _imgTools.pathToBase64)(chooseImageRes.tempFilePaths[i]).then(function (res) {
+              // console.log(res);
+              var size = (0, _imgTools.getImgSize)(res);
+              console.log(size);
+              // if (size > 2500) {
+              // 	uni.showToast({
+              // 		title: '图片超过2.5M，请进行裁剪',
+              // 		icon: 'none',
+              // 		duration: 1500
+              // 	});
+              // 	this.$refs.avatar.fChooseImg(0, {
+              // 		selWidth: '240upx', selHeight: '151upx', 
+              // 		expWidth: '480upx', expHeight: '302upx',
+              // 		avatarSrc: chooseImageRes.tempFilePaths[0],
+              // 		inner: 'true',
+              // 		canRotate: 'true'
+              // 	});
+              // } else{
+              _this2.getOcrInfo(res);
+              // }
+            }).catch(function (err) {
+              console.log(err);
+              uni.showToast({
+                title: '图片解析失败',
+                icon: 'none',
+                duration: 1500 });
 
-                console.log(_this.types[_this.current].value);
-                switch (_this.types[_this.current].value) {
-                  case 'idcard':
-                    dataSet.id_card_side = 'front';
-                    break;
-                  default:
-                    break;}
-
-                (0, _bdAI.getOcrInfo)(dataSet, _this.types[_this.current].value).then(function (resp) {
-                  _this.words = resp.data.words_result;
-                  // console.log(this.words['姓名'].words);
-                }).catch(function (reason) {
-                  uni.showToast({
-                    title: '文字识别失败',
-                    icon: 'none',
-                    duration: 1500 });
-
-                });
-              } });
-
+            });
           }
         },
         fail: function fail(err) {
@@ -225,6 +277,37 @@ var _bdAI = __webpack_require__(/*! @/services/bdAI */ "E:\\workspace\\demo\\vue
       this.imgList = il;
       // this.imgBase64List = ibl;
       // console.log(il, ibl);
+    },
+    getOcrInfo: function getOcrInfo(base64) {var _this3 = this;
+      uni.showLoading({
+        mask: true,
+        title: '加载中' });
+
+      // let base64 = 'data:image/jpeg;base64,' + res.data //不加上这串字符，在页面无法显示的哦
+      // this.imgBase64List.push(base64);
+      // console.log(this.imgBase64List);
+      var dataSet = {
+        image: base64 };
+
+      console.log(this.types[this.current].value);
+      switch (this.types[this.current].value) {
+        case 'idcard':
+          dataSet.id_card_side = 'front';
+          break;
+        default:
+          break;}
+
+      (0, _bdAI.getOcrInfo)(dataSet, this.types[this.current].value).then(function (resp) {
+        _this3.words = resp.data.words_result;
+        uni.hideLoading();
+        // console.log(this.words['姓名'].words);
+      }).catch(function (reason) {
+        uni.showToast({
+          title: '文字识别失败',
+          icon: 'none',
+          duration: 1500 });
+
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 

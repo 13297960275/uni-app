@@ -3,6 +3,11 @@
 // 配置信息
 const apiKey = 'mAgLjoMEGOMPoxdxwtD9vpF0'
 const secretKey = 'SbgFlyhqYfigKF6exxbUoEYePuQzaFcd'
+let apiUrl = 'https://aip.baidubce.com'
+
+// #ifdef H5
+apiUrl = '/aip'
+// #endif
 
 function request(data) {
 	return new Promise(function(resolve, reject) {
@@ -40,7 +45,7 @@ export async function getAccexxToken() {
 		} catch (e) {
 			// error
 		}
-		let url = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=' + apiKey +
+		let url = apiUrl + '/oauth/2.0/token?grant_type=client_credentials&client_id=' + apiKey +
 			'&client_secret=' + secretKey
 
 		request( { url }).then(res => {
@@ -63,7 +68,7 @@ export async function getAccexxToken() {
 export function getIdCard(img, side) {
 	return new Promise(function(resolve, reject) {
 		getAccexxToken().then(res => {
-			let url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard?access_token=' + res
+			let url = apiUrl + '/rest/2.0/ocr/v1/idcard?access_token=' + res
 			let params = {
 				image: img,
 				id_card_side: side || 'front'
@@ -84,9 +89,10 @@ export function getIdCard(img, side) {
 }
 
 export function getOcrInfo(data, type) {
+	data.image = data.image.replace(/^data:image\/\w+;base64,/, "")
 	return new Promise(function(resolve, reject) {
 		getAccexxToken().then(res => {
-			let url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/' + type + '?access_token=' + res
+			let url = apiUrl + '/rest/2.0/ocr/v1/' + type + '?access_token=' + res
 			request({
 				url,
 				params: data,

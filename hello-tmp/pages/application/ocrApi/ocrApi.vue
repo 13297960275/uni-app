@@ -15,6 +15,9 @@
 					<!-- <view class="">身份证正面照</view> -->
 					<uni-icon type="plus" size="36" color="#FFFFFF"></uni-icon>
 				</view>
+				
+				<avatar @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="avatar"></avatar>
+				
 				<view>
 					<!-- <view class="uni-title uni-common-mt uni-common-pl">识别类型</view> -->
 					<view class="uni-list">
@@ -73,16 +76,15 @@
 </template>
 
 <script>
+	import avatar from "@/components/yq-avatar/yq-avatar";
 	import uniIcon from '@/components/uni-icon/uni-icon.vue'
-	import {
-		getAccexxToken,
-		getIdCard,
-		getOcrInfo
-	} from '@/services/bdAI'
+	import { getAccexxToken, getIdCard, getOcrInfo } from '@/services/bdAI'
+	import { pathToBase64, base64ToPath, getImgSize } from '@/common/imgTools'
 
 	export default {
 		components: {
-			uniIcon
+			uniIcon,
+			avatar
 		},
 		data() {
 			return {
@@ -130,6 +132,56 @@
 			// }
 		},
 		methods: {
+			doBefore() {
+				console.log('doBefore');
+			},
+			doUpload(rsp) {
+				console.log(rsp);
+				this.$set(this.imgList, rsp.index, rsp.path);
+				return;
+				pathToBase64(rsp.path).then(res => {
+					// console.log(res);
+					console.log(getImgSize(res));
+					let size = getImgSize(res)
+					if (size > 2500) {
+						uni.showToast({
+							title: '图片超过2.5M，请进行裁剪',
+							icon: 'none',
+							duration: 1500
+						});
+						this.$refs.avatar.fChooseImg(0, {
+							selWidth: '240upx', selHeight: '151upx', 
+							expWidth: '480upx', expHeight: '302upx',
+							inner: 'true',
+							canRotate: 'true'
+						}, rsp.path);
+					} else{
+						this.getOcrInfo(res)
+					}
+				}).catch(err => {
+					console.log(err);
+					uni.showToast({
+						title: '图片解析失败',
+						icon: 'none',
+						duration: 1500
+					});
+				})
+				return;
+				uni.uploadFile({
+					url: '', //仅为示例，非真实的接口地址
+					filePath: rsp.path,
+					name: 'avatar',
+					formData: {
+						'avatar': rsp.path
+					},
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes.data);
+					},
+					complete(res) {
+						console.log(res)
+					}
+				});
+			},
 			radioChange: function(evt) {
 				this.imgList = []
 				for (let i = 0; i < this.types.length; i++) {
@@ -141,42 +193,42 @@
 				}
 			},
 			chooseImage() {
+				this.words = {}
 				console.log('chooseImage');
 				uni.chooseImage({
-					count: 1,
+					count: 1, //默认9
+					sizeType: ['compressed'], //original 原图，compressed 压缩图，默认二者都有
+					sourceType: ['album', 'camera '], //album 从相册选图，camera 使用相机，默认二者都有
 					success: (chooseImageRes) => {
 						for (var i = 0; i < chooseImageRes.tempFilePaths.length; i++) {
 							this.imgList.push(chooseImageRes.tempFilePaths[i]);
-							uni.getFileSystemManager().readFile({
-								filePath: chooseImageRes.tempFilePaths[i], //选择图片返回的相对路径
-								encoding: 'base64', //编码格式
-								success: res => { //成功的回调
-									let base64 = 'data:image/jpeg;base64,' + res.data //不加上这串字符，在页面无法显示的哦
-									// this.imgBase64List.push(base64);
-									// console.log(this.imgBase64List);
-									this.words = {}
-									let dataSet = {
-										image: res.data,
-									}
-									console.log(this.types[this.current].value);
-									switch (this.types[this.current].value){
-										case 'idcard':
-											dataSet.id_card_side = 'front'
-											break;
-										default:
-											break;
-									}
-									getOcrInfo(dataSet, this.types[this.current].value).then(resp => {
-										this.words = resp.data.words_result
-										// console.log(this.words['姓名'].words);
-									}).catch(function(reason) {
-										uni.showToast({
-											title: '文字识别失败',
-											icon: 'none',
-											duration: 1500
-										})
-									});
-								}
+							pathToBase64(chooseImageRes.tempFilePaths[i]).then(res => {
+								// console.log(res);
+								let size = getImgSize(res)
+								console.log(size);
+								// if (size > 2500) {
+								// 	uni.showToast({
+								// 		title: '图片超过2.5M，请进行裁剪',
+								// 		icon: 'none',
+								// 		duration: 1500
+								// 	});
+								// 	this.$refs.avatar.fChooseImg(0, {
+								// 		selWidth: '240upx', selHeight: '151upx', 
+								// 		expWidth: '480upx', expHeight: '302upx',
+								// 		avatarSrc: chooseImageRes.tempFilePaths[0],
+								// 		inner: 'true',
+								// 		canRotate: 'true'
+								// 	});
+								// } else{
+									this.getOcrInfo(res)
+								// }
+							}).catch(err => {
+								console.log(err);
+								uni.showToast({
+									title: '图片解析失败',
+									icon: 'none',
+									duration: 1500
+								});
 							})
 						}
 					},
@@ -215,6 +267,37 @@
 				this.imgList = il;
 				// this.imgBase64List = ibl;
 				// console.log(il, ibl);
+			},
+			getOcrInfo(base64) {
+				uni.showLoading({
+					mask: true,
+					title: '加载中'
+				})
+				// let base64 = 'data:image/jpeg;base64,' + res.data //不加上这串字符，在页面无法显示的哦
+				// this.imgBase64List.push(base64);
+				// console.log(this.imgBase64List);
+				let dataSet = {
+					image: base64,
+				}
+				console.log(this.types[this.current].value);
+				switch (this.types[this.current].value){
+					case 'idcard':
+						dataSet.id_card_side = 'front'
+						break;
+					default:
+						break;
+				}
+				getOcrInfo(dataSet, this.types[this.current].value).then(resp => {
+					this.words = resp.data.words_result
+					uni.hideLoading()
+					// console.log(this.words['姓名'].words);
+				}).catch(function(reason) {
+					uni.showToast({
+						title: '文字识别失败',
+						icon: 'none',
+						duration: 1500
+					})
+				});
 			}
 		}
 	}

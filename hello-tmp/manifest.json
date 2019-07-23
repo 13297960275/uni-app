@@ -113,6 +113,20 @@
                     "key" : ""
                 }
             }
+        },
+        "devServer": {
+            "port": 8000,
+            "disableHostCheck": true,
+            "proxy": {
+                "/aip": {
+                    "target": "https://aip.baidubce.com",
+                    "changeOrigin": true,
+                    "secure": false,
+					"pathRewrite": {
+                        "^/aip" : ""   //匹配请求路径里面有 /api 替换成 https://testapi.kemiandan.com
+                    }
+                }
+            }
         }
     }
 }

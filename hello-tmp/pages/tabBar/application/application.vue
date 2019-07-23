@@ -11,6 +11,9 @@
                 <navigator url="/pages/application/ocrApi/ocrApi" hover-class="other-navigator-hover">
                     <button type="default">OCR测试</button>
                 </navigator>
+                <navigator url="/pages/application/imgCut/imgCut" hover-class="other-navigator-hover">
+                    <button type="default">图片裁剪</button>
+                </navigator>
                 <navigator url="/pages/template/ucharts/ucharts" hover-class="other-navigator-hover">
                     <button type="default">ucharts图表</button>
                 </navigator>
@@ -23,6 +26,35 @@
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+			};
+		},
+		onLoad() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.showWaiting('加载中……');
+			// #endif
+		},
+		onReady() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.closeWaiting();
+			// #endif
+		},
+		onShareAppMessage() {
+			return {
+				title: '欢迎体验uni-app',
+				path: '/pages/tabBar/extUI/extUI'
+			}
+		},
+		onNavigationBarButtonTap(e) {
+			uni.navigateTo({
+				url: '/pages/about/about'
+			});
+		},
+		methods: {
+		}
+	}
 </script>
 
 <style>
