@@ -1113,6 +1113,12 @@
 					"style": {
 						"navigationBarTitleText": "图片裁剪"
 					}
+				},
+				{
+					"path": "vue-cropper/vue-cropper",
+					"style": {
+						"navigationBarTitleText": "vue-cropper"
+					}
 				}
 			]
 		}

@@ -14,6 +14,9 @@
                 <navigator url="/pages/application/imgCut/imgCut" hover-class="other-navigator-hover">
                     <button type="default">图片裁剪</button>
                 </navigator>
+                <navigator url="/pages/application/vue-cropper/vue-cropper" hover-class="other-navigator-hover">
+                    <button type="default">vue-cropper</button>
+                </navigator>
                 <navigator url="/pages/template/ucharts/ucharts" hover-class="other-navigator-hover">
                     <button type="default">ucharts图表</button>
                 </navigator>

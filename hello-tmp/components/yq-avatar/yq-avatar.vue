@@ -3,6 +3,33 @@
 		<image :src="imgSrc.imgSrc" @click="fSelect" :style="[ imgStyle ]" class="my-avatar"></image>
 		<canvas canvas-id="avatar-canvas" id="avatar-canvas" class="my-canvas" :style="{top: styleTop, height: cvsStyleHeight}" disable-scroll="false"></canvas>
 		<canvas canvas-id="oper-canvas" id="oper-canvas" class="oper-canvas" :style="{top: styleTop, height: cvsStyleHeight}" disable-scroll="false" @touchstart="fStart" @touchmove="fMove" @touchend="fEnd"></canvas>
+		
+		<span class="cropper-view-box">
+			<img :style="{
+					'width': trueWidth + 'px',
+					'height': trueHeight + 'px',
+					'transform': 'scale(' + scale + ',' + scale + ') ' + 'translate3d('+ (x - cropOffsertX) / scale  + 'px,' + (y - cropOffsertY) / scale + 'px,' + '0)'
+					+ 'rotateZ('+ rotate * 90 +'deg)'
+					}"
+			 :src="imgs" alt="cropper-img">
+		</span>
+		<span class="cropper-face cropper-move" @mousedown="cropMove" @touchstart="cropMove"></span>
+		<!-- <span class="crop-info" v-if="info" :style="{'top': cropInfo.top}">{{ this.cropInfo.width }} × {{ this.cropInfo.height }}</span> -->
+		<span v-if="!fixedBox">
+			<span class="crop-line line-w" @mousedown="changeCropSize($event, false, true, 0, 1)" @touchstart="changeCropSize($event, false, true, 0, 1)"></span>
+			<span class="crop-line line-a" @mousedown="changeCropSize($event, true, false, 1, 0)" @touchstart="changeCropSize($event, true, false, 1, 0)"></span>
+			<span class="crop-line line-s" @mousedown="changeCropSize($event, false, true, 0, 2)" @touchstart="changeCropSize($event, false, true, 0, 2)"></span>
+			<span class="crop-line line-d" @mousedown="changeCropSize($event, true, false, 2, 0)" @touchstart="changeCropSize($event, true, false, 2, 0)"></span>
+			<span class="crop-point point1" @mousedown="changeCropSize($event, true, true, 1, 1)" @touchstart="changeCropSize($event, true, true, 1, 1)"></span>
+			<span class="crop-point point2" @mousedown="changeCropSize($event, false, true, 0, 1)" @touchstart="changeCropSize($event, false, true, 0, 1)"></span>
+			<span class="crop-point point3" @mousedown="changeCropSize($event, true, true, 2, 1)" @touchstart="changeCropSize($event, true, true, 2, 1)"></span>
+			<span class="crop-point point4" @mousedown="changeCropSize($event, true, false, 1, 0)" @touchstart="changeCropSize($event, true, false, 1, 0)"></span>
+			<span class="crop-point point5" @mousedown="changeCropSize($event, true, false, 2, 0)" @touchstart="changeCropSize($event, true, false, 2, 0)"></span>
+			<span class="crop-point point6" @mousedown="changeCropSize($event, true, true, 1, 2)" @touchstart="changeCropSize($event, true, true, 1, 2)"></span>
+			<span class="crop-point point7" @mousedown="changeCropSize($event, false, true, 0, 2)" @touchstart="changeCropSize($event, false, true, 0, 2)"></span>
+			<span class="crop-point point8" @mousedown="changeCropSize($event, true, true, 2, 2)" @touchstart="changeCropSize($event, true, true, 2, 2)"></span>
+		</span>
+		
 		<canvas canvas-id="prv-canvas" id="prv-canvas" class="prv-canvas" disable-scroll="false" @touchstart="fHideImg"	:style="{ height: cvsStyleHeight, top: prvTop }"></canvas>
 		<view class="oper-wrapper" :style="{display: styleDisplay}">
 			<view class="oper">
@@ -104,6 +131,29 @@
 			}
 		},
 		methods: {
+			// 改变截图框大小
+			changeCropSize(e, w, h, typeW, typeH) {
+				e.preventDefault();
+				window.addEventListener("mousemove", this.changeCropNow);
+				window.addEventListener("mouseup", this.changeCropEnd);
+				window.addEventListener("touchmove", this.changeCropNow);
+				window.addEventListener("touchend", this.changeCropEnd);
+				this.canChangeX = w;
+				this.canChangeY = h;
+				this.changeCropTypeX = typeW;
+				this.changeCropTypeY = typeH;
+				this.cropX = e.clientX ? e.clientX : e.touches[0].clientX;
+				this.cropY = e.clientY ? e.clientY : e.touches[0].clientY;
+				this.cropOldW = this.cropW;
+				this.cropOldH = this.cropH;
+				this.cropChangeX = this.cropOffsertX;
+				this.cropChangeY = this.cropOffsertY;
+				if (this.fixed) {
+					if (this.canChangeX && this.canChangeY) {
+						this.canChangeY = 0;
+					}
+				}
+			},
 			fWindowResize() {
 				let sysInfo = uni.getSystemInfoSync();
 				this.platform = sysInfo.platform;
@@ -699,6 +749,7 @@
 				// }
 			},
 			fStart(e) {
+				console.log('fStart: ', e);
 				let touches = e.touches,
 				touch0 = touches[0],
 				touch1 = touches[1];
@@ -713,6 +764,7 @@
 				}
 			},
 			fMove(e) {
+				// console.log('fMove: ', e);
 				let touches = e.touches,
 					touch0 = touches[0],
 					touch1 = touches[1];
@@ -801,6 +853,7 @@
 				}
 			},
 			fEnd(e) {
+				console.log('fEnd: ', e);
 				let touches = e.touches,
 					touch0 = touches && touches[0],
 					touch1 = touches && touches[1];
