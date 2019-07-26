@@ -16,6 +16,20 @@
 				urls: ["./../../../static/uni.png","./../../../static/uni.png"],
 			}
 		},
+		onReady() {
+			let _this = this
+			uni.getImageInfo({
+				src: 'https://avatars2.githubusercontent.com/u/15681693?s=460&v=4',
+				success: function (data) {
+					console.log(data);
+					_this.$refs.avatar.fChooseImg(0,{
+						selWidth: '350upx', selHeight: '350upx', 
+						expWidth: '260upx', expHeight: '260upx',
+						inner: 'true'
+					}, data.path);
+				}
+			});
+		},
 		methods: {
 			doBefore() {
 				console.log('doBefore');

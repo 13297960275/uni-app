@@ -138,7 +138,6 @@
 			doUpload(rsp) {
 				console.log(rsp);
 				this.$set(this.imgList, rsp.index, rsp.path);
-				return;
 				pathToBase64(rsp.path).then(res => {
 					// console.log(res);
 					console.log(getImgSize(res));
@@ -206,22 +205,22 @@
 								// console.log(res);
 								let size = getImgSize(res)
 								console.log(size);
-								// if (size > 2500) {
-								// 	uni.showToast({
-								// 		title: '图片超过2.5M，请进行裁剪',
-								// 		icon: 'none',
-								// 		duration: 1500
-								// 	});
-								// 	this.$refs.avatar.fChooseImg(0, {
-								// 		selWidth: '240upx', selHeight: '151upx', 
-								// 		expWidth: '480upx', expHeight: '302upx',
-								// 		avatarSrc: chooseImageRes.tempFilePaths[0],
-								// 		inner: 'true',
-								// 		canRotate: 'true'
-								// 	});
-								// } else{
+								if (size > 2500) {
+									uni.showToast({
+										title: '图片超过2.5M，请进行裁剪',
+										icon: 'none',
+										duration: 1500
+									});
+									this.$refs.avatar.fChooseImg(0, {
+										selWidth: '240upx', selHeight: '151upx', 
+										expWidth: '480upx', expHeight: '302upx',
+										avatarSrc: chooseImageRes.tempFilePaths[0],
+										inner: 'true',
+										canRotate: 'true'
+									}, chooseImageRes.tempFilePaths[0]);
+								} else{
 									this.getOcrInfo(res)
-								// }
+								}
 							}).catch(err => {
 								console.log(err);
 								uni.showToast({

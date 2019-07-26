@@ -2,34 +2,7 @@
 	<view>
 		<image :src="imgSrc.imgSrc" @click="fSelect" :style="[ imgStyle ]" class="my-avatar"></image>
 		<canvas canvas-id="avatar-canvas" id="avatar-canvas" class="my-canvas" :style="{top: styleTop, height: cvsStyleHeight}" disable-scroll="false"></canvas>
-		<canvas canvas-id="oper-canvas" id="oper-canvas" class="oper-canvas" :style="{top: styleTop, height: cvsStyleHeight}" disable-scroll="false" @touchstart="fStart" @touchmove="fMove" @touchend="fEnd"></canvas>
-		
-		<span class="cropper-view-box">
-			<img :style="{
-					'width': trueWidth + 'px',
-					'height': trueHeight + 'px',
-					'transform': 'scale(' + scale + ',' + scale + ') ' + 'translate3d('+ (x - cropOffsertX) / scale  + 'px,' + (y - cropOffsertY) / scale + 'px,' + '0)'
-					+ 'rotateZ('+ rotate * 90 +'deg)'
-					}"
-			 :src="imgs" alt="cropper-img">
-		</span>
-		<span class="cropper-face cropper-move" @mousedown="cropMove" @touchstart="cropMove"></span>
-		<!-- <span class="crop-info" v-if="info" :style="{'top': cropInfo.top}">{{ this.cropInfo.width }} × {{ this.cropInfo.height }}</span> -->
-		<span v-if="!fixedBox">
-			<span class="crop-line line-w" @mousedown="changeCropSize($event, false, true, 0, 1)" @touchstart="changeCropSize($event, false, true, 0, 1)"></span>
-			<span class="crop-line line-a" @mousedown="changeCropSize($event, true, false, 1, 0)" @touchstart="changeCropSize($event, true, false, 1, 0)"></span>
-			<span class="crop-line line-s" @mousedown="changeCropSize($event, false, true, 0, 2)" @touchstart="changeCropSize($event, false, true, 0, 2)"></span>
-			<span class="crop-line line-d" @mousedown="changeCropSize($event, true, false, 2, 0)" @touchstart="changeCropSize($event, true, false, 2, 0)"></span>
-			<span class="crop-point point1" @mousedown="changeCropSize($event, true, true, 1, 1)" @touchstart="changeCropSize($event, true, true, 1, 1)"></span>
-			<span class="crop-point point2" @mousedown="changeCropSize($event, false, true, 0, 1)" @touchstart="changeCropSize($event, false, true, 0, 1)"></span>
-			<span class="crop-point point3" @mousedown="changeCropSize($event, true, true, 2, 1)" @touchstart="changeCropSize($event, true, true, 2, 1)"></span>
-			<span class="crop-point point4" @mousedown="changeCropSize($event, true, false, 1, 0)" @touchstart="changeCropSize($event, true, false, 1, 0)"></span>
-			<span class="crop-point point5" @mousedown="changeCropSize($event, true, false, 2, 0)" @touchstart="changeCropSize($event, true, false, 2, 0)"></span>
-			<span class="crop-point point6" @mousedown="changeCropSize($event, true, true, 1, 2)" @touchstart="changeCropSize($event, true, true, 1, 2)"></span>
-			<span class="crop-point point7" @mousedown="changeCropSize($event, false, true, 0, 2)" @touchstart="changeCropSize($event, false, true, 0, 2)"></span>
-			<span class="crop-point point8" @mousedown="changeCropSize($event, true, true, 2, 2)" @touchstart="changeCropSize($event, true, true, 2, 2)"></span>
-		</span>
-		
+		<canvas canvas-id="oper-canvas" id="oper-canvas" class="oper-canvas" :style="{top: styleTop, height: cvsStyleHeight}" disable-scroll="false" @touchstart="fStart" @touchmove="fMove" @touchend="fEnd">从左上向右下拖动</canvas>
 		<canvas canvas-id="prv-canvas" id="prv-canvas" class="prv-canvas" disable-scroll="false" @touchstart="fHideImg"	:style="{ height: cvsStyleHeight, top: prvTop }"></canvas>
 		<view class="oper-wrapper" :style="{display: styleDisplay}">
 			<view class="oper">
@@ -131,29 +104,6 @@
 			}
 		},
 		methods: {
-			// 改变截图框大小
-			changeCropSize(e, w, h, typeW, typeH) {
-				e.preventDefault();
-				window.addEventListener("mousemove", this.changeCropNow);
-				window.addEventListener("mouseup", this.changeCropEnd);
-				window.addEventListener("touchmove", this.changeCropNow);
-				window.addEventListener("touchend", this.changeCropEnd);
-				this.canChangeX = w;
-				this.canChangeY = h;
-				this.changeCropTypeX = typeW;
-				this.changeCropTypeY = typeH;
-				this.cropX = e.clientX ? e.clientX : e.touches[0].clientX;
-				this.cropY = e.clientY ? e.clientY : e.touches[0].clientY;
-				this.cropOldW = this.cropW;
-				this.cropOldH = this.cropH;
-				this.cropChangeX = this.cropOffsertX;
-				this.cropChangeY = this.cropOffsertY;
-				if (this.fixed) {
-					if (this.canChangeX && this.canChangeY) {
-						this.canChangeY = 0;
-					}
-				}
-			},
 			fWindowResize() {
 				let sysInfo = uni.getSystemInfoSync();
 				this.platform = sysInfo.platform;
@@ -220,12 +170,15 @@
 					sourceType: ['album', 'camera'],
 					success: (r)=>{
 						let path = this.imgPath = r.tempFilePaths[0];
+						console.log(path);
 						this.getImgInfo(path)
 					}
 				})
 			},
 			getImgInfo(path) {
 				// uni.showLoading({ mask: true });
+				this.imgPath = path
+				console.log(path);
 				uni.getImageInfo({
 					src: path,
 					success: r => {
@@ -550,6 +503,7 @@
 				ctxCanvasOper.setGlobalAlpha(0.4);
 				ctxCanvasOper.setFillStyle('black');
 				ctxCanvasOper.strokeRect( left, top, width, height );
+				// console.log( left, top, width, height );
 				ctxCanvasOper.fillRect(0, 0, this.windowWidth, top);
 				ctxCanvasOper.fillRect(0, top, left, height);
 				ctxCanvasOper.fillRect(0, top+height, this.windowWidth, this.windowHeight-height-top-tabHeight);
@@ -683,7 +637,7 @@
 				}, this);
 			},
 			fChooseImg(index=undefined, params=undefined, filePath=undefined, data=undefined) {
-				console.log(index, params, filePath, data);
+				// console.log(index, params, filePath, data);
 				if(params) {
 					let selWidth = params.selWidth,
 						selHeight = params.selHeight,
@@ -749,7 +703,7 @@
 				// }
 			},
 			fStart(e) {
-				console.log('fStart: ', e);
+				// console.log('fStart: ', e);
 				let touches = e.touches,
 				touch0 = touches[0],
 				touch1 = touches[1];
@@ -757,10 +711,20 @@
 				this.touch0 = touch0;
 				this.touch1 = touch1;
 				
-				if( touch1 ) {
-					let x = touch1.x - touch0.x,
-						y = touch1.y - touch0.y;
-					this.fgDistance = Math.sqrt(x * x + y * y);
+				if (touches.length === 1) {
+					this.selStyle = {
+						left: touch0.x,
+						top: touch0.y,
+						width: 1,
+						height: 1,
+					}
+					this.fDrawInit(true)
+				} else{
+					if( touch1 ) {
+						let x = touch1.x - touch0.x
+						let y = touch1.y - touch0.y
+						this.fgDistance = Math.sqrt(x * x + y * y);
+					}
 				}
 			},
 			fMove(e) {
@@ -769,99 +733,162 @@
 					touch0 = touches[0],
 					touch1 = touches[1];
 				
-				if( touch1 ) {
-					let x = touch1.x - touch0.x,
-						y = touch1.y - touch0.y,
-						fgDistance = Math.sqrt(x * x + y * y),
-						scaleSize = 0.005 * (fgDistance - this.fgDistance),
-						beScaleSize = this.scaleSize + scaleSize;
+				if (touches.length === 1) { // 单点触控
+					if(touch0) {
+						this.touch0 = touch0;
+						let x0 = this.selStyle.left,
+							y0 = this.selStyle.top,
+							x1 = touch0.x,
+							y1 = touch0.y,
+							left = x0,
+							top = y0,
+							width = x1 - x0,
+							height = y1 - y0;
 						
-					do	{
-						if( !this.letScale ) break;
-						if( beScaleSize < this.mnScale) break;
-						if( beScaleSize > this.mxScale) break;
+						if (width < 0 || height < 0) {
+							if (width < 0) {
+								left = touch0.x
+								width = 0 - width
+							}
+							if (height < 0) {
+								top = touch0.y
+								height = 0 - height
+							}
+						} else{
+							this.selStyle = {
+								left: left,
+								top: top,
+								width: width > 0 ? width : (0 - width),
+								height: height > 0 ? height : (0 - height),
+							}					
+							// console.log(this.selStyle);
+							this.fDrawInit(true)
+						}
+					}
+				} else{
+					if( touch1 ) {
+						let x = touch1.x - touch0.x,
+							y = touch1.y - touch0.y,
+							fgDistance = Math.sqrt(x * x + y * y),
+							scaleSize = 0.005 * (fgDistance - this.fgDistance),
+							beScaleSize = this.scaleSize + scaleSize;
+							
+						do	{
+							if( !this.letScale ) break;
+							if( beScaleSize < this.mnScale) break;
+							if( beScaleSize > this.mxScale) break;
+							if(this.isin) {
+								let	imgWidth = this.useWidth*beScaleSize,
+									imgHeight = this.useHeight*beScaleSize,
+									rx0 = this.posWidth+this.useWidth/2,
+									ry0 = this.posHeight+this.useHeight/2,
+									l = rx0-imgWidth/2, t = ry0-imgHeight/2,
+									r = l+imgWidth,	    b = t+imgHeight,
+									left = parseInt(this.selStyle.left),
+									top = parseInt(this.selStyle.top),
+									width = parseInt(this.selStyle.width),
+									height = parseInt(this.selStyle.height);
+									if(left < l || left+width > r || top < t || top+height > b) break;
+									this.scaleWidth = (this.useWidth-imgWidth)/2;
+									this.scaleHeight = (this.useHeight-imgHeight)/2;
+							}
+							
+							this.scaleSize = beScaleSize;
+						} while(0);
+						this.fgDistance = fgDistance;
+				
+						if(touch1.x !== touch0.x && this.letRotate) {
+							x = (this.touch1.y - this.touch0.y)/(this.touch1.x - this.touch0.x);
+							y = (touch1.y - touch0.y)/(touch1.x - touch0.x);
+							this.rotateDeg += Math.atan((y-x)/(1+x*y)) * 180/Math.PI;
+							this.touch0 = touch0;
+							this.touch1 = touch1;
+						}
+						this.fDrawImage();
+					} else if( this.touch0 ) {
+						let x = touch0.x - this.touch0.x,
+							y = touch0.y - this.touch0.y,
+							beX = this.posWidth + x,
+							beY = this.posHeight + y;
+							
 						if(this.isin) {
-							let	imgWidth = this.useWidth*beScaleSize,
-								imgHeight = this.useHeight*beScaleSize,
-								rx0 = this.posWidth+this.useWidth/2,
-								ry0 = this.posHeight+this.useHeight/2,
+							let	imgWidth = this.useWidth*this.scaleSize,
+								imgHeight = this.useHeight*this.scaleSize,
+								rx0 = beX+this.useWidth/2,
+								ry0 = beY+this.useHeight/2,
 								l = rx0-imgWidth/2, t = ry0-imgHeight/2,
 								r = l+imgWidth,	    b = t+imgHeight,
 								left = parseInt(this.selStyle.left),
 								top = parseInt(this.selStyle.top),
 								width = parseInt(this.selStyle.width),
 								height = parseInt(this.selStyle.height);
-								if(left < l || left+width > r || top < t || top+height > b) break;
-								this.scaleWidth = (this.useWidth-imgWidth)/2;
-								this.scaleHeight = (this.useHeight-imgHeight)/2;
+								if(!this.lckWidth && Math.abs(x) < 100) {
+									if(left >= l && left+width <= r) {
+										this.posWidth  = beX;
+									} else if(left < l){
+										this.posWidth = left - this.scaleWidth; 
+									} else if(left+width > r) {
+										this.posWidth = left-(imgWidth-width) - this.scaleWidth;
+									}
+								}
+								if(!this.lckHeight && Math.abs(y) < 100) {
+									if(top >= t && top+height <= b) {
+										this.posHeight  = beY;
+									} else if(top < t) {
+										this.posHeight = top - this.scaleHeight;
+									} else if(top+height > b) {
+										this.posHeight = top-(imgHeight-height) - this.scaleHeight;
+									}
+								}
+						} else {
+							if( Math.abs(x) < 100 && !this.lckWidth) this.posWidth  = beX;
+							if( Math.abs(y) < 100 && !this.lckHeight) this.posHeight = beY;
 						}
 						
-						this.scaleSize = beScaleSize;
-					} while(0);
-					this.fgDistance = fgDistance;
-			
-					if(touch1.x !== touch0.x && this.letRotate) {
-						x = (this.touch1.y - this.touch0.y)/(this.touch1.x - this.touch0.x);
-						y = (touch1.y - touch0.y)/(touch1.x - touch0.x);
-						this.rotateDeg += Math.atan((y-x)/(1+x*y)) * 180/Math.PI;
 						this.touch0 = touch0;
-						this.touch1 = touch1;
+						this.fDrawImage();
 					}
-					
-					this.fDrawImage();
-				} else if( this.touch0 ) {
-					let x = touch0.x - this.touch0.x,
-						y = touch0.y - this.touch0.y,
-						beX = this.posWidth + x,
-						beY = this.posHeight + y;
-					if(this.isin) {
-						let	imgWidth = this.useWidth*this.scaleSize,
-							imgHeight = this.useHeight*this.scaleSize,
-							rx0 = beX+this.useWidth/2,
-							ry0 = beY+this.useHeight/2,
-							l = rx0-imgWidth/2, t = ry0-imgHeight/2,
-							r = l+imgWidth,	    b = t+imgHeight,
-							left = parseInt(this.selStyle.left),
-							top = parseInt(this.selStyle.top),
-							width = parseInt(this.selStyle.width),
-							height = parseInt(this.selStyle.height);
-							if(!this.lckWidth && Math.abs(x) < 100) {
-								if(left >= l && left+width <= r) {
-									this.posWidth  = beX;
-								} else if(left < l){
-									this.posWidth = left - this.scaleWidth; 
-								} else if(left+width > r) {
-									this.posWidth = left-(imgWidth-width) - this.scaleWidth;
-								}
-							}
-							if(!this.lckHeight && Math.abs(y) < 100) {
-								if(top >= t && top+height <= b) {
-									this.posHeight  = beY;
-								} else if(top < t) {
-									this.posHeight = top - this.scaleHeight;
-								} else if(top+height > b) {
-									this.posHeight = top-(imgHeight-height) - this.scaleHeight;
-								}
-							}
-					} else {
-						if( Math.abs(x) < 100 && !this.lckWidth) this.posWidth  = beX;
-						if( Math.abs(y) < 100 && !this.lckHeight) this.posHeight = beY;
-					}
-					
-					this.touch0 = touch0;
-					this.fDrawImage();
 				}
 			},
 			fEnd(e) {
 				console.log('fEnd: ', e);
-				let touches = e.touches,
+				let touches = e.changedTouches,
 					touch0 = touches && touches[0],
 					touch1 = touches && touches[1];
-				if(touch0) {
-					this.touch0 = touch0;
-				} else {
-					this.touch0 = null;
-					this.touch1 = null;
+				
+				if (e.touches.length === 1) {
+					if(touch0) {
+						this.touch0 = touch0;
+						let x0 = this.selStyle.left,
+							y0 = this.selStyle.top,
+							x1 = touch0.x,
+							y1 = touch0.y,
+							left = x0,
+							top = y0,
+							width = x1 - x0,
+							height = y1 - y0;
+						
+						if (width < 0) {
+							left = touch0.x
+							width = 0 - width
+						}
+						if (height < 0) {
+							top = touch0.y
+							height = 0 - height
+						}
+						
+						this.selStyle = {
+							left: left,
+							top: top,
+							width: width > 0 ? width : (0 - width),
+							height: height > 0 ? height : (0 - height),
+						}
+					
+						this.fDrawInit(true)
+					} else {
+						this.touch0 = null;
+						this.touch1 = null;
+					}
 				}
 			},
 			fGetImgData() {
@@ -1055,8 +1082,8 @@
 		width: 100%;
 	}
 	.my-avatar {
-		width: 150upx;
-		height: 150upx;
+		width: 1upx;
+		height: 1upx;
 		border-radius: 100%;
 	}
 	.oper-canvas {
