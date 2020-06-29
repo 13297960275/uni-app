@@ -1724,6 +1724,7 @@ uni-button[type=primary] {
 	background-color: #21caad;
 }
 
+.button-hover[type=primary],
 .bover-btn-primary {
 	color: hsla(0, 0%, 100%, .6);
 	background-color: #21caad;

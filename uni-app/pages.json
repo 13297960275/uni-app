@@ -11,18 +11,13 @@
 		{
 			"path": "pages/projects/login",
 			"style": {
-				"navigationBarTitleText": "登录",
-				"app-plus": {
-					"bounce": "vertical",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
-							"fontSize": "22px",
-							"color": "#FFFFFF"
-						}]
-					}
-				}
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/projects/index",
+			"style": {
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
