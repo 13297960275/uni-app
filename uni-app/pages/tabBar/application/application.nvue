@@ -23,6 +23,9 @@
 				<navigator url="/pages/projects/index" hover-class="other-navigator-hover">
 					<button type="default">首页</button>
 				</navigator>
+				<navigator url="/pages/projects/demo" hover-class="other-navigator-hover">
+					<button type="default">demo</button>
+				</navigator>
 				<!-- <navigator url="/pages/template/ucharts/ucharts" hover-class="other-navigator-hover">
 					<button type="default">ucharts图表</button>
 				</navigator>

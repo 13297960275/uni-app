@@ -26,7 +26,7 @@
 		<view class="uni-title uni-common-mt uni-common-pl">推荐展示样式</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="item.value">
+				<label class="uni-title-item uni-title-item-pd" v-for="(item, index) in items" :key="item.value">
 					<view>
 						<radio :value="item.value" :checked="index === current" />
 					</view>
@@ -84,7 +84,7 @@
 </script>
 
 <style>
-	.uni-list-cell {
+	.uni-title-item {
 		justify-content: flex-start
 	}
 </style>

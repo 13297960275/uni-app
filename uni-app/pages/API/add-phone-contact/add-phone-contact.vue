@@ -3,19 +3,19 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-common-mt">
 			<view class="uni-list">
-				<view class="uni-list-cell">
-					<view class="uni-list-cell-left">
+				<view class="uni-title-item">
+					<view class="uni-title-item-left">
 						<view class="uni-label">名称</view>
 					</view>
-					<view class="uni-list-cell-db">
+					<view class="uni-title-item-db">
 						<input class="uni-input" type="text" placeholder="请输入联系人名称" name="name" :value="name" @input="nameChange"></input>
 					</view>
 				</view>
-				<view class="uni-list-cell">
-					<view class="uni-list-cell-left">
+				<view class="uni-title-item">
+					<view class="uni-title-item-left">
 						<view class="uni-label">手机号</view>
 					</view>
-					<view class="uni-list-cell-db">
+					<view class="uni-title-item-db">
 						<input class="uni-input" type="text" placeholder="请输入联系人手机号" name="phone" :value="phone" @input="phoneChange"></input>
 					</view>
 				</view>

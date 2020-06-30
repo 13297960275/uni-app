@@ -1,6 +1,6 @@
 <template>
 	<view class="view">
-		<view class="list-cell view" hover-class="uni-list-cell-hover" @click="bindClick">
+		<view class="title-item view" hover-class="uni-title-item-hover" @click="bindClick">
 			<view class="media-list view" v-if="options.title">
 				<view class="view" :class="{'media-image-right': options.article_type === 2, 'media-image-left': options.article_type === 1}">
 					<text class="media-title" :class="{'media-title2': options.article_type === 1 || options.article_type === 2}">{{options.title}}</text>
@@ -54,12 +54,12 @@
 		box-sizing: border-box;
 	}
 
-	.list-cell {
+	.title-item {
 		width: 750rpx;
 		padding: 0 30rpx;
 	}
 
-	.uni-list-cell-hover {
+	.uni-title-item-hover {
 		background-color: #eeeeee;
 	}
 

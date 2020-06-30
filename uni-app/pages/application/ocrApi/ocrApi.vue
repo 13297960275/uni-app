@@ -22,7 +22,7 @@
 					<!-- <view class="uni-title uni-common-mt uni-common-pl">识别类型</view> -->
 					<view class="uni-list">
 						<radio-group @change="radioChange">
-							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in types" :key="item.value">
+							<label class="uni-title-item uni-title-item-pd" v-for="(item, index) in types" :key="item.value">
 								<view>
 									<radio :value="item.value" :checked="index === current" />
 								</view>
@@ -38,7 +38,7 @@
 			<view class="page">
 				<view class="uni-list">
 					<block v-for="(value, key, index) in words" :key="key">
-						<!-- <view class="uni-list-cell" hover-class="uni-list-cell-hover"> -->
+						<!-- <view class="uni-title-item" hover-class="uni-title-item-hover"> -->
 							<view v-if="current === 1">
 								<view class="uni-triplex-row" v-if="current === 1 && key === 'number'">
 									<view class="uni-triplex-left">

@@ -2,7 +2,7 @@
     <view class="tabs">
         <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scrollInto">
             <view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="tab.id" :data-current="index" @click="ontabtap">
-                <text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+                <text class="uni-tab-title-item" :class="tabIndex==index ? 'uni-tab-title-item-active' : ''">{{tab.name}}</text>
             </view>
         </scroll-view>
         <view class="line-h"></view>
@@ -327,7 +327,7 @@
         padding-right: 34rpx;
     }
 
-    .uni-tab-item-title {
+    .uni-tab-title-item {
         color: #555;
         font-size: 30rpx;
         height: 80rpx;
@@ -338,7 +338,7 @@
         /* #endif */
     }
 
-    .uni-tab-item-title-active {
+    .uni-tab-title-item-active {
         color: #21caad;
     }
 

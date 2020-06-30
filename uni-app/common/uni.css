@@ -475,7 +475,7 @@ checkbox-group label {
 	background-color: #c8c7cc;
 }
 
-.uni-list-cell {
+.uni-title-item {
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -483,26 +483,26 @@ checkbox-group label {
 	align-items: center;
 }
 
-.uni-list-cell-hover {
+.uni-title-item-hover {
 	background-color: #eee;
 }
 
-.uni-list-cell-pd {
+.uni-title-item-pd {
 	padding: 22rpx 30rpx;
 }
 
-.uni-list-cell-left {
+.uni-title-item-left {
 	white-space: nowrap;
 	font-size: 28rpx;
 	padding: 0 30rpx;
 }
 
-.uni-list-cell-db,
-.uni-list-cell-right {
+.uni-title-item-db,
+.uni-title-item-right {
 	flex: 1;
 }
 
-.uni-list-cell::after {
+.uni-title-item::after {
 	position: absolute;
 	z-index: 3;
 	right: 0;
@@ -515,15 +515,15 @@ checkbox-group label {
 	background-color: #c8c7cc;
 }
 
-.uni-list .uni-list-cell:last-child::after {
+.uni-list .uni-title-item:last-child::after {
 	height: 0rpx;
 }
 
-.uni-list-cell-last.uni-list-cell::after {
+.uni-title-item-last.uni-title-item::after {
 	height: 0rpx;
 }
 
-.uni-list-cell-divider {
+.uni-title-item-divider {
 	position: relative;
 	display: flex;
 	color: #999;
@@ -531,7 +531,7 @@ checkbox-group label {
 	padding: 15rpx 20rpx;
 }
 
-.uni-list-cell-divider::before {
+.uni-title-item-divider::before {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -543,7 +543,7 @@ checkbox-group label {
 	background-color: #c8c7cc;
 }
 
-.uni-list-cell-divider::after {
+.uni-title-item-divider::after {
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -555,7 +555,7 @@ checkbox-group label {
 	background-color: #c8c7cc;
 }
 
-.uni-list-cell-navigate {
+.uni-title-item-navigate {
 	font-size: 30rpx;
 	padding: 22rpx 30rpx;
 	line-height: 48rpx;
@@ -568,7 +568,7 @@ checkbox-group label {
 	align-items: center;
 }
 
-.uni-list-cell-navigate {
+.uni-title-item-navigate {
 	padding-right: 36rpx;
 }
 
@@ -576,7 +576,7 @@ checkbox-group label {
 	padding-right: 50rpx;
 }
 
-.uni-list-cell-navigate.uni-navigate-right:after {
+.uni-title-item-navigate.uni-navigate-right:after {
 	font-family: uniicons;
 	content: '\e583';
 	position: absolute;
@@ -587,7 +587,7 @@ checkbox-group label {
 	transform: translateY(-50%);
 }
 
-.uni-list-cell-navigate.uni-navigate-bottom:after {
+.uni-title-item-navigate.uni-navigate-bottom:after {
 	font-family: uniicons;
 	content: '\e581';
 	position: absolute;
@@ -598,7 +598,7 @@ checkbox-group label {
 	transform: translateY(-50%);
 }
 
-.uni-list-cell-navigate.uni-navigate-bottom.uni-active::after {
+.uni-title-item-navigate.uni-navigate-bottom.uni-active::after {
 	font-family: uniicons;
 	content: '\e580';
 	position: absolute;
@@ -609,11 +609,11 @@ checkbox-group label {
 	transform: translateY(-50%);
 }
 
-.uni-collapse.uni-list-cell {
+.uni-collapse.uni-title-item {
 	flex-direction: column;
 }
 
-.uni-list-cell-navigate.uni-active {
+.uni-title-item-navigate.uni-active {
 	background: #eee;
 }
 
@@ -623,11 +623,11 @@ checkbox-group label {
 	overflow: hidden;
 }
 
-.uni-collapse .uni-list-cell {
+.uni-collapse .uni-title-item {
 	padding-left: 20rpx;
 }
 
-.uni-collapse .uni-list-cell::after {
+.uni-collapse .uni-title-item::after {
 	left: 52rpx;
 }
 

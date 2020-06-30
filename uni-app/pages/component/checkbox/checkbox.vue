@@ -72,7 +72,7 @@
 		</view>
 		<view class="uni-list">
 			<checkbox-group @change="checkboxChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="item in items" :key="item.value">
+				<label class="uni-title-item uni-title-item-pd" v-for="item in items" :key="item.value">
 					<view>
 						<checkbox :value="item.value" :checked="item.checked" />
 					</view>
@@ -165,7 +165,7 @@
 </script>
 
 <style>
-	.uni-list-cell {
+	.uni-title-item {
 		justify-content: flex-start
 	}
 

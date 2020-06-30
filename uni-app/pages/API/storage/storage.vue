@@ -3,19 +3,19 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-common-mt">
 			<view class="uni-list">
-				<view class="uni-list-cell">
-					<view class="uni-list-cell-left">
+				<view class="uni-title-item">
+					<view class="uni-title-item-left">
 						<view class="uni-label">key</view>
 					</view>
-					<view class="uni-list-cell-db">
+					<view class="uni-title-item-db">
 						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"></input>
 					</view>
 				</view>
-				<view class="uni-list-cell">
-					<view class="uni-list-cell-left">
+				<view class="uni-title-item">
+					<view class="uni-title-item-left">
 						<view class="uni-label">value</view>
 					</view>
-					<view class="uni-list-cell-db">
+					<view class="uni-title-item-db">
 						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"></input>
 					</view>
 				</view>

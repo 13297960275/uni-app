@@ -7,13 +7,13 @@
 				}]" :class="icon"></text> -->
 			<uni-icons v-if="icon" class="cell-icon" :type="icon" :color="iconColor" size="25" />
 			<view class="cell-tit" :class="icon ? '' : border">
-				<text>{{title}}</text>
-				<text v-if="tips" class="cell-tip">{{tips}}</text>
+				<text :title="title">{{title}}</text>
+				<text v-if="tips" class="cell-tip" :title="tips">{{tips}}</text>
 			</view>
 			<!-- <text v-if="tips" class="cell-tip">{{tips}}</text> -->
-			<view>
-				 <slot name="tipsRight"></slot>
-			</view>
+			<!-- <view> -->
+			<slot name="tipsRight"></slot>
+			<!-- </view> -->
 			<!-- <text class="cell-more yticon" :class="typeList[navigateType]"></text> -->
 			<uni-icons class="cell-more" :type="navigateType" />
 		</view>
@@ -117,10 +117,13 @@
 
 	.cell-tit {
 		flex: 1;
-		font-size: $font-base;
+		font-size: $font-lg;
 		color: $font-color-dark;
 		margin-right: 10upx;
-		line-height: unset;
+		/* line-height: unset; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.cell-tip {

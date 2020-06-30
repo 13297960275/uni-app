@@ -13,7 +13,7 @@
                         <view style="flex-direction: row;">
                             <view class="uni-tab-item" v-for="(tab,index) in tabList" :key="tab.id" :id="tab.id" :ref="'tabitem'+index"
                                 :data-id="index" :data-current="index" @click="ontabtap">
-                                <text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
+                                <text class="uni-tab-title-item" :class="tabIndex==index ? 'uni-tab-title-item-active' : ''">{{tab.name}}</text>
                             </view>
                         </view>
                         <view class="scroll-view-indicator">
@@ -361,7 +361,7 @@
         padding-right: 25px;
     }
 
-    .uni-tab-item-title {
+    .uni-tab-title-item {
         color: #555;
         font-size: 30upx;
         height: 80upx;
@@ -372,7 +372,7 @@
         /* #endif */
     }
 
-    .uni-tab-item-title-active {
+    .uni-tab-title-item-active {
         color: #21caad;
     }
 

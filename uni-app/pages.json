@@ -21,6 +21,12 @@
 			}
 		},
 		{
+			"path": "pages/projects/demo",
+			"style": {
+				"navigationBarTitleText": "demo"
+			}
+		},
+		{
 			"path": "pages/tabBar/component/component",
 			"style": {
 				"navigationBarTitleText": "内置组件",

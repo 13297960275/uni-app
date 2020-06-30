@@ -82,7 +82,7 @@
 </script>
 
 <style>
-	.uni-list-cell {
+	.uni-title-item {
 		justify-content: flex-start
 	}
 

@@ -3,14 +3,14 @@
         <page-head :title="title"></page-head>
         <view class="uni-card">
             <view class="uni-list">
-                <view class="uni-list-cell uni-collapse" v-for="(list,index) in lists" :key="index" :class="index === lists.length - 1 ? 'uni-list-cell-last' : ''">
-                    <view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="list.show ? 'uni-active' : ''"
+                <view class="uni-title-item uni-collapse" v-for="(list,index) in lists" :key="index" :class="index === lists.length - 1 ? 'uni-title-item-last' : ''">
+                    <view class="uni-title-item-navigate uni-navigate-bottom" hover-class="uni-title-item-hover" :class="list.show ? 'uni-active' : ''"
                         @click="trigerCollapse(index)">
                         {{list.title}}
                     </view>
                     <view class="uni-list uni-collapse" :class="list.show ? 'uni-active' : ''">
-                        <view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,key) in list.item" :key="key" :class="key === list.item.length - 1 ? 'uni-list-cell-last' : ''">
-                            <view class="uni-list-cell-navigate uni-navigate-right"> {{item}} </view>
+                        <view class="uni-title-item" hover-class="uni-title-item-hover" v-for="(item,key) in list.item" :key="key" :class="key === list.item.length - 1 ? 'uni-title-item-last' : ''">
+                            <view class="uni-title-item-navigate uni-navigate-right"> {{item}} </view>
                         </view>
                     </view>
                 </view>

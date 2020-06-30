@@ -3,11 +3,11 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-common-mt">
 			<view class="uni-list">
-				<view class="uni-list-cell">
-					<view class="uni-list-cell-left">
+				<view class="uni-title-item">
+					<view class="uni-title-item-left">
 						<view class="uni-label">视频来源</view>
 					</view>
-					<view class="uni-list-cell-right">
+					<view class="uni-title-item-right">
 						<picker :range="sourceType" @change="sourceTypeChange" :value="sourceTypeIndex">
 							<view class="uni-input">{{sourceType[sourceTypeIndex]}}</view>
 						</picker>
@@ -20,7 +20,7 @@
 		<view class="uni-hello-text camera-tips">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in cameraList" :key="item.value">
+				<label class="uni-title-item uni-title-item-pd" v-for="(item, index) in cameraList" :key="item.value">
 					<radio :value="item.value" :checked="index === cameraIndex">{{item.name}}</radio>
 				</label>
 			</radio-group>

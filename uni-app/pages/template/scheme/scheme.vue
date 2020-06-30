@@ -15,7 +15,7 @@
 				<view>
 					<view class="uni-title">请输入聊天对象QQ号：</view>
 					<view class="uni-list">
-						<view class="uni-list-cell">
+						<view class="uni-title-item">
 							<input class="uni-input" name="qqNum" type="number"/>
 						</view>
 					</view>
