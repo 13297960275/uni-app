@@ -81,7 +81,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.uni-title-item {
 		justify-content: flex-start
 	}

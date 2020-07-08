@@ -99,7 +99,7 @@
 	}
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 	/* 团购楼层 */
 	.group-section {
 		background: #fff;
@@ -119,7 +119,7 @@
 		image {
 			width: 80upx;
 			height: 80upx;
-			border-radius: 4px;
+			border-radius: 4upx;
 		}
 
 		.g-item {
@@ -148,7 +148,7 @@
 			flex-direction: column-reverse;
 
 			.t-box {
-				padding-top: 20upx;
+				padding-top: 16upx;
 			}
 		}
 
@@ -200,7 +200,7 @@
 
 		.progress-box {
 			flex: 1;
-			border-radius: 10px;
+			border-radius: 10upx;
 			overflow: hidden;
 			/* margin-right: 8upx; */
 			/* padding-right: 12upx; */

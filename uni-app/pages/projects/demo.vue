@@ -172,7 +172,7 @@
 		}
 	}
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
 	%flex-center {
 		display: flex;
 		flex-direction: column;

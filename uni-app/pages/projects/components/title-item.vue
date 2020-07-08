@@ -75,7 +75,7 @@
 	}
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 	.icon .mix-list-cell.b-b:after {
 		left: 90upx;
 	}

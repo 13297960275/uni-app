@@ -1,8 +1,17 @@
 <template>
 	<view>
-		<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工"><button slot="tipsRight" class="mini-btn" type="primary" size="mini">切换项目</button></title-item>
+		<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" size="mini">切换项目</button><button
+				 class="mini-btn icon-btn" type="primary" size="mini">
+					<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" /></button></view>
+		</title-item>
 		<view class="uni-common-mt">
-			<progress-item title="当前项目:" tips="合肥市福广场停车场三号口施工"><button slot="tipsRight" class="mini-btn" type="primary" plain="true" size="mini">切换项目</button></progress-item>
+			<progress-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+				<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" plain="true" size="mini">切换项目</button>
+					<uni-icons :type="'gear-filled'" :color="'#21caad'" size="25" />
+				</view>
+			</progress-item>
+			<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
 			<!-- 浏览历史 -->
 			<view class="history-section icon">
 				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包:" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
@@ -14,13 +23,32 @@
 				<title-item icon="camera-filled" iconColor="#e07472" title="设置" @eventClick="navTo('/pages/set/set')"></title-item>
 			</view>
 		</view>
+		<button type="warn" @click="returnClick">回退</button>
 
-
+		<!-- 回退弹窗 -->
+		<uni-dialog :show="showDailog" type="center" :custom="true" :mask-click="false" @change="change">
+			<view class="uni-tip">
+				<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
+				<!-- 标题 -->
+				<view class="uni-tip-title">回退原因：</view>
+				<view class="uni-tip-content">
+					<!-- 中间内容进行自定义 -->
+					<textarea class="uni-tip-content-textarea" focus="true" placeholder="请输入回退原因" maxlength="-1" v-model="content" />
+					</view>
+        <!-- 按钮部分 -->
+        <view class="uni-tip-group-button">
+          <button type="primary" @click="query">确定</button>
+          <button type="warn" @click="cancel">取消</button>
+        </view>
+	    </view>
+		</uni-dialog>
 	</view>
 </template>
 <script>
 	import titleItem from './components/title-item';
 	import progressItem from './components/progress-item';
+	import personItem from './components/person-item';
+	import uniDialog from './components/uni-dialog';
 	import {
 		mapState
 	} from 'vuex';
@@ -30,13 +58,17 @@
 	export default {
 		components: {
 			titleItem,
-			progressItem
+			progressItem,
+			personItem,
+			uniDialog
 		},
 		data() {
 			return {
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				moving: false,
+				showDailog: false, // 是否显示弹窗
+				content:'' // 回退原因
 			}
 		},
 		onLoad() {},
@@ -64,6 +96,22 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
+      /** 回退方法 */
+      returnClick(){
+          this.showDailog = true
+      },
+      /** 回退弹窗取消方法 */
+      cancel() {
+          this.showDailog = false
+      },
+      /** 回退弹窗确定方法 */
+      query() {
+          this.showDailog = false
+      },
+      /** 监听弹窗状态是否打开 */
+      change(e) {
+          console.log(e.show)
+      },
 
 			/**
 			 * 统一跳转接口,拦截未登录路由
@@ -119,7 +167,7 @@
 		}
 	}
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
 	%flex-center {
 		display: flex;
 		flex-direction: column;
@@ -318,5 +366,39 @@
 				border-radius: 10upx;
 			}
 		}
+	}
+	.uni-tip {
+    padding: 15px;
+    border-radius: 10px;
+		box-sizing: border-box;
+		background: #fff;
+	}
+	
+	.uni-tip-title {
+		text-align: center;
+		font-weight: bold;
+		color: #333;
+	}
+	
+	.uni-tip-content {
+		padding: 15px;
+		color: #666666;
+		border-radius: 10px;
+		border: 2px solid #ccc;
+	}
+	
+	.uni-tip-content-textarea{
+	  height: 300upx;
+	  width: 100%;
+	  text-align: left;
+	}
+	.uni-tip-group-button {
+		margin-top: 10px;
+		display: flex;
+	}
+	.uni-tip-group-button>button{
+		font-size:24upx;
+		height: 40upx;
+		line-height: 40upx;
 	}
 </style>

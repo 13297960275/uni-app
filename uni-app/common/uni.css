@@ -1733,3 +1733,19 @@ uni-button[type=primary] {
 uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 	border-color: #21caad;
 }
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+}
+
+.icon-btn {
+	padding: 0.55em !important;
+	line-height: 1 !important;
+}
+
+uni-button + uni-button {
+	margin-left: 0.5em;
+}

@@ -1,6 +1,7 @@
 import store from '@/store'
 
 function checkPermission(el, binding) {
+  console.log(el, binding)
   const { value } = binding
   const roles = store.getters && store.getters.roles
 

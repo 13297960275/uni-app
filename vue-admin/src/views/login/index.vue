@@ -308,7 +308,7 @@ $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
-    // color: $cursor;
+    color: $cursor;
   }
   .login-container .el-button--primary {
     background-color: $bg;
