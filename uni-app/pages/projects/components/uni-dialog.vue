@@ -1,25 +1,26 @@
 <!-- 模态框公共部分界面 -->
 <template>
-	    <view v-if="showPopup" class="uni-popup">
-		        
+	<view v-if="showPopup" class="uni-popup">
 		<!-- 遮罩层结构 -->
-		        
 		<view :class="[ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']"  class="uni-popup__mask" @click="close(true)" />
-		        
 		<!-- 弹窗主题利用插槽 -->
-		        <view              :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']"             
-		  class="uni-popup__wrapper"               @click="close(true)"         >
-			            <view class="uni-popup__wrapper-box" @click.stop="clear">
-				                
+		  <view :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__wrapper" @click="close(true)">
+			  <view class="uni-popup__wrapper-box" :style="{ width: width }" @click.stop="clear">
+				  
 				<slot />
-				            </view>
-			        </view>
-		    </view>
+			</view>
+		</view>
+	</view>
+	</view>
 </template>
 <script>
 	export default {
 		name: 'UniDialog',
 		props: {
+			width: {
+				type: String,
+				default: '80vw'
+			},
 			// 开启动画
 			animation: {
 				type: Boolean,
@@ -165,7 +166,8 @@
 
 	.uni-popup__wrapper.uni-custom .uni-popup__wrapper-box {
 		padding: 30upx;
-		background: #fff
+		background: #fff;
+		border-radius: 20upx;
 	}
 
 	.uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box {

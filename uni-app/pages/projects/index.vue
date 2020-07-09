@@ -1,19 +1,22 @@
 <template>
 	<view>
 		<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
-			<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" size="mini">切换项目</button><button
-				 class="mini-btn icon-btn" type="primary" size="mini">
-					<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" /></button></view>
+			<view class="flex-center" slot="tipsRight">
+				<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
+				<button class="mini-btn icon-btn" type="primary" size="mini">
+					<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
+				</button>
+			</view>
 		</title-item>
 		<view class="uni-common-mt">
 			<progress-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
-				<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" plain="true" size="mini">切换项目</button>
+				<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">切换项目</button>
 					<uni-icons :type="'gear-filled'" :color="'#21caad'" size="25" />
 				</view>
 			</progress-item>
 			<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
 			<!-- 浏览历史 -->
-			<view class="history-section icon">
+			<!-- <view class="history-section icon">
 				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包:" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
 				<title-item icon="camera-filled" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')">
 					<button slot="tipsRight" class="mini-btn" type="primary" size="mini">按钮</button></title-item>
@@ -21,26 +24,22 @@
 				<title-item icon="camera-filled" iconColor="#ee883b" title="晒单" tips="晒单抢红包"></title-item>
 				<title-item icon="camera-filled" iconColor="#54b4ef" title="我的收藏"></title-item>
 				<title-item icon="camera-filled" iconColor="#e07472" title="设置" @eventClick="navTo('/pages/set/set')"></title-item>
-			</view>
+			</view> -->
 		</view>
-		<button type="warn" @click="returnClick">回退</button>
 
 		<!-- 回退弹窗 -->
-		<uni-dialog :show="showDailog" type="center" :custom="true" :mask-click="false" @change="change">
-			<view class="uni-tip">
-				<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
-				<!-- 标题 -->
-				<view class="uni-tip-title">回退原因：</view>
-				<view class="uni-tip-content">
-					<!-- 中间内容进行自定义 -->
-					<textarea class="uni-tip-content-textarea" focus="true" placeholder="请输入回退原因" maxlength="-1" v-model="content" />
-					</view>
-        <!-- 按钮部分 -->
-        <view class="uni-tip-group-button">
-          <button type="primary" @click="query">确定</button>
-          <button type="warn" @click="cancel">取消</button>
-        </view>
-	    </view>
+		<uni-dialog :show="showDailog" type="center" :custom="false" :mask-click="true" @change="change">
+			<view class="uni-tip-title">
+				项目切换
+			</view>
+			<uni-list>
+				<uni-list-item v-for="(item, index) in [{id:1, name: '项目名称一项目名称一'},{id:2, name: '项目名称二'}]" :key="item.id" :title="item.name"
+				 :showArrow="false">
+					<template v-slot:right="">
+						<button class="mini-btn" type="primary" plain="true" size="mini" @click="selectProject(item.id)">选定</button>
+					</template>
+				</uni-list-item>
+			</uni-list>
 		</uni-dialog>
 	</view>
 </template>
@@ -68,7 +67,6 @@
 				coverTransition: '0s',
 				moving: false,
 				showDailog: false, // 是否显示弹窗
-				content:'' // 回退原因
 			}
 		},
 		onLoad() {},
@@ -96,22 +94,19 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
-      /** 回退方法 */
-      returnClick(){
-          this.showDailog = true
-      },
-      /** 回退弹窗取消方法 */
-      cancel() {
-          this.showDailog = false
-      },
-      /** 回退弹窗确定方法 */
-      query() {
-          this.showDailog = false
-      },
-      /** 监听弹窗状态是否打开 */
-      change(e) {
-          console.log(e.show)
-      },
+			/** 回退方法 */
+			switchProject() {
+				this.showDailog = true
+			},
+			/** 回退弹窗取消方法 */
+			selectProject(id) {
+				console.log(id)
+				this.showDailog = false
+			},
+			/** 监听弹窗状态是否打开 */
+			change(e) {
+				console.log(e.show)
+			},
 
 			/**
 			 * 统一跳转接口,拦截未登录路由
@@ -126,44 +121,6 @@
 				})
 			},
 
-			/**
-			 *  会员卡下拉和回弹
-			 *  1.关闭bounce避免ios端下拉冲突
-			 *  2.由于touchmove事件的缺陷（以前做小程序就遇到，比如20跳到40，h5反而好很多），下拉的时候会有掉帧的感觉
-			 *    transition设置0.1秒延迟，让css来过渡这段空窗期
-			 *  3.回弹效果可修改曲线值来调整效果，推荐一个好用的bezier生成工具 http://cubic-bezier.com/
-			 */
-			coverTouchstart(e) {
-				if (pageAtTop === false) {
-					return;
-				}
-				this.coverTransition = 'transform .1s linear';
-				startY = e.touches[0].clientY;
-			},
-			coverTouchmove(e) {
-				moveY = e.touches[0].clientY;
-				let moveDistance = moveY - startY;
-				if (moveDistance < 0) {
-					this.moving = false;
-					return;
-				}
-				this.moving = true;
-				if (moveDistance >= 80 && moveDistance < 100) {
-					moveDistance = 80;
-				}
-
-				if (moveDistance > 0 && moveDistance <= 80) {
-					this.coverTransform = `translateY(${moveDistance}px)`;
-				}
-			},
-			coverTouchend() {
-				if (this.moving === false) {
-					return;
-				}
-				this.moving = false;
-				this.coverTransition = 'transform 0.3s cubic-bezier(.21,1.93,.53,.64)';
-				this.coverTransform = 'translateY(0px)';
-			}
 		}
 	}
 </script>
@@ -367,37 +324,41 @@
 			}
 		}
 	}
+
 	.uni-tip {
-    padding: 15px;
-    border-radius: 10px;
+		padding: 15px;
+		border-radius: 10px;
 		box-sizing: border-box;
 		background: #fff;
 	}
-	
+
 	.uni-tip-title {
+		font-size: $font-em;
 		text-align: center;
 		font-weight: bold;
 		color: #333;
 	}
-	
+
 	.uni-tip-content {
 		padding: 15px;
 		color: #666666;
 		border-radius: 10px;
 		border: 2px solid #ccc;
 	}
-	
-	.uni-tip-content-textarea{
-	  height: 300upx;
-	  width: 100%;
-	  text-align: left;
+
+	.uni-tip-content-textarea {
+		height: 300upx;
+		width: 100%;
+		text-align: left;
 	}
+
 	.uni-tip-group-button {
 		margin-top: 10px;
 		display: flex;
 	}
-	.uni-tip-group-button>button{
-		font-size:24upx;
+
+	.uni-tip-group-button>button {
+		font-size: 24upx;
 		height: 40upx;
 		line-height: 40upx;
 	}
