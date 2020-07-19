@@ -1,21 +1,12 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<title-item title="任务名称:" tips="放线">
 				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button>
-				</view>
-			</title-item>
-			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
-		</view>
-		<view class="uni-common-mt">
-			<title-item title="组员情况:">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
+					<view class="cell-tit">
+						<text>区域：</text>
+						<text class="cell-tip">C1</text>
+					</view>
 				</view>
 			</title-item>
 			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
@@ -187,7 +178,22 @@
 		}
 	}
 </script>
-<style lang='scss' scoped>
+<style lang='scss' scoped>	.cell-tit {
+		flex: 1;
+		font-size: $font-lg;
+		color: $font-color-dark;
+		margin-right: 10upx;
+		/* line-height: unset; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.cell-tip {
+		font-size: $font-sm;
+		color: $font-color-light;
+		margin-left: $font-sm/2;
+	}
 	%flex-center {
 		display: flex;
 		flex-direction: column;

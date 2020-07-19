@@ -61,6 +61,7 @@
 
 <style lang='scss' scoped>
 	.cell-item {
+		margin: 20upx;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
@@ -80,8 +81,8 @@
 
 	/* 原图标颜色太深,不想改图了,所以加了透明度 */
 	image {
-		width: 88upx;
-		height: 88upx;
+		width: 68upx;
+		height: 68upx;
 		/* margin-bottom: 14upx; */
 		border-radius: 50%;
 		/* opacity: .7; */

@@ -92,7 +92,7 @@
 	.mix-list-cell {
 		display: flex;
 		align-items: baseline;
-		/* padding: 20upx $page-row-spacing; */
+		padding: 20upx $page-row-spacing;
 		line-height: 60upx;
 		position: relative;
 	}

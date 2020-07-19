@@ -3,7 +3,7 @@
 		<!-- <swiper-item class="g-swiper-item" v-for="(item, index) in goodsList" :key="index" v-if="index%2 === 0" @click="navToDetailPage(item)"> -->
 		<view class="g-swiper-item" :style="{ borderColor: borderColor }">
 			<view class="g-item left" :style="{ borderColor: borderColor }">
-				<image :src="image || '/static/imgs/money.png'" mode="aspectFill"></image>
+				<image :src="image" mode="aspectFill"></image>
 			</view>
 			<view class="g-item right">
 				<view class="t-box">
@@ -36,6 +36,14 @@
 	export default {
 		data() {
 			return {}
+		},
+		watch: {
+			image: {
+				handler(val) {
+					console.log(val)
+				},
+				immediate: true
+			}
 		},
 		props: {
 			borderColor: {
@@ -103,6 +111,7 @@
 	/* 团购楼层 */
 	.group-section {
 		background: #fff;
+		margin: 20upx;
 
 		.g-swiper {
 			height: 650upx;
@@ -117,8 +126,8 @@
 		}
 
 		image {
-			width: 80upx;
-			height: 80upx;
+			width: 70upx;
+			height: 70upx;
 			border-radius: 4upx;
 		}
 
@@ -192,7 +201,7 @@
 			color: $font-base;
 			/* padding-right: 10upx; */
 		}
-		
+
 		.martb10 {
 			margin-top: 20upx;
 			margin-bottom: 20upx;

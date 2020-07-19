@@ -86,7 +86,7 @@ form {
 
 .uni-padding-wrap {
 	width: 690rpx;
-	padding: 0 30rpx;
+	padding: 30rpx 30rpx;
 }
 
 .uni-word {
@@ -122,6 +122,10 @@ form {
 	margin-bottom: 30rpx;
 }
 
+.uni-common-mb {
+	margin-bottom: 30rpx;
+}
+
 .uni-common-pb {
 	padding-bottom: 30rpx;
 }
@@ -132,6 +136,10 @@ form {
 
 .uni-common-mt {
 	margin-top: 30rpx;
+}
+
+.uni-common-pt {
+	padding-top: 30rpx;
 }
 
 /* 背景色 */

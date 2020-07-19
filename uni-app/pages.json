@@ -15,6 +15,18 @@
 			}
 		},
 		{
+			"path": "pages/projects/cost",
+			"style": {
+				"navigationBarTitleText": "项目费用表"
+			}
+		},
+		{
+			"path": "pages/projects/person",
+			"style": {
+				"navigationBarTitleText": "人员计件费用表"
+			}
+		},
+		{
 			"path": "pages/projects/index",
 			"style": {
 				"navigationBarTitleText": "首页"

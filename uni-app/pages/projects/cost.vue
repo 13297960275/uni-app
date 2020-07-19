@@ -1,25 +1,31 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<title-item title="当前查看方式:" tips="项目,区域,车位">
 				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button>
+					<button class="mini-btn" type="primary" size="mini" @click="switchProject">查看方式</button>
+					<button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">附加项目</button>
 				</view>
 			</title-item>
-			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
-		</view>
-		<view class="uni-common-mt">
-			<title-item title="组员情况:">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
-				</view>
-			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
-			 :fontColor="el.fontColor" :status="el.status"></person-item>
+
+			<!-- @click="clickCard" -->
+			<uni-card>
+				<title-item title="放线" tips="" icon="no-border">
+					<view class="flex-center" slot="tipsRight">
+						<text style="color: #21caad">查看</text>
+						<uni-icons :type="'arrowright'" :color="'#21caad'" size="15" />
+					</view>
+				</title-item>
+
+				<uni-grid :column="2" :highlight="true" :show-border="false" :square="false">
+					<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
+						<view class="grid-item-box" style="background-color: #fff;">
+							<view class="bot" :style="{ backgroundColor: item.color }"></view>
+							<text class="m-cell">{{ item.text }}</text>
+						</view>
+					</uni-grid-item>
+				</uni-grid>
+			</uni-card>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -28,7 +34,8 @@
 				项目切换
 			</view>
 			<uni-list>
-				<uni-list-item v-for="(item, index) in projects" :key="item.id" :title="item.name" :showArrow="false">
+				<uni-list-item v-for="(item, index) in [{id:1, name: '项目名称一项目名称一'},{id:2, name: '项目名称二'}]" :key="item.id" :title="item.name"
+				 :showArrow="false">
 					<template v-slot:right="">
 						<button class="mini-btn" type="primary" plain="true" size="mini" @click="selectProject(item.id)">选定</button>
 					</template>
@@ -61,75 +68,26 @@
 				coverTransition: '0s',
 				moving: false,
 				showDailog: false, // 是否显示弹窗
-				projects: [{
-					id: 1,
-					name: '项目名称一项目名称一'
-				}, {
-					id: 2,
-					name: '项目名称二'
-				}],
-				projectList: [{
-						borderColor: '#47c4df4d',
-						image: '/static/imgs/piece.png',
-						title: '计件详情',
-						percent: '25',
-						activeColor: '#47c4df',
-						total: '100',
-						used: '25',
+				costList: [{}],
+
+				list: [{
+						text: '当前个数：200',
+						color: '#80dd87',
 					},
 					{
-						borderColor: '#f9b55d4d',
-						image: '/static/imgs/time.png',
-						title: '工时详情',
-						percent: '25',
-						activeColor: '#f9b55d',
-						total: '100',
-						used: '25',
+						text: '当前费用：600万元',
+						color: '#80dd87',
 					},
 					{
-						borderColor: '#80dd874d',
-						image: '/static/imgs/money.png',
-						title: '预借费用详情',
-						percent: '25',
-						activeColor: '#80dd87',
-						total: '100',
-						used: '25',
+						text: '总个数：500',
+						color: '#f9b55d',
 					},
 					{
-						borderColor: '#ff72724d',
-						image: '/static/imgs/time1.png',
-						title: '时间详情',
-						percent: '25',
-						activeColor: '#ff7272',
-						total: '100',
-						used: '25',
+						text: '总费用：2400万元',
+						color: '#f9b55d',
 					},
-				],
-				groupList: [{
-						image: '/static/imgs/tx.png',
-						name: '张一',
-						job: 'A区1/2/3车位',
-						jobName: '立柱',
-						fontColor: '#80dd87',
-						status: '已完结',
-					},
-					{
-						image: '/static/imgs/tx.png',
-						name: '张二',
-						job: 'A区1/2/3车位',
-						jobName: '打桩',
-						fontColor: '#47c4df',
-						status: '进展中',
-					},
-					{
-						image: '/static/imgs/tx.png',
-						name: '张三',
-						job: 'A区1/2/3车位\nB区1/2/3车位',
-						jobName: '刷漆',
-						fontColor: '#ff7272',
-						status: '未开始',
-					}
 				]
+
 			}
 		},
 		onLoad() {},
@@ -201,6 +159,22 @@
 		align-content: center;
 		background: #fff;
 		border-radius: 10upx;
+	}
+
+	.bot {
+		width: $font-base/2;
+		height: $font-base/2;
+		background-color: #fff;
+		border-radius: 50%;
+		display: inline-block;
+		line-height: 1;
+		margin-right: $font-base/2;
+	}
+	
+	.m-cell {
+		font-size: $font-sm+2upx;
+		/* text-decoration: line-through; */
+		color: $font-color-light;
 	}
 
 	.user-section {

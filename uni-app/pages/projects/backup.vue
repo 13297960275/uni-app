@@ -1,25 +1,30 @@
 <template>
-	<view class="uni-padding-wrap" style="background: #fff;">
-		<view class="">
-			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button>
-				</view>
-			</title-item>
-			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
-		</view>
+	<view>
+		<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<view class="flex-center" slot="tipsRight">
+				<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
+				<button class="mini-btn icon-btn" type="primary" size="mini">
+					<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
+				</button>
+			</view>
+		</title-item>
 		<view class="uni-common-mt">
-			<title-item title="组员情况:">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
+			<progress-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+				<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">切换项目</button>
+					<uni-icons :type="'gear-filled'" :color="'#21caad'" size="25" />
 				</view>
-			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
-			 :fontColor="el.fontColor" :status="el.status"></person-item>
+			</progress-item>
+			<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
+			<!-- 浏览历史 -->
+			<!-- <view class="history-section icon">
+				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包:" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
+				<title-item icon="camera-filled" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')">
+					<button slot="tipsRight" class="mini-btn" type="primary" size="mini">按钮</button></title-item>
+				<title-item icon="camera-filled" iconColor="#9789f7" title="分享" tips="邀请好友赢10万大礼"></title-item>
+				<title-item icon="camera-filled" iconColor="#ee883b" title="晒单" tips="晒单抢红包"></title-item>
+				<title-item icon="camera-filled" iconColor="#54b4ef" title="我的收藏"></title-item>
+				<title-item icon="camera-filled" iconColor="#e07472" title="设置" @eventClick="navTo('/pages/set/set')"></title-item>
+			</view> -->
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -28,7 +33,8 @@
 				项目切换
 			</view>
 			<uni-list>
-				<uni-list-item v-for="(item, index) in projects" :key="item.id" :title="item.name" :showArrow="false">
+				<uni-list-item v-for="(item, index) in [{id:1, name: '项目名称一项目名称一'},{id:2, name: '项目名称二'}]" :key="item.id" :title="item.name"
+				 :showArrow="false">
 					<template v-slot:right="">
 						<button class="mini-btn" type="primary" plain="true" size="mini" @click="selectProject(item.id)">选定</button>
 					</template>
@@ -61,75 +67,6 @@
 				coverTransition: '0s',
 				moving: false,
 				showDailog: false, // 是否显示弹窗
-				projects: [{
-					id: 1,
-					name: '项目名称一项目名称一'
-				}, {
-					id: 2,
-					name: '项目名称二'
-				}],
-				projectList: [{
-						borderColor: '#47c4df4d',
-						image: '/static/imgs/piece.png',
-						title: '计件详情',
-						percent: '25',
-						activeColor: '#47c4df',
-						total: '100',
-						used: '25',
-					},
-					{
-						borderColor: '#f9b55d4d',
-						image: '/static/imgs/time.png',
-						title: '工时详情',
-						percent: '25',
-						activeColor: '#f9b55d',
-						total: '100',
-						used: '25',
-					},
-					{
-						borderColor: '#80dd874d',
-						image: '/static/imgs/money.png',
-						title: '预借费用详情',
-						percent: '25',
-						activeColor: '#80dd87',
-						total: '100',
-						used: '25',
-					},
-					{
-						borderColor: '#ff72724d',
-						image: '/static/imgs/time1.png',
-						title: '时间详情',
-						percent: '25',
-						activeColor: '#ff7272',
-						total: '100',
-						used: '25',
-					},
-				],
-				groupList: [{
-						image: '/static/imgs/tx.png',
-						name: '张一',
-						job: 'A区1/2/3车位',
-						jobName: '立柱',
-						fontColor: '#80dd87',
-						status: '已完结',
-					},
-					{
-						image: '/static/imgs/tx.png',
-						name: '张二',
-						job: 'A区1/2/3车位',
-						jobName: '打桩',
-						fontColor: '#47c4df',
-						status: '进展中',
-					},
-					{
-						image: '/static/imgs/tx.png',
-						name: '张三',
-						job: 'A区1/2/3车位\nB区1/2/3车位',
-						jobName: '刷漆',
-						fontColor: '#ff7272',
-						status: '未开始',
-					}
-				]
 			}
 		},
 		onLoad() {},
