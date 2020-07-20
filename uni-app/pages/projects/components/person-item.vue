@@ -1,18 +1,23 @@
 <template>
-	<view class="cell-item">
-		<view class="cell-img">
-			<image :src="image || '/static/imgs/tx.png'"></image>
-			<text>{{name || '环球美食'}}</text>
+	<view class="cell-item" :style="{ border: !borderColor ? 'none' : '', borderColor: borderColor ? borderColor : 'transparent'}">
+		<view class="cell-img" :style="{flexDirection: direction}">
+			<image v-if="noImage" :src="image || '/static/imgs/tx.png'"></image>
+			<text>{{name}}</text>
 		</view>
 		<view>
-			<text class="m-cell">{{job || 'A区1/2/3车位'}}</text>
+			<text class="m-cell" v-if="job">{{job}}</text>
 		</view>
 		<view>
-			<text class="cell">{{jobName || '立柱'}}</text>
+			<text class="m-cell" v-if="cost">{{cost}}</text>
 		</view>
 		<view>
-			<text class="cell" :style="{ color: fontColor }">{{status || '未开始'}}</text>
+			<text class="cell" v-if="jobName">{{jobName}}</text>
 		</view>
+		<view>
+			<text class="cell" :style="{ color: fontColor }" v-if="status">{{status}}</text>
+		</view>
+
+		<slot name="tipsRight"></slot>
 	</view>
 </template>
 
@@ -26,6 +31,18 @@
 			return {}
 		},
 		props: {
+			borderColor: {
+				type: String,
+				default: '#21caad'
+			},
+			direction: {
+				type: String,
+				default: 'column'
+			},
+			noImage: {
+				type: Boolean,
+				default: true
+			},
 			image: {
 				type: String,
 				default: ''
@@ -35,6 +52,10 @@
 				default: ''
 			},
 			job: {
+				type: String,
+				default: ''
+			},
+			cost: {
 				type: String,
 				default: ''
 			},
@@ -61,12 +82,12 @@
 
 <style lang='scss' scoped>
 	.cell-item {
-		margin: 20upx;
+		margin: 15upx 0upx;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 		flex-wrap: nowrap;
-		padding: 15upx 11upx;
+		padding: 10upx 11upx;
 		background: #fff;
 		border-left: 10upx #21caad solid;
 	}

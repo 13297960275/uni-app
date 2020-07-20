@@ -9,8 +9,15 @@
 					</view>
 				</view>
 			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
-			 :fontColor="el.fontColor" :status="el.status"></person-item>
+
+			<uni-card v-for="(el, idx) in groupList" :key="idx">
+				<person-item :noImage="true" :image="el.image" :name="el.name" :cost="el.cost" borderColor="" direction="row">
+					<view class="flex-center" slot="tipsRight">
+						<text style="color: #21caad">查看</text>
+						<uni-icons :type="'arrowright'" :color="'#21caad'" size="15" />
+					</view>
+				</person-item>
+			</uni-card>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -101,6 +108,7 @@
 						name: '张一',
 						job: 'A区1/2/3车位',
 						jobName: '立柱',
+						cost: '费用：40万',
 						fontColor: '#80dd87',
 						status: '已完结',
 					},
@@ -109,6 +117,7 @@
 						name: '张二',
 						job: 'A区1/2/3车位',
 						jobName: '打桩',
+						cost: '费用：40万',
 						fontColor: '#47c4df',
 						status: '进展中',
 					},
@@ -117,6 +126,7 @@
 						name: '张三',
 						job: 'A区1/2/3车位\nB区1/2/3车位',
 						jobName: '刷漆',
+						cost: '费用：40万',
 						fontColor: '#ff7272',
 						status: '未开始',
 					}
@@ -178,7 +188,8 @@
 		}
 	}
 </script>
-<style lang='scss' scoped>	.cell-tit {
+<style lang='scss' scoped>
+	.cell-tit {
 		flex: 1;
 		font-size: $font-lg;
 		color: $font-color-dark;
@@ -194,6 +205,7 @@
 		color: $font-color-light;
 		margin-left: $font-sm/2;
 	}
+
 	%flex-center {
 		display: flex;
 		flex-direction: column;

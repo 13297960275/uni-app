@@ -27,6 +27,12 @@
 			}
 		},
 		{
+			"path": "pages/projects/project",
+			"style": {
+				"navigationBarTitleText": "附加项目"
+			}
+		},
+		{
 			"path": "pages/projects/index",
 			"style": {
 				"navigationBarTitleText": "首页"
