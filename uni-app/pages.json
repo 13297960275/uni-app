@@ -27,6 +27,12 @@
 			}
 		},
 		{
+			"path": "pages/projects/project",
+			"style": {
+				"navigationBarTitleText": "附加项目"
+			}
+		},
+		{
 			"path": "pages/projects/project-mgt",
 			"style": {
 				"navigationBarTitleText": "项目管理"

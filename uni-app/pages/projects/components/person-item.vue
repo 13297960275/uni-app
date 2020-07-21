@@ -89,14 +89,14 @@
 
 <style lang='scss' scoped>
 	.cell-item {
-		/* margin: 15upx 0upx; */
+		margin: 18upx 0upx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: nowrap;
-		padding: 10upx 11upx;
+		padding: 10upx 10upx 10upx 15upx;
 		background: #fff;
-		border-left: 10upx #21caad solid;
+		border-left: 10upx solid #21caad;
 	}
 
 	.cell-img {

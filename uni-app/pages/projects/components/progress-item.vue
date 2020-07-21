@@ -122,12 +122,12 @@
 			/* width: 100%; */
 			padding: 15upx 30upx;
 			display: flex;
-			border: 1upx solid #cfcfcf;
+			border: 2upx solid #cfcfcf;
 		}
 
 		image {
-			width: 70upx;
-			height: 70upx;
+			width: 80upx;
+			height: 80upx;
 			border-radius: 4upx;
 		}
 
@@ -138,7 +138,7 @@
 		}
 
 		.left {
-			flex: 0.2;
+			flex: 0.3;
 			margin-right: 24upx;
 			padding-right: 24upx;
 			border-right: 2upx solid #cfcfcf;

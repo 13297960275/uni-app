@@ -4,22 +4,15 @@
 			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button>
 				</view>
 			</title-item>
-			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
-		</view>
-		<view class="uni-common-mt">
-			<title-item title="组员情况:">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
+			<view class="uni-card-border" v-for="(el, idx) in priceList" :key="idx">
+				<view class="cell">
+					横梁
+					<text class="m-cell">（ 总需求：{{'100'}} )</text>
 				</view>
-			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
-			 :fontColor="el.fontColor" :status="el.status"></person-item>
+				<list-item :dataList="el.dataList" :borderColor="el.borderColor"></list-item>
+			</view>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -42,6 +35,7 @@
 	import progressItem from './components/progress-item';
 	import personItem from './components/person-item';
 	import uniDialog from './components/uni-dialog';
+	import listItem from './components/list-item';
 	import {
 		mapState
 	} from 'vuex';
@@ -53,10 +47,138 @@
 			titleItem,
 			progressItem,
 			personItem,
-			uniDialog
+			uniDialog,
+			listItem
 		},
 		data() {
 			return {
+				priceList: [{
+						borderColor: '',
+						dataList: [{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '发货中：20',
+								fontColor: '',
+								backgroundColor: '#47c4df',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '库存：30',
+								fontColor: '',
+								backgroundColor: '#80dd87',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '已使用：50',
+								fontColor: '',
+								backgroundColor: '#ff7272',
+							},
+						]
+					},
+					{
+						borderColor: '',
+						dataList: [{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '发货中：20',
+								fontColor: '',
+								backgroundColor: '#47c4df',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '库存：30',
+								fontColor: '',
+								backgroundColor: '#80dd87',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '已使用：50',
+								fontColor: '',
+								backgroundColor: '#ff7272',
+							},
+						]
+					},
+					{
+						borderColor: '',
+						dataList: [{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '发货中：20',
+								fontColor: '',
+								backgroundColor: '#47c4df',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '库存：30',
+								fontColor: '',
+								backgroundColor: '#80dd87',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '已使用：50',
+								fontColor: '',
+								backgroundColor: '#ff7272',
+							},
+						]
+					},
+					{
+						borderColor: '',
+						dataList: [{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '发货中：20',
+								fontColor: '',
+								backgroundColor: '#47c4df',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '库存：30',
+								fontColor: '',
+								backgroundColor: '#80dd87',
+							},
+							{
+								type: 'bot',
+								direction: '',
+								noImage: true,
+								image: '',
+								value: '已使用：50',
+								fontColor: '',
+								backgroundColor: '#ff7272',
+							},
+						]
+					},
+
+				],
+
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				moving: false,
@@ -188,6 +310,24 @@
 	}
 </script>
 <style lang='scss' scoped>
+	.cell {
+		flex: 1;
+		font-size: $font-base;
+		color: $font-color-dark;
+		/* font-weight: 600; */
+		margin-right: 10upx;
+		/* line-height: unset; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.m-cell {
+		font-size: $font-sm+2upx;
+		/* text-decoration: line-through; */
+		color: $font-color-light;
+	}
+
 	%flex-center {
 		display: flex;
 		flex-direction: column;

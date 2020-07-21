@@ -11,6 +11,14 @@
 			<view>
 				<text class="cell" :style="{ color: item.fontColor }" v-if="item.type == 'cell'">{{item.value}}</text>
 			</view>
+			<view class="" v-if="item.type == 'bot'">
+				<view class="bot" :style="{ backgroundColor: item.backgroundColor }"></view>
+				<text class="m-cell" :style="{ color: item.fontColor }">{{item.value}}</text>
+			</view>
+			<view class="" v-if="item.type == 'mix'">
+				<text class="cell" :style="{ color: item.fontColor }">{{item.value}}</text>：
+				<text class="m-cell">{{ item.tip }}</text>
+			</view>
 		</view>
 
 		<slot name="tipsRight"></slot>
@@ -90,5 +98,15 @@
 		font-size: $font-sm+2upx;
 		/* text-decoration: line-through; */
 		color: $font-color-light;
+	}
+
+	.bot {
+		width: $font-lg/2;
+		height: $font-lg/2;
+		background-color: #fff;
+		border-radius: 50%;
+		display: inline-block;
+		line-height: 1;
+		margin-right: $font-lg/2;
 	}
 </style>

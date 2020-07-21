@@ -1,0 +1,88 @@
+argu： {
+	tablemenulist: [{
+			type: "text", //type:text文本显示;link:跳转按钮;crud:增删改查按钮;select:多个选择的按钮;radio:单选框
+			label: "项目名" //表头名称:项目名、任务描述、班组长、组员、日期
+		},
+		{
+			type: "select",
+			label: "判断"
+		},
+		{
+			type: "link",
+			label: "操作"
+		}
+	],
+	argulist: [
+		//争议列表
+		[
+			"上海市第一人民医院停车场", //项目名
+			"A1-放线任务简述A1-放线任务简述", //任务描述
+			"张三", //班组长
+			"李四", //组员
+			"2020/09/01", //日期
+			{
+				array: [{
+						icon: "el-icon-date",
+						active: true,
+						label: "确认工时"
+					},
+					{
+						icon: "el-icon-refresh-left",
+						active: false,
+						label: "返工"
+					}
+				]
+			},
+			{
+				array: [{
+					label: "详情", //按钮上的文字
+					icon: "el-icon-tickets", //按钮图标
+					type: "", //按钮类别
+					active: "details" //按钮标识,判断执行的方法
+				}]
+			},
+			{
+				judge: "", //最终判断
+				managersuggest: "做工不细致", //班组长意见
+				workersuggest: "当地施工环境影响施工效果,已做最好处理", //组员意见
+				worktimelist: ["08:00-10:00", "08:00-10:00", "08:00-10:00"], //工作时间
+				imagelist: [] //照片
+			}
+		],
+		[
+			"上海市第一人民医院停车场", //项目名
+			"A1-放线任务简述A1-放线任务简述", //任务描述
+			"张三", //班组长
+			"李四", //组员
+			"2020/09/01", //日期
+			{
+				array: [{
+						icon: "el-icon-date",
+						active: true,
+						label: "确认工时"
+					},
+					{
+						icon: "el-icon-refresh-left",
+						active: false,
+						label: "返工"
+					}
+				]
+			},
+			{
+				array: [{
+					label: "详情", //按钮上的文字
+					icon: "el-icon-tickets", //按钮图标
+					type: "", //按钮类别
+					active: "details" //按钮标识,判断执行的方法
+				}]
+			},
+			{
+				judge: "", //最终判断
+				managersuggest: "做工不细致", //班组长意见
+				workersuggest: "当地施工环境影响施工效果,已做最好处理", //组员意见
+				worktimelist: ["08:00-10:00", "08:00-10:00", "08:00-10:00"], //工作时间
+				imagelist: [] //照片
+			}
+		]
+	]
+}

@@ -20,7 +20,7 @@
 			</progress-item>
 		</view>
 		<view class="uni-common-mt">
-			<title-item title=":">
+			<title-item title="组员情况:">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
 				</view>
@@ -76,7 +76,7 @@
 					name: '项目名称二'
 				}],
 				projectList: [{
-						borderColor: '#47c4df4d',
+						borderColor: '#47c4dfb3',
 						image: '/static/imgs/piece.png',
 						title: '计件详情',
 						percent: '25',
@@ -85,7 +85,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#f9b55d4d',
+						borderColor: '#f9b55db3',
 						image: '/static/imgs/time.png',
 						title: '工时详情',
 						percent: '25',
@@ -94,7 +94,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#80dd874d',
+						borderColor: '#80dd87b3',
 						image: '/static/imgs/money.png',
 						title: '预借费用详情',
 						percent: '25',
@@ -103,7 +103,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#ff72724d',
+						borderColor: '#ff7272b3',
 						image: '/static/imgs/time1.png',
 						title: '时间详情',
 						percent: '25',
