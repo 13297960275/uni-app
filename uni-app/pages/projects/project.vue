@@ -10,9 +10,9 @@
 		</title-item>
 		<view class="uni-common-mt">
 			<view v-if="dynamicList.length!==0" class="grid-dynamic-box">
-				 <!-- @change="change" -->
-				<uni-grid :column="3" :highlight="true">
-					<uni-grid-item v-for="(item, index) in dynamicList" :index="index" :key="index">
+				<!-- @change="change" -->
+				<uni-grid :column="3" :show-border="false" :highlight="true">
+					<uni-grid-item style="height: auto;" v-for="(item, index) in dynamicList" :index="index" :key="index">
 						<text class="time">{{item.time}}</text>
 						<view class="grid-item-box">
 							<image :src="item.url" class="image" mode="aspectFill" @click="perviewImg(item.urls)" />
@@ -30,7 +30,9 @@
 
 <script>
 	import titleItem from './components/title-item';
-	import { dateUtils } from '@/common/util.js'
+	import {
+		timeFilter
+	} from '@/common/util.js'
 	import {
 		pathToBase64,
 		base64ToPath,
@@ -113,8 +115,7 @@
 				if (this.dynamicList.length < 9) {
 					this.dynamicList.push({
 						url: `/static/c${this.dynamicList.length+1}.png`,
-						// time: dateUtils.format(new Date()),
-						// time: new Date(),
+						time: timeFilter.formatDate(new Date(), 'yyyy/MM/dd'),
 						text: this.dynamicList.length + 1 % 3 === 1 ? '进场' : this.dynamicList.length + 1 % 3 === 2 ? '施工' : "结束",
 						color: this.dynamicList.length % 2 === 0 ? '#f5f5f5' : "#fff"
 					})
@@ -146,9 +147,18 @@
 		padding: 10rpx;
 		margin: 10rpx;
 	}
+	
+	.time {
+		font-size: 26rpx;
+		/* margin-top: 10rpx; */
+		text-align: center;
+		/* background-color: #eee; */
+		/* padding: 10rpx; */
+		margin: 10rpx;
+	}
 
 	.grid-dynamic-box {
-		margin-bottom: 15px;
+		margin-bottom: 26rpx;
 	}
 
 	.grid-item-box {
@@ -161,6 +171,6 @@
 		align-items: center;
 		/* justify-content: center; */
 		justify-content: space-around;
-		padding: 15px 0;
+		/* padding: 26rpx 0; */
 	}
 </style>

@@ -27,9 +27,27 @@
 			}
 		},
 		{
-			"path": "pages/projects/project",
+			"path": "pages/projects/project-mgt",
 			"style": {
-				"navigationBarTitleText": "附加项目"
+				"navigationBarTitleText": "项目管理"
+			}
+		},
+		{
+			"path": "pages/projects/logistics-mgt",
+			"style": {
+				"navigationBarTitleText": "物流管理"
+			}
+		},
+		{
+			"path": "pages/projects/material-mgt",
+			"style": {
+				"navigationBarTitleText": "物资管理"
+			}
+		},
+		{
+			"path": "pages/projects/address",
+			"style": {
+				"navigationBarTitleText": "设定施工地点"
 			}
 		},
 		{

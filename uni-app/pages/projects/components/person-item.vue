@@ -14,6 +14,9 @@
 			<text class="cell" v-if="jobName">{{jobName}}</text>
 		</view>
 		<view>
+			<text class="m-cell" v-if="workStatus">{{workStatus}}</text>
+		</view>
+		<view>
 			<text class="cell" :style="{ color: fontColor }" v-if="status">{{status}}</text>
 		</view>
 
@@ -63,6 +66,10 @@
 				type: String,
 				default: ''
 			},
+			workStatus: {
+				type: String,
+				default: ''
+			},
 			fontColor: {
 				type: String,
 				default: '#21caad'
@@ -82,9 +89,9 @@
 
 <style lang='scss' scoped>
 	.cell-item {
-		margin: 15upx 0upx;
+		/* margin: 15upx 0upx; */
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
 		flex-wrap: nowrap;
 		padding: 10upx 11upx;

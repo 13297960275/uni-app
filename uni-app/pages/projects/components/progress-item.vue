@@ -177,7 +177,7 @@
 
 		.cell {
 			flex: 1;
-			font-size: $font-lg;
+			font-size: $font-base;
 			color: $font-color-dark;
 			font-weight: 600;
 			margin-right: 10upx;

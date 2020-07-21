@@ -10,10 +10,17 @@
 				</view>
 			</title-item>
 			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
+			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)">
+				<view class="flex-center" slot="tipsRight">
+					<button class="mini-btn" :style="{ borderColor: el.activeColor }" plain="true" size="mini">
+						<uni-icons :type="'gear-filled'" :color="el.activeColor" size="13" />
+						<text style="margin-left: 0.125rem;" :style="{ color: el.activeColor }">详情</text>
+					</button>
+				</view>
+			</progress-item>
 		</view>
 		<view class="uni-common-mt">
-			<title-item title="组员情况:">
+			<title-item title=":">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
 				</view>

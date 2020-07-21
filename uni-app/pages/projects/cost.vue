@@ -9,7 +9,7 @@
 			</title-item>
 
 			<!-- @click="clickCard" -->
-			<uni-card>
+			<view class="uni-card-border">
 				<title-item title="放线" tips="" icon="no-border">
 					<view class="flex-center" slot="tipsRight">
 						<text style="color: #21caad">查看</text>
@@ -25,7 +25,7 @@
 						</view>
 					</uni-grid-item>
 				</uni-grid>
-			</uni-card>
+			</view>
 		</view>
 
 		<!-- 回退弹窗 -->

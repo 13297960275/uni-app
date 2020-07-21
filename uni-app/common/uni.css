@@ -365,6 +365,17 @@ checkbox-group label {
 	box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .3);
 }
 
+.uni-card-border {
+	background: #fff;
+	border-radius: 8rpx;
+	margin: 20rpx 0;
+	padding: 20rpx;
+	/* margin: 10rpx; */
+	position: relative;
+	border: 3rpx solid rgba(208, 208, 208, .6);
+	/* box-shadow: 2rpx 2rpx 2rpx rgba(0, 0, 0, .7); */
+}
+
 .uni-card-content {
 	font-size: 30rpx;
 }
@@ -1754,6 +1765,13 @@ uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 	line-height: 1 !important;
 }
 
-uni-button + uni-button {
+uni-button+uni-button {
 	margin-left: 0.5em;
+}
+
+uni-button[size=mini] {
+	display: inline-block;
+	line-height: 2.3;
+	font-size: 13px;
+	padding: 0 0.67em;
 }

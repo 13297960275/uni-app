@@ -10,14 +10,14 @@
 				</view>
 			</title-item>
 
-			<uni-card v-for="(el, idx) in groupList" :key="idx">
+			<view class="uni-card-border" v-for="(el, idx) in groupList" :key="idx">
 				<person-item :noImage="true" :image="el.image" :name="el.name" :cost="el.cost" borderColor="" direction="row">
 					<view class="flex-center" slot="tipsRight">
 						<text style="color: #21caad">查看</text>
 						<uni-icons :type="'arrowright'" :color="'#21caad'" size="15" />
 					</view>
 				</person-item>
-			</uni-card>
+			</view>
 		</view>
 
 		<!-- 回退弹窗 -->

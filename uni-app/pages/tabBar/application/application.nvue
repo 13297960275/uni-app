@@ -41,6 +41,18 @@
 				<navigator url="/pages/projects/project" hover-class="other-navigator-hover">
 					<button type="default">附加项目</button>
 				</navigator>
+				<navigator url="/pages/projects/project-mgt" hover-class="other-navigator-hover">
+					<button type="default">项目管理</button>
+				</navigator>
+				<navigator url="/pages/projects/logistics-mgt" hover-class="other-navigator-hover">
+					<button type="default">物流管理</button>
+				</navigator>
+				<navigator url="/pages/projects/material-mgt" hover-class="other-navigator-hover">
+					<button type="default">物资管理</button>
+				</navigator>
+				<navigator url="/pages/projects/address" hover-class="other-navigator-hover">
+					<button type="default">设定施工地点</button>
+				</navigator>
 			</view>
 		</view>
 	</view>
