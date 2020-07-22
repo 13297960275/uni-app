@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="项目名:" tips="合肥市福广场停车场三号口施工">
+			<title-item title="项目名" tips="合肥市福广场停车场三号口施工">
 			</title-item>
 			<view class="uni-common-mt">
 				<view class="uni-card-border">
@@ -15,22 +15,22 @@
 						<view class="uni-form-item uni-row">
 							<view class="title">项目预算</view>
 							<view class="content">
-								<input class="uni-input border" v-model="form.cost" placeholder="请输入" />
+								<input class="uni-input" v-model="form.cost" placeholder="请输入" />
 							</view>
 						</view>
 						<view class="uni-form-item uni-row">
 							<view class="title">起始时间</view>
 							<view class="content">
-								<picker class="picker-content" mode="date" :value="form.beginDate" @change="bindPickerChange($event, 'beginDate')">
-									<view class="uni-input border">{{form.beginDate}}</view>
+								<picker mode="date" :value="form.beginDate" @change="bindPickerChange($event, 'beginDate')">
+									<view class="uni-input">{{form.beginDate}}</view>
 								</picker>
 							</view>
 						</view>
 						<view class="uni-form-item uni-row">
 							<view class="title">计划结束时间</view>
 							<view class="content">
-								<picker class="picker-content" mode="date" :value="form.endDate" @change="bindPickerChange($event, 'endDate')">
-									<view class="uni-input border">{{form.endDate}}</view>
+								<picker mode="date" :value="form.endDate" @change="bindPickerChange($event, 'endDate')">
+									<view class="uni-input">{{form.endDate}}</view>
 								</picker>
 							</view>
 						</view>
@@ -39,12 +39,11 @@
 							<view class="content">
 								<view class="picker-content">
 									<picker @change="bindPickerChange($event, 'swIndex')" :value="form.swIndex" :range="array" range-key="name">
-										<view class="uni-input picker-content border">{{array[form.swIndex].name}}</view>
+										<view class="uni-input picker-content">{{array[form.swIndex].name}}</view>
 									</picker>
 								</view>
-								<view class="divider-content"></view>
 								<view class="number-content">
-									<input class="uni-input border" v-model="form.swPhone" type="number" placeholder="请输入联系方式" />
+									<input class="uni-input " v-model="form.swPhone" type="number" placeholder="请输入联系方式" />
 								</view>
 							</view>
 						</view>
@@ -53,12 +52,11 @@
 							<view class="content">
 								<view class="picker-content">
 									<picker @change="bindPickerChange($event, 'khIndex')" :value="form.khIndex" :range="array" range-key="name">
-										<view class="uni-input picker-content border">{{array[form.khIndex].name}}</view>
+										<view class="uni-input picker-content">{{array[form.khIndex].name}}</view>
 									</picker>
 								</view>
-								<view class="divider-content"></view>
 								<view class="number-content">
-									<input class="uni-input border" v-model="form.khPhone" type="number" placeholder="请输入联系方式" />
+									<input class="uni-input" v-model="form.khPhone" type="number" placeholder="请输入联系方式" />
 								</view>
 							</view>
 						</view>
@@ -141,8 +139,7 @@
 				coverTransition: '0s',
 				moving: false,
 				showDailog: false, // 是否显示弹窗
-				priceList: [
-					{
+				priceList: [{
 						borderColor: '',
 						dataList: [{
 								type: 'cell',
@@ -198,63 +195,6 @@
 							},
 						]
 					},
-					{
-						borderColor: '',
-						dataList: [{
-								type: 'cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '立柱',
-								fontColor: '',
-							},
-							{
-								type: 'm-cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '不含物流',
-								fontColor: '',
-							},
-							{
-								type: 'm-cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '单价：200元',
-								fontColor: '',
-							},
-						]
-					},
-					{
-						borderColor: '',
-						dataList: [{
-								type: 'cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '立柱',
-								fontColor: '',
-							},
-							{
-								type: 'm-cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '含物流',
-								fontColor: '#21caad',
-							},
-							{
-								type: 'm-cell',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '单价：300元',
-								fontColor: '',
-							},
-						]
-					},
-
 				],
 				array: [{
 					name: '张三',
@@ -444,10 +384,6 @@
 	}
 </script>
 <style lang='scss' scoped>
-	.border {
-		border: 1px solid #BEBEBE;
-	}
-
 	.uni-form-item {
 		align-items: center;
 	}
@@ -465,15 +401,11 @@
 	}
 
 	.picker-content {
-		flex: 6;
-	}
-
-	.divider-content {
-		flex: 1;
+		flex: 2;
 	}
 
 	.number-content {
-		flex: 12;
+		flex: 3;
 	}
 
 	%flex-center {

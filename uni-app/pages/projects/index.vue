@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<title-item title="当前项目" tips="合肥市福广场停车场三号口施工">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
 					<button class="mini-btn icon-btn" type="primary" size="mini">
@@ -20,7 +20,7 @@
 			</progress-item>
 		</view>
 		<view class="uni-common-mt">
-			<title-item title="组员情况:">
+			<title-item title="组员情况">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
 				</view>

@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="当前查看方式:" tips="项目,区域,车位">
+			<title-item title="当前查看方式" tips="项目,区域,车位">
 				<view class="flex-center" slot="tipsRight">
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">查看方式</button>
 					<button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">附加项目</button>

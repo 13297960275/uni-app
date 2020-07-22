@@ -61,7 +61,7 @@
 					<image @click="navTo('/pages/product/product')" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=191678693,2701202375&fm=26&gp=0.jpg"
 					 mode="aspectFill"></image>
 				</scroll-view>
-				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包:" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
+				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
 				<title-item icon="camera-filled" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')"> <button slot="tipsRight" class="mini-btn" type="primary" size="mini">按钮</button></title-item>
 				<title-item icon="camera-filled" iconColor="#9789f7" title="分享" tips="邀请好友赢10万大礼"></title-item>
 				<title-item icon="camera-filled" iconColor="#ee883b" title="晒单" tips="晒单抢红包"></title-item>

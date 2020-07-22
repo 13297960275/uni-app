@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+		<title-item title="当前项目" tips="合肥市福广场停车场三号口施工">
 			<view class="flex-center" slot="tipsRight">
 				<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
 				<button class="mini-btn icon-btn" type="primary" size="mini">
@@ -9,7 +9,7 @@
 			</view>
 		</title-item>
 		<view class="uni-common-mt">
-			<progress-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<progress-item title="当前项目" tips="合肥市福广场停车场三号口施工">
 				<view class="flex-center" slot="tipsRight"><button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">切换项目</button>
 					<uni-icons :type="'gear-filled'" :color="'#21caad'" size="25" />
 				</view>
@@ -17,7 +17,7 @@
 			<person-item :image="'/static/imgs/tx.png'" :name="'吴刚'" :job="'A区1/2/3车位'" :jobName="'立柱'" :status="'未开始'"></person-item>
 			<!-- 浏览历史 -->
 			<!-- <view class="history-section icon">
-				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包:" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
+				<title-item navigateType="arrowright" iconColor="#e07472" title="我的钱包" tips="您的会员还有3天过期"><text slot="tipsRight">过期</text></title-item>
 				<title-item icon="camera-filled" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')">
 					<button slot="tipsRight" class="mini-btn" type="primary" size="mini">按钮</button></title-item>
 				<title-item icon="camera-filled" iconColor="#9789f7" title="分享" tips="邀请好友赢10万大礼"></title-item>

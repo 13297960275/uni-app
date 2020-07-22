@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="任务名称:" tips="放线">
+			<title-item title="任务名称" tips="放线">
 				<view class="flex-center" slot="tipsRight">
 					<view class="cell-tit">
 						<text>区域：</text>

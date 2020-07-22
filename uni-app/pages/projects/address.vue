@@ -1,25 +1,18 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
 		<view class="">
-			<title-item title="当前项目:" tips="合肥市福广场停车场三号口施工">
+			<title-item title="施工地点" :tips="workPlace">
 				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button>
+					<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('workPlace')">设定</button>
 				</view>
 			</title-item>
-			<progress-item v-for="(el, idx) in projectList" :key="idx" :title="el.title" :image="el.image" :borderColor="el.borderColor"
-			 :percent="parseInt(el.percent)" :activeColor="el.activeColor" :total="parseInt(el.total)" :used="parseInt(el.used)" />
 		</view>
 		<view class="uni-common-mt">
-			<title-item title="组员情况:">
+			<title-item title="集体住宿地点" :tips="restPlace">
 				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
+					<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('restPlace')">设定</button>
 				</view>
 			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
-			 :fontColor="el.fontColor" :status="el.status"></person-item>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -57,6 +50,8 @@
 		},
 		data() {
 			return {
+				workPlace: '',
+				restPlace: '',
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				moving: false,
@@ -157,6 +152,15 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
+			chooseLocation(key) {
+				uni.chooseLocation({
+					success: (res) => {
+						// this.hasLocation = true,
+							// this.location = formatLocation(res.longitude, res.latitude),
+							this[key] = res.address
+					}
+				})
+			},
 			/** 回退方法 */
 			switchProject() {
 				this.showDailog = true

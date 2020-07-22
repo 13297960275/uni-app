@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
-		<title-item title="附加项目:" tips="">
+		<title-item title="附加项目" tips="">
 			<view class="flex-center" slot="tipsRight">
 				<button class="mini-btn" type="primary" size="mini" @click="add">新增</button>
 				<!-- 				<button class="mini-btn icon-btn" type="primary" size="mini">
