@@ -1,18 +1,32 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
-		<view class="">
-			<title-item title="施工地点" :tips="workPlace">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('workPlace')">设定</button>
-				</view>
-			</title-item>
+		<view class="uni-common-mt">
+			<title-item title="施工地点" :tips="workPlace.address"></title-item>
+			<view style="border: 1px solid #21caad; padding: 10rpx; margin: 10rpx 0;">
+				<title-item icon="no-border" title="" :tips="workPlace.address">
+					<view class="flex-center" slot="tipsRight">
+						<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('workPlace')">设定</button>
+					</view>
+				</title-item>
+				<map class="map" id="map1" ref="map1" :longitude="workPlace.longitude" :latitude="workPlace.latitude" :markers="markers1"></map>
+			</view>
 		</view>
 		<view class="uni-common-mt">
-			<title-item title="集体住宿地点" :tips="restPlace">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('restPlace')">设定</button>
-				</view>
-			</title-item>
+			<title-item title="集体住宿地点" :tips="restPlace.address"></title-item>
+			<view style="border: 1px solid #21caad; padding: 10rpx; margin: 10rpx 0;">
+				<title-item icon="no-border" title="" :tips="restPlace.address">
+					<view class="flex-center" slot="tipsRight">
+						<button class="mini-btn" type="primary" size="mini" @click="chooseLocation('restPlace')">设定</button>
+					</view>
+				</title-item>
+				<map class="map" id="map2" ref="map2" :longitude="restPlace.longitude" :latitude="restPlace.latitude" :markers="markers2"></map>
+			</view>
+		</view>
+
+		<view class="uni-common-mt">
+			<title-item title="考勤方案" tips=""></title-item>
+			<view style="border: 1px solid #21caad; padding: 10rpx; margin: 10rpx 0;">
+			</view>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -50,8 +64,44 @@
 		},
 		data() {
 			return {
-				workPlace: '',
-				restPlace: '',
+				workPlace: {
+					longitude: 114.35469441712196,
+					latitude: 30.551572176458002,
+					address: ''
+				},
+				restPlace: {
+					longitude: 114.35469441712196,
+					latitude: 30.551572176458002,
+					address: ''
+				},
+				markers1: [{
+					id: 'map1',
+					latitude: 30.551572176458002,
+					longitude: 114.35469441712196,
+					title: '',
+					zIndex: '1',
+					iconPath: '/static/marker.png',
+					width: 20,
+					height: 20,
+					anchor: {
+						x: 0.5,
+						y: 1
+					}
+				}],
+				markers2: [{
+					id: 'map2',
+					latitude: 30.551572176458002,
+					longitude: 114.35469441712196,
+					title: '',
+					zIndex: '1',
+					iconPath: '/static/marker.png',
+					width: 20,
+					height: 20,
+					anchor: {
+						x: 0.5,
+						y: 1
+					}
+				}],
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
 				moving: false,
@@ -127,7 +177,11 @@
 				]
 			}
 		},
-		onLoad() {},
+
+		onReady() {
+			this.map1 = uni.createMapContext("map1", this);
+			this.map2 = uni.createMapContext("map2", this);
+		},
 		// #ifndef MP
 		onNavigationBarButtonTap(e) {
 			const index = e.index;
@@ -153,13 +207,35 @@
 		},
 		methods: {
 			chooseLocation(key) {
+				let _this = this
 				uni.chooseLocation({
 					success: (res) => {
-						// this.hasLocation = true,
-							// this.location = formatLocation(res.longitude, res.latitude),
-							this[key] = res.address
+						_this[key].longitude = res.longitude
+						_this[key].latitude = res.latitude
+						_this[key].address = res.address
+						let map = 'map2'
+						if(key == 'workPlace') {
+							map = 'map1'
+						}
+						_this.translateMarker(map, res.latitude, res.longitude)
 					}
 				})
+			},
+			translateMarker(map, latitude, longitude) {
+				// console.log(map, latitude, longitude)
+				this[map].translateMarker({
+					markerId: map,
+					destination: {
+						latitude: latitude,
+						longitude: longitude
+					},
+					duration: 1000
+				}, ret => {
+					// console.log(JSON.stringify(ret));
+					uni.showModal({
+						content: JSON.stringify('设置成功！')
+					})
+				});
 			},
 			/** 回退方法 */
 			switchProject() {
@@ -192,6 +268,13 @@
 	}
 </script>
 <style lang='scss' scoped>
+	.map {
+		width: calc(100% - 30rpx);
+		height: 250px;
+		padding: 15rpx;
+		background-color: #f0f0f0;
+	}
+
 	%flex-center {
 		display: flex;
 		flex-direction: column;

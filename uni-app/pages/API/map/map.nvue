@@ -55,12 +55,14 @@
 </template>
 
 <script>
-	const testMarkers = [{
+	const testMarkers = [
+		{
 			id: 0,
 			latitude: 39.989631,
 			longitude: 116.481018,
-			title: '方恒国际 阜通东大街6号',
+			// title: '方恒国际 阜通东大街6号',
 			zIndex: '1',
+			iconPath: '/static/gps.png',
 			rotate: 0,
 			width: 20,
 			height: 20,
@@ -252,7 +254,7 @@
 					// iconPath: '/static/logo.png',
 					clickable: true
 				}],
-				showLocation: false,
+				showLocation: true,
 				scale: 13,
 				showCompass: true,
 				enable3D: true,
@@ -274,7 +276,7 @@
 		},
 		onLoad() {},
 		onReady() {
-			this.map = uni.createMapContext("map1", this);
+			this.map1 = uni.createMapContext("map1", this);
 		},
 		methods: {
 			changeScale() {
@@ -346,7 +348,7 @@
 				})
 			},
 			translateMarker() {
-				this.map.translateMarker({
+				this.map1.translateMarker({
 					markerId: 1,
 					destination: {
 						latitude: 39.989631,
