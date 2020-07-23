@@ -25,8 +25,19 @@
 
 		<view class="uni-common-mt">
 			<title-item title="考勤方案" tips=""></title-item>
-			<view style="border: 1px solid #21caad; padding: 10rpx; margin: 10rpx 0;">
-			</view>
+
+			<radio-group @change="radioChange">
+				<label class="uni-title-item uni-title-item-pd radio-item" :style="{ borderColor: index === current ? '#21caad' : '' }"
+				 v-for="(item, index) in items" :key="item.value">
+					<view>
+						<view class="cell">方案{{index + 1}}</view>
+						<view class="m-cell">{{item.name}}</view>
+					</view>
+					<view>
+						<radio :value="item.value" :checked="index === current" />
+					</view>
+				</label>
+			</radio-group>
 		</view>
 
 		<!-- 回退弹窗 -->
@@ -48,6 +59,7 @@
 	import titleItem from './components/title-item';
 	import progressItem from './components/progress-item';
 	import personItem from './components/person-item';
+	import listItem from './components/list-item';
 	import uniDialog from './components/uni-dialog';
 	import {
 		mapState
@@ -60,10 +72,38 @@
 			titleItem,
 			progressItem,
 			personItem,
-			uniDialog
+			uniDialog,
+			listItem
 		},
 		data() {
 			return {
+				items: [{
+						value: 'USA',
+						name: '美国'
+					},
+					{
+						value: 'CHN',
+						name: '中国',
+						checked: 'true'
+					},
+					{
+						value: 'BRA',
+						name: '巴西'
+					},
+					{
+						value: 'JPN',
+						name: '日本'
+					},
+					{
+						value: 'ENG',
+						name: '英国'
+					},
+					{
+						value: 'FRA',
+						name: '法国'
+					},
+				],
+				current: 0,
 				workPlace: {
 					longitude: 114.35469441712196,
 					latitude: 30.551572176458002,
@@ -206,6 +246,14 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
+			radioChange(evt) {
+				for (let i = 0; i < this.items.length; i++) {
+					if (this.items[i].value === evt.detail.value) {
+						this.current = i;
+						break;
+					}
+				}
+			},
 			chooseLocation(key) {
 				let _this = this
 				uni.chooseLocation({
@@ -214,7 +262,7 @@
 						_this[key].latitude = res.latitude
 						_this[key].address = res.address
 						let map = 'map2'
-						if(key == 'workPlace') {
+						if (key == 'workPlace') {
 							map = 'map1'
 						}
 						_this.translateMarker(map, res.latitude, res.longitude)
@@ -275,6 +323,24 @@
 		background-color: #f0f0f0;
 	}
 
+	.cell {
+		flex: 1;
+		font-size: $font-base;
+		color: $font-color-dark;
+		/* font-weight: 600; */
+		margin-right: 10upx;
+		/* line-height: unset; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.m-cell {
+		font-size: $font-sm+2upx;
+		/* text-decoration: line-through; */
+		color: $font-color-light;
+	}
+
 	%flex-center {
 		display: flex;
 		flex-direction: column;
@@ -288,6 +354,12 @@
 		align-content: center;
 		background: #fff;
 		border-radius: 10upx;
+	}
+
+	.radio-item {
+		border: 2rpx solid #f5f5f5;
+		padding: 20rpx;
+		margin: 20rpx 0;
 	}
 
 	.user-section {
