@@ -320,6 +320,7 @@
 		width: calc(100% - 30rpx);
 		height: 250px;
 		padding: 15rpx;
+		margin-top: 15rpx;
 		background-color: #f0f0f0;
 	}
 
