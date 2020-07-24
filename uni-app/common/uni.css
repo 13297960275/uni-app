@@ -1775,3 +1775,36 @@ uni-button[size=mini] {
 	font-size: 13px;
 	padding: 0 0.67em;
 }
+
+.uni-radio-input.uni-radio-input-checked {
+	background-color: #21caad !important;
+	border-color: #21caad !important;
+}
+
+.cell {
+	flex: 1;
+	font-size: $font-base;
+	color: $font-color-dark;
+	/* font-weight: 600; */
+	margin-right: 10upx;
+	/* line-height: unset; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.m-cell {
+	font-size: $font-sm+2upx;
+	/* text-decoration: line-through; */
+	color: $font-color-light;
+}
+
+.bot {
+	width: $font-lg/2;
+	height: $font-lg/2;
+	background-color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	line-height: 1;
+	margin-right: $font-lg/2;
+}
