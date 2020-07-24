@@ -37,14 +37,14 @@
 		data() {
 			return {}
 		},
-		watch: {
-			image: {
-				handler(val) {
-					console.log(val)
-				},
-				immediate: true
-			}
-		},
+		// watch: {
+		// 	image: {
+		// 		handler(val) {
+		// 			console.log(val)
+		// 		},
+		// 		immediate: true
+		// 	}
+		// },
 		props: {
 			borderColor: {
 				type: String,
