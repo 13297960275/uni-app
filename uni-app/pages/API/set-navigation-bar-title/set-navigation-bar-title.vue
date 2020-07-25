@@ -33,7 +33,7 @@
 				this.hasSetBg = !this.hasSetBg;
 				uni.setNavigationBarColor({
 					frontColor: this.hasSetBg ?  "#000000" : "#ffffff",
-					backgroundColor: this.hasSetBg ? "#F8F8F8" : "#21caad"
+					backgroundColor: this.hasSetBg ? "#F8F8F8" : "#007AFF"
 				})
 			}
 		}

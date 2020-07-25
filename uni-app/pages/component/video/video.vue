@@ -8,11 +8,11 @@
 			</view>
 			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
 			<view class="uni-list uni-common-mt">
-				<view class="uni-title-item">
+				<view class="uni-list-cell">
 					<view>
 						<view class="uni-label">弹幕内容</view>
 					</view>
-					<view class="uni-title-item-db">
+					<view class="uni-list-cell-db">
 						<input v-model="danmuValue" class="uni-input" type="text" placeholder="在此处输入弹幕内容" />
 					</view>
 				</view>

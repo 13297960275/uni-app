@@ -115,7 +115,7 @@
 
 <style>
     button {
-        background-color: #21caad;
+        background-color: #007aff;
         color: #ffffff;
     }
 </style>

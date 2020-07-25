@@ -111,7 +111,7 @@
 		justify-content: center;
 		height: 150rpx;
 		width: 150rpx;
-		background-color: #21caad;
+		background-color: #007AFF;
 		color: #fff;
 	}
 

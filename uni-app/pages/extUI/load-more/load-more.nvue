@@ -11,7 +11,7 @@
 		</view>
 		<uni-section title="改变颜色" type="line"></uni-section>
 		<view class="example-body">
-			<uni-load-more color="#21caad" :status="status" />
+			<uni-load-more color="#007AFF" :status="status" />
 		</view>
 		<!-- #ifndef APP-NVUE -->
 		<uni-section title="指定加载图标样式 - 按平台自动选择样式" type="line"></uni-section>
@@ -183,7 +183,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

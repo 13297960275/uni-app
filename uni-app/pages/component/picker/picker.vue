@@ -3,11 +3,11 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-title uni-common-pl">普通选择器</view>
 		<view class="uni-list">
-			<view class="uni-title-item">
-				<view class="uni-title-item-left">
+			<view class="uni-list-cell">
+				<view class="uni-list-cell-left">
 					当前选择
 				</view>
-				<view class="uni-title-item-db">
+				<view class="uni-list-cell-db">
 					<picker @change="bindPickerChange" :value="index" :range="array" range-key="name">
 						<view class="uni-input">{{array[index].name}}</view>
 					</picker>
@@ -18,11 +18,11 @@
 		<!-- #ifndef MP-ALIPAY -->
 		<view class="uni-title uni-common-pl">多列选择器</view>
 		<view class="uni-list">
-			<view class="uni-title-item">
-				<view class="uni-title-item-left">
+			<view class="uni-list-cell">
+				<view class="uni-list-cell-left">
 					当前选择
 				</view>
-				<view class="uni-title-item-db">
+				<view class="uni-list-cell-db">
 					<picker mode="multiSelector" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
 						<view class="uni-input">{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}</view>
 					</picker>
@@ -33,11 +33,11 @@
 
 		<view class="uni-title uni-common-pl">时间选择器</view>
 		<view class="uni-list">
-			<view class="uni-title-item">
-				<view class="uni-title-item-left">
+			<view class="uni-list-cell">
+				<view class="uni-list-cell-left">
 					当前选择
 				</view>
-				<view class="uni-title-item-db">
+				<view class="uni-list-cell-db">
 					<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
 						<view class="uni-input">{{time}}</view>
 					</picker>
@@ -47,11 +47,11 @@
 
 		<view class="uni-title uni-common-pl">日期选择器</view>
 		<view class="uni-list">
-			<view class="uni-title-item">
-				<view class="uni-title-item-left">
+			<view class="uni-list-cell">
+				<view class="uni-list-cell-left">
 					当前选择
 				</view>
-				<view class="uni-title-item-db">
+				<view class="uni-list-cell-db">
 					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
 						<view class="uni-input">{{date}}</view>
 					</picker>

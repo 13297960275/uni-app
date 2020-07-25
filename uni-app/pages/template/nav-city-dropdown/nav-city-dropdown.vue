@@ -57,7 +57,7 @@ export default {
 					value: 440300
 				}
 			],
-			themeColor: '#21caad',
+			themeColor: '#007AFF',
 			mode: '',
 			deepLength: 1,
 			pickerValueDefault: [0]

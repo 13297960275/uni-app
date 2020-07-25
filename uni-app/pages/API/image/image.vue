@@ -4,33 +4,33 @@
 		<view class="uni-common-mt">
 			<form>
 				<view class="uni-list">
-					<view class="uni-title-item">
-						<view class="uni-title-item-left">
+					<view class="uni-list-cell">
+						<view class="uni-list-cell-left">
 							<view class="uni-label">图片来源</view>
 						</view>
-						<view class="uni-title-item-right">
+						<view class="uni-list-cell-right">
 							<picker :range="sourceType" @change="sourceTypeChange" :value="sourceTypeIndex" mode="selector">
 								<view class="uni-input">{{sourceType[sourceTypeIndex]}}</view>
 							</picker>
 						</view>
 					</view>
 
-					<view class="uni-title-item">
-						<view class="uni-title-item-left">
+					<view class="uni-list-cell">
+						<view class="uni-list-cell-left">
 							<view class="uni-label">图片质量</view>
 						</view>
-						<view class="uni-title-item-right">
+						<view class="uni-list-cell-right">
 							<picker :range="sizeType" @change="sizeTypeChange" :value="sizeTypeIndex" mode="selector">
 								<view class="uni-input">{{sizeType[sizeTypeIndex]}}</view>
 							</picker>
 						</view>
 					</view>
 
-					<view class="uni-title-item">
-						<view class="uni-title-item-left">
+					<view class="uni-list-cell">
+						<view class="uni-list-cell-left">
 							<view class="uni-label">数量限制</view>
 						</view>
-						<view class="uni-title-item-right">
+						<view class="uni-list-cell-right">
 							<picker :range="count" @change="countChange" mode="selector">
 								<view class="uni-input">{{count[countIndex]}}</view>
 							</picker>
@@ -40,7 +40,7 @@
 
 
 				<view class="uni-list list-pd">
-					<view class="uni-title-item cell-pd">
+					<view class="uni-list-cell cell-pd">
 						<view class="uni-uploader">
 							<view class="uni-uploader-head">
 								<view class="uni-uploader-title">点击可预览选好的图片</view>

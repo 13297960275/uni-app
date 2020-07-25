@@ -44,7 +44,7 @@
 			},
 			activeColor: {
 				type: String,
-				default: '#21caad'
+				default: '#007aff'
 			},
 			styleType: {
 				type: String,

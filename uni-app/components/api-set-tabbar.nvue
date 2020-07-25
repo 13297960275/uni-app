@@ -41,7 +41,7 @@
 			if (this.hasCustomedStyle) {
 				uni.setTabBarStyle({
 					color: '#7A7E83',
-					selectedColor: '#21caad',
+					selectedColor: '#007AFF',
 					backgroundColor: '#F8F8F8',
 					borderStyle: 'black'
 				})
@@ -110,14 +110,14 @@
 				if (this.hasCustomedStyle) {
 					uni.setTabBarStyle({
 						color: '#7A7E83',
-						selectedColor: '#21caad',
+						selectedColor: '#007AFF',
 						backgroundColor: '#F8F8F8',
 						borderStyle: 'black'
 					})
 				} else {
 					uni.setTabBarStyle({
 						color: '#FFF',
-						selectedColor: '#21caad',
+						selectedColor: '#007AFF',
 						backgroundColor: '#000000',
 						borderStyle: 'black'
 					})

@@ -8,7 +8,7 @@
 		</view>
 		<view class="uni-pagination__num">
 			<view class="uni-pagination__num-current">
-				<text class="uni-pagination__num-current-text" style="color:#21caad">{{ currentIndex }}</text><text class="uni-pagination__num-current-text">/{{ maxPage || 0 }}</text>
+				<text class="uni-pagination__num-current-text" style="color:#007aff">{{ currentIndex }}</text><text class="uni-pagination__num-current-text">/{{ maxPage || 0 }}</text>
 			</view>
 		</view>
 		<view class="uni-pagination__btn" :class="currentIndex === maxPage ? 'uni-pagination--disabled' : 'uni-pagination--enabled'" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickRight">

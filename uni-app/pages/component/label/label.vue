@@ -5,7 +5,7 @@
 			<view class="uni-form-item uni-column">
 				<view class="title">表单组件在label内</view>
 				<checkbox-group class="uni-list" @change="checkboxChange">
-					<label class="uni-title-item uni-title-item-pd" v-for="item in checkboxItems" :key="item.name">
+					<label class="uni-list-cell uni-list-cell-pd" v-for="item in checkboxItems" :key="item.name">
 						<view>
 							<checkbox :value="item.name" :checked="item.checked"></checkbox>
 						</view>
@@ -17,7 +17,7 @@
 			<view class="uni-form-item uni-column">
 				<view class="title">label用for标识表单组件</view>
 				<radio-group class="uni-list" @change="radioChange">
-					<view class="uni-title-item uni-title-item-pd" v-for="(item,index) in radioItems" :key="index">
+					<view class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItems" :key="index">
 						<view>
 							<radio :id="item.name" :value="item.name" :checked="item.checked"></radio>
 						</view>
@@ -32,10 +32,10 @@
 				<view class="title">label内有多个时选中第一个</view>
 				<checkbox-group class="uni-list" @change="checkboxChange">
 					<label class="label-3">
-						<view class="uni-title-item uni-title-item-pd">
+						<view class="uni-list-cell uni-list-cell-pd">
 							<checkbox class="checkbox-3">选项一</checkbox>
 						</view>
-						<view class="uni-title-item uni-title-item-pd">
+						<view class="uni-list-cell uni-list-cell-pd">
 							<checkbox class="checkbox-3">选项二</checkbox>
 						</view>
 						<view class="uni-link uni-center" style="margin-top:20rpx;">点击该label下的文字默认选中第一个checkbox</view>
@@ -89,7 +89,7 @@
 </script>
 
 <style>
-	.uni-title-item {
+	.uni-list-cell {
 		justify-content: flex-start
 	}
 

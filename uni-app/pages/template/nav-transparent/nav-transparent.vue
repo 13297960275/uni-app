@@ -18,7 +18,7 @@
 		</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
-				<label class="uni-title-item uni-title-item-pd" v-for="(item,index) in items" :key="index">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in items" :key="index">
 					<view>{{item.name}}</view>
 					<view>
 						<radio :value="item.value" :checked="item.checked" />

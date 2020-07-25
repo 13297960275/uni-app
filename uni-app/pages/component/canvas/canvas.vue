@@ -37,7 +37,7 @@
 
     Ball.prototype.draw = function() {
         this.ctx.beginPath()
-        this.ctx.fillStyle = '#21caad'
+        this.ctx.fillStyle = '#007AFF'
         this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
         this.ctx.closePath()
         this.ctx.fill()
@@ -142,7 +142,7 @@
     }
 
     Ball.prototype.draw = function() {
-        this.ctx.setFillStyle('#21caad')
+        this.ctx.setFillStyle('#007AFF')
         this.ctx.beginPath()
         this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
         this.ctx.closePath()

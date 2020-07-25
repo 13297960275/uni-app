@@ -190,7 +190,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

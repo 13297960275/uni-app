@@ -197,7 +197,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {
@@ -233,7 +233,7 @@
 	}
 
 	.uni-bg-blue {
-		background-color: #21caad;
+		background-color: #007aff;
 	}
 
 	.example-body {
@@ -278,7 +278,7 @@
 
 	.active {
 		border-style: solid;
-		border-color: #21caad;
+		border-color: #007aff;
 		border-width: 1px;
 	}
 </style>

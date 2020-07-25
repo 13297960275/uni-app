@@ -85,7 +85,7 @@
     }
 
     .tips-hl {
-        color: #21caad;
+        color: #007AFF;
         margin-left: 1px;
     }
 </style>

@@ -43,7 +43,7 @@
 				options2: [{
 					text: '取消',
 					style: {
-						backgroundColor: '#21caad'
+						backgroundColor: '#007aff'
 					}
 				}, {
 					text: '确认',
@@ -275,7 +275,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

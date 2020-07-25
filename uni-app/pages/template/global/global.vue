@@ -58,7 +58,7 @@
 <style>
 .button {
 	margin: 30rpx;
-	color: #21caad;
+	color: #007AFF;
 }
 .text{
 	margin-left: 30rpx;

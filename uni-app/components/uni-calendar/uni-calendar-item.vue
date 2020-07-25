@@ -133,11 +133,11 @@
 	}
 
 	.uni-calendar-item--isDay-text {
-		color: #21caad;
+		color: #007aff;
 	}
 
 	.uni-calendar-item--isDay {
-		background-color: #21caad;
+		background-color: #007aff;
 		opacity: 0.8;
 		color: #fff;
 	}
@@ -148,13 +148,13 @@
 	}
 
 	.uni-calendar-item--checked {
-		background-color: #21caad;
+		background-color: #007aff;
 		color: #fff;
 		opacity: 0.8;
 	}
 
 	.uni-calendar-item--multiple {
-		background-color: #21caad;
+		background-color: #007aff;
 		color: #fff;
 		opacity: 0.8;
 	}

@@ -103,11 +103,11 @@
 
 	.uni-badge--primary {
 		color: #fff;
-		background-color: #21caad;
+		background-color: #007aff;
 	}
 
 	.uni-badge--primary-inverted {
-		color: #21caad;
+		color: #007aff;
 		background-color: transparent;
 	}
 

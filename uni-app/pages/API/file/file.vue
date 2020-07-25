@@ -123,7 +123,7 @@
 	}
 
 	.btn-savefile {
-		background-color: #21caad;
+		background-color: #007aff;
 		color: #ffffff;
 	}
 </style>

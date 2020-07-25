@@ -35,11 +35,11 @@
 				<navigator url="/pages/projects/cost" hover-class="other-navigator-hover">
 					<button type="default">项目费用表</button>
 				</navigator>
-				<navigator url="/pages/projects/person" hover-class="other-navigator-hover">
-					<button type="default">人员计件费用表</button>
-				</navigator>
 				<navigator url="/pages/projects/project" hover-class="other-navigator-hover">
 					<button type="default">附加项目</button>
+				</navigator>
+				<navigator url="/pages/projects/person" hover-class="other-navigator-hover">
+					<button type="default">人员计件费用表</button>
 				</navigator>
 				<navigator url="/pages/projects/project-mgt" hover-class="other-navigator-hover">
 					<button type="default">项目管理</button>

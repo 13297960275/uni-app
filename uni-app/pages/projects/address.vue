@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
-		<view class="uni-common-mt">
+		<view class="">
 			<title-item title="施工地点" :tips="workPlace.address"></title-item>
 			<view style="border: 1px solid #21caad; padding: 10rpx; margin: 10rpx 0;">
 				<title-item icon="no-border" title="" :tips="workPlace.address">

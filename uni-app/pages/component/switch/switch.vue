@@ -16,12 +16,12 @@
 			<view class="uni-title">推荐展示样式</view>
 		</view>
 		<view class="uni-list">
-			<view class="uni-title-item uni-title-item-pd">
-				<view class="uni-title-item-db">开启中</view>
+			<view class="uni-list-cell uni-list-cell-pd">
+				<view class="uni-list-cell-db">开启中</view>
 				<switch checked />
 			</view>
-			<view class="uni-title-item uni-title-item-pd">
-				<view class="uni-title-item-db">关闭</view>
+			<view class="uni-list-cell uni-list-cell-pd">
+				<view class="uni-list-cell-db">关闭</view>
 				<switch />
 			</view>
 		</view>

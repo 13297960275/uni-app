@@ -15,7 +15,7 @@
 				<view>
 					<view class="uni-title">请输入聊天对象QQ号：</view>
 					<view class="uni-list">
-						<view class="uni-title-item">
+						<view class="uni-list-cell">
 							<input class="uni-input" name="qqNum" type="number"/>
 						</view>
 					</view>
@@ -149,6 +149,6 @@ export default {
 <style>
 .button {
 	margin: 30rpx;
-	color: #21caad;
+	color: #007AFF;
 }
 </style>

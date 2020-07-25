@@ -218,12 +218,12 @@
 
 	.uni-list-item__content {
 		/* #ifndef APP-NVUE */
-		/* display: flex; */
+		display: flex;
 		/* #endif */
-		/* flex: 1;
+		flex: 1;
 		overflow: hidden;
 		flex-direction: column;
-		color: #3b4144; */
+		color: #3b4144;
 
 	}
 

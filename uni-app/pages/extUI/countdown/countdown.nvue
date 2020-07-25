@@ -15,7 +15,7 @@
 		</view>
 		<uni-section title="修改颜色" type="line"></uni-section>
 		<view class="example-body">
-			<uni-countdown :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#21caad" border-color="#21caad" />
+			<uni-countdown :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
 		</view>
 		<uni-section title="倒计时回调事件" type="line"></uni-section>
 		<view class="example-body">
@@ -147,7 +147,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

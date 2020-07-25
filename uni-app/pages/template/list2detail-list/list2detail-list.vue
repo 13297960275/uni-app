@@ -6,7 +6,7 @@
 		</view>
 		<view class="uni-list">
 			<block v-for="(value, index) in listData" :key="index">
-				<view class="uni-title-item" hover-class="uni-title-item-hover" @click="goDetail(value)">
+				<view class="uni-list-cell" hover-class="uni-list-cell-hover" @click="goDetail(value)">
 					<view class="uni-media-list">
 						<image class="uni-media-list-logo" :src="value.cover"></image>
 						<view class="uni-media-list-body">

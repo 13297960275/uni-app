@@ -16,12 +16,12 @@
 		</view>
 
 		<view class="swiper-list">
-			<view class="uni-title-item uni-title-item-pd">
-				<view class="uni-title-item-db">指示点</view>
+			<view class="uni-list-cell uni-list-cell-pd">
+				<view class="uni-list-cell-db">指示点</view>
 				<switch :checked="indicatorDots" @change="changeIndicatorDots" />
 			</view>
-			<view class="uni-title-item uni-title-item-pd">
-				<view class="uni-title-item-db">自动播放</view>
+			<view class="uni-list-cell uni-list-cell-pd">
+				<view class="uni-list-cell-db">自动播放</view>
 				<switch :checked="autoplay" @change="changeAutoplay" />
 			</view>
 		</view>

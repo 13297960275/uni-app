@@ -217,6 +217,6 @@
 	}
 
 	.link {
-		color: #21caad;
+		color: #007AFF;
 	}
 </style>

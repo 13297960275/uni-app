@@ -159,7 +159,7 @@
 
     .swiper {
         flex: 1;
-        background-color: #21caad;
+        background-color: #007AFF;
     }
 
     .swiper-item {

@@ -57,10 +57,10 @@
 						text: '文字'
 					}
 				],
-				colors: ['#21caad', '#4cd964', '#dd524d'],
+				colors: ['#007aff', '#4cd964', '#dd524d'],
 				current: 0,
 				colorIndex: 0,
-				activeColor: '#21caad',
+				activeColor: '#007aff',
 				styleType: 'button'
 			}
 		},
@@ -178,7 +178,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

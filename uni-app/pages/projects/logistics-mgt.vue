@@ -9,12 +9,23 @@
 					</button>
 				</view>
 			</title-item>
-			<view class="uni-card-border" v-for="(el, idx) in priceList" :key="idx">
-				<view class="cell">
-					横梁
-					<text class="m-cell">（ 总需求：{{'100'}} )</text>
+			<title-item style="margin-top: 15rpx;" title="">
+				<view class="flex-center" slot="tipsRight">
+					<button class="mini-btn" type="primary" plain="true" size="mini" @click="switchProject">新增</button>
 				</view>
-				<list-item :dataList="el.dataList" :borderColor="el.borderColor"></list-item>
+			</title-item>
+			<view class="uni-card-border" v-for="(el, idx) in priceList" :key="idx">
+				<view class="cell-item">
+					<view class="cell">
+						{{ el.name }}
+						<text class="m-cell">（ 数量：{{ el.count }} )</text>
+					</view>
+					<text class="m-cell">{{ (el.status == '已发货' ? '发货日期：' : el.status == '已收货' ? '发货日期：' : '预计发货日期：') + el.startTime }}</text>
+				</view>
+				<view class="cell-item">
+					<text class="cell" :style="{ color: el.status == '已发货' ? '#80dd87' : el.status == '已收货' ? '#47c4df' : '#f9b55d' }">{{ el.status }}</text>
+					<text class="m-cell">{{ (el.status == '已发货' ? '预计到货日期：' : el.status == '已收货' ? '到货日期：' : '预计到货日期：') + el.endTime }}</text>
+				</view>
 			</view>
 		</view>
 
@@ -55,131 +66,28 @@
 		},
 		data() {
 			return {
-				priceList: [{
-						borderColor: '',
-						dataList: [{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '发货中：20',
-								fontColor: '',
-								backgroundColor: '#47c4df',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '库存：30',
-								fontColor: '',
-								backgroundColor: '#80dd87',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '已使用：50',
-								fontColor: '',
-								backgroundColor: '#ff7272',
-							},
-						]
+				priceList: [
+					{
+						name: '横梁',
+						count: 50,
+						status: '已发货',
+						startTime: '2020-06-23',
+						endTime: '2020-06-23',
 					},
 					{
-						borderColor: '',
-						dataList: [{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '发货中：20',
-								fontColor: '',
-								backgroundColor: '#47c4df',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '库存：30',
-								fontColor: '',
-								backgroundColor: '#80dd87',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '已使用：50',
-								fontColor: '',
-								backgroundColor: '#ff7272',
-							},
-						]
+						name: '横梁',
+						count: 50,
+						status: '待发货',
+						startTime: '2020-06-23',
+						endTime: '2020-06-23',
 					},
 					{
-						borderColor: '',
-						dataList: [{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '发货中：20',
-								fontColor: '',
-								backgroundColor: '#47c4df',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '库存：30',
-								fontColor: '',
-								backgroundColor: '#80dd87',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '已使用：50',
-								fontColor: '',
-								backgroundColor: '#ff7272',
-							},
-						]
+						name: '横梁',
+						count: 50,
+						status: '已收货',
+						startTime: '2020-06-23',
+						endTime: '2020-06-23',
 					},
-					{
-						borderColor: '',
-						dataList: [{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '发货中：20',
-								fontColor: '',
-								backgroundColor: '#47c4df',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '库存：30',
-								fontColor: '',
-								backgroundColor: '#80dd87',
-							},
-							{
-								type: 'bot',
-								direction: '',
-								noImage: true,
-								image: '',
-								value: '已使用：50',
-								fontColor: '',
-								backgroundColor: '#ff7272',
-							},
-						]
-					},
-
 				],
 
 				coverTransform: 'translateY(0px)',
@@ -313,6 +221,34 @@
 	}
 </script>
 <style lang='scss' scoped>
+	.cell-item {
+		/* margin: 15upx 0upx; */
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+		padding: 10upx 11upx;
+		background: #fff;
+		/* border-left: 10upx #21caad solid; */
+	}
+	.cell {
+		flex: 1;
+		font-size: $font-base;
+		color: $font-color-dark;
+		/* font-weight: 600; */
+		margin-right: 10upx;
+		/* line-height: unset; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.m-cell {
+		font-size: $font-sm+2upx;
+		/* text-decoration: line-through; */
+		color: $font-color-light;
+	}
+
 	%flex-center {
 		display: flex;
 		flex-direction: column;

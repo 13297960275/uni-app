@@ -11,8 +11,8 @@
 		</uni-section>
 		<view class="example-body">
 			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
-				<uni-icons :type="item.name" :color="activeIndex === index?'#21caad':'#8f8f94'" size="25" />
-				<text :style="{color:activeIndex === index?'#21caad':'#8f8f94'}" class="icon-item-text">{{ checked? item.unicode: item.name }}</text>
+				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="25" />
+				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.unicode: item.name }}</text>
 			</view>
 		</view>
 	</view>
@@ -523,7 +523,7 @@
 		border-radius: 6px;
 		height: 48px;
 		margin: 15px;
-		background-color: #21caad;
+		background-color: #007AFF;
 	}
 
 	.word-btn--hover {

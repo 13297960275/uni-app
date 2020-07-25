@@ -137,7 +137,7 @@
 	}
 
 	.uni-tag-text--primary {
-		color: #21caad !important;
+		color: #007aff !important;
 	}
 
 	.uni-tag-text--success {
@@ -154,18 +154,18 @@
 
 	.uni-tag--primary {
 		color: #fff;
-		background-color: #21caad;
+		background-color: #007aff;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: #21caad;
+		border-color: #007aff;
 	}
 
 	.primary-uni-tag--inverted {
-		color: #21caad;
+		color: #007aff;
 		background-color: #ffffff;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: #21caad;
+		border-color: #007aff;
 	}
 
 	.uni-tag--success {
