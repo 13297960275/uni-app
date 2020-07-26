@@ -89,7 +89,7 @@
 
 <style lang='scss' scoped>
 	.cell-item {
-		margin: 18upx 0upx;
+		/* margin: 18upx 0upx; */
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

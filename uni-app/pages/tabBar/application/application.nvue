@@ -20,6 +20,9 @@
 				<navigator url="/pages/projects/demo" hover-class="other-navigator-hover">
 					<button type="default">demo</button>
 				</navigator>
+				<navigator url="/pages/projects/tabbar" hover-class="other-navigator-hover">
+					<button type="default">tabbar</button>
+				</navigator>
 				<!-- <navigator url="/pages/template/ucharts/ucharts" hover-class="other-navigator-hover">
 					<button type="default">ucharts图表</button>
 				</navigator>
@@ -52,6 +55,9 @@
 				</navigator>
 				<navigator url="/pages/projects/address" hover-class="other-navigator-hover">
 					<button type="default">设定施工地点</button>
+				</navigator>
+				<navigator url="/pages/projects/index2" hover-class="other-navigator-hover">
+					<button type="default">首页</button>
 				</navigator>
 			</view>
 		</view>
@@ -90,7 +96,7 @@
 
 <style>
 	@import '../../../common/uni-nvue.css';
-/* 	page {
+	/* 	page {
 		height: auto;
 		min-height: 100%;
 	}

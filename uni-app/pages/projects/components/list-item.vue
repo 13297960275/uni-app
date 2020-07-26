@@ -59,7 +59,7 @@
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: nowrap;
-		padding: 10upx 11upx;
+		/* padding: 10upx 11upx; */
 		background: #fff;
 		border-left: 10upx #21caad solid;
 	}

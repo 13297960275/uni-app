@@ -25,7 +25,7 @@
 					<button class="mini-btn" type="primary" size="mini" @click="switchProject">任务管理</button>
 				</view>
 			</title-item>
-			<person-item v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
+			<person-item style="margin: 18upx 0upx;" v-for="(el, idx) in groupList" :key="idx" :image="el.image" :name="el.name" :job="el.job" :jobName="el.jobName"
 			 :fontColor="el.fontColor" :status="el.status"></person-item>
 		</view>
 
@@ -76,7 +76,7 @@
 					name: '项目名称二'
 				}],
 				projectList: [{
-						borderColor: '#47c4dfb3',
+						borderColor: '#47c4df',
 						image: '/static/imgs/piece.png',
 						title: '计件详情',
 						percent: '25',
@@ -85,7 +85,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#f9b55db3',
+						borderColor: '#f9b55d',
 						image: '/static/imgs/time.png',
 						title: '工时详情',
 						percent: '25',
@@ -94,7 +94,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#80dd87b3',
+						borderColor: '#80dd87',
 						image: '/static/imgs/money.png',
 						title: '预借费用详情',
 						percent: '25',
@@ -103,7 +103,7 @@
 						used: '25',
 					},
 					{
-						borderColor: '#ff7272b3',
+						borderColor: '#ff7272',
 						image: '/static/imgs/time1.png',
 						title: '时间详情',
 						percent: '25',

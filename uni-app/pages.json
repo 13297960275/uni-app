@@ -9,6 +9,12 @@
 			}
 		},
 		{
+			"path": "pages/projects/tabbar",
+			"style": {
+				"navigationBarTitleText": "tabbar"
+			}
+		},
+		{
 			"path": "pages/projects/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -54,6 +60,12 @@
 			"path": "pages/projects/address",
 			"style": {
 				"navigationBarTitleText": "设定施工地点"
+			}
+		},
+		{
+			"path": "pages/projects/index2",
+			"style": {
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
@@ -1266,8 +1278,7 @@
 		"selectedColor": "#21caad",
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",

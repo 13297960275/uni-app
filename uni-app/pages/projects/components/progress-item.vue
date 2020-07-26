@@ -1,8 +1,8 @@
 <template>
 	<view class="content group-section">
 		<!-- <swiper-item class="g-swiper-item" v-for="(item, index) in goodsList" :key="index" v-if="index%2 === 0" @click="navToDetailPage(item)"> -->
-		<view class="g-swiper-item" :style="{ borderColor: borderColor }">
-			<view class="g-item left" :style="{ borderColor: borderColor }">
+		<view class="g-swiper-item" :style="{ borderColor: borderColor + '!important' }">
+			<view class="g-item left" :style="{ borderColor: borderColor + '!important' }">
 				<image :src="image" mode="aspectFill"></image>
 			</view>
 			<view class="g-item right">
@@ -122,7 +122,7 @@
 			/* width: 100%; */
 			padding: 15upx 30upx;
 			display: flex;
-			border: 2upx solid #cfcfcf;
+			border: 1upx solid #cfcfcf;
 		}
 
 		image {
@@ -141,7 +141,7 @@
 			flex: 0.3;
 			margin-right: 24upx;
 			padding-right: 24upx;
-			border-right: 2upx solid #cfcfcf;
+			border-right: 1upx solid #cfcfcf;
 			display: flex;
 			align-items: center;
 			align-content: center;
