@@ -57,25 +57,25 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
-		height: 80upx;
-		min-height: 80upx;
+		height: 80rpx;
+		min-height: 80rpx;
 		border-top: solid 1px #bbb;
 		overflow: hidden;
-		padding: 5upx;
+		padding: 5rpx;
 		background-color: #fafafa;
 	}
 	.footer-left {
 
-		width: 80upx;
-		height: 80upx;
+		width: 80rpx;
+		height: 80rpx;
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 	.footer-right {
-		width: 120upx;
-		height: 80upx;
+		width: 120rpx;
+		height: 80rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -83,7 +83,7 @@
 	}
 	.footer-center {
 		flex: 1;
-		height: 80upx;
+		height: 80rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -91,10 +91,10 @@
 	.footer-center .input-text {
 		flex: 1;
 		background: #fff;
-		border: solid 1upx #ddd;
-		padding: 10upx !important;
+		border: solid 1rpx #ddd;
+		padding: 10rpx !important;
 		font-family: verdana !important;
 		overflow: hidden;
-		border-radius: 15upx;
+		border-radius: 15rpx;
 	}
 </style>

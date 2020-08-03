@@ -23,8 +23,8 @@
 				success: function (data) {
 					console.log(data);
 					_this.$refs.avatar.fChooseImg(0,{
-						selWidth: '350upx', selHeight: '350upx', 
-						expWidth: '260upx', expHeight: '260upx',
+						selWidth: '350rpx', selHeight: '350rpx', 
+						expWidth: '260rpx', expHeight: '260rpx',
 						inner: 'true'
 					}, data.path);
 				}
@@ -36,8 +36,8 @@
 			},
 			clk(index) {
 				this.$refs.avatar.fChooseImg(index,{
-					selWidth: '350upx', selHeight: '350upx', 
-					expWidth: '260upx', expHeight: '260upx',
+					selWidth: '350rpx', selHeight: '350rpx', 
+					expWidth: '260rpx', expHeight: '260rpx',
 					inner: index ? 'true' : 'false'
 				});
 			},
@@ -69,14 +69,14 @@
 
 <style>
 	.myimg {
-		width: 200upx;
-		height: 200upx;
+		width: 200rpx;
+		height: 200rpx;
 		border-radius: 0 !important;
 		margin: 40px;
 	}
 	.myimg2 {
-		width: 200upx;
-		height: 200upx;
+		width: 200rpx;
+		height: 200rpx;
 		border-radius: 100%;
 		margin: 40px;
 	}

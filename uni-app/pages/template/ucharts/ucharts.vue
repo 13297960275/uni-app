@@ -200,14 +200,14 @@
 				}
 			});
 			//#endif
-			this.cWidth = uni.upx2px(750);
-			this.cHeight = uni.upx2px(500);
-			this.cWidth2 = uni.upx2px(700);
-			this.cHeight2 = uni.upx2px(1100);
-			this.cWidth3 = uni.upx2px(250);
-			this.cHeight3 = uni.upx2px(250);
-			this.arcbarWidth = uni.upx2px(24);
-			this.gaugeWidth = uni.upx2px(30);
+			this.cWidth = uni.rpx2px(750);
+			this.cHeight = uni.rpx2px(500);
+			this.cWidth2 = uni.rpx2px(700);
+			this.cHeight2 = uni.rpx2px(1100);
+			this.cWidth3 = uni.rpx2px(250);
+			this.cHeight3 = uni.rpx2px(250);
+			this.arcbarWidth = uni.rpx2px(24);
+			this.gaugeWidth = uni.rpx2px(30);
 
 			//this.fillData(Data);
 		},

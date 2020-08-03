@@ -59,6 +59,24 @@
 				<navigator url="/pages/projects/index2" hover-class="other-navigator-hover">
 					<button type="default">首页</button>
 				</navigator>
+				<navigator url="/pages/projects/task-detail" hover-class="other-navigator-hover">
+					<button type="default">任务详情</button>
+				</navigator>
+				<navigator url="/pages/projects/task-add" hover-class="other-navigator-hover">
+					<button type="default">新建任务</button>
+				</navigator>
+				<navigator url="/pages/projects/task-month" hover-class="other-navigator-hover">
+					<button type="default">当月已完成任务</button>
+				</navigator>
+				<navigator url="/pages/projects/task-daily" hover-class="other-navigator-hover">
+					<button type="default">当日已完成任务</button>
+				</navigator>
+				<navigator url="/pages/projects/task-history" hover-class="other-navigator-hover">
+					<button type="default">历史任务</button>
+				</navigator>
+				<navigator url="/pages/projects/msg-list" hover-class="other-navigator-hover">
+					<button type="default">消息列表</button>
+				</navigator>
 			</view>
 		</view>
 	</view>

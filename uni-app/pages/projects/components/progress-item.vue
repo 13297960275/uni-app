@@ -111,24 +111,24 @@
 	/* 团购楼层 */
 	.group-section {
 		background: #fff;
-		margin: 20upx;
+		margin: 20rpx;
 
 		.g-swiper {
-			height: 650upx;
-			padding-bottom: 30upx;
+			height: 650rpx;
+			padding-bottom: 30rpx;
 		}
 
 		.g-swiper-item {
 			/* width: 100%; */
-			padding: 15upx 30upx;
+			padding: 15rpx 30rpx;
 			display: flex;
-			border: 1upx solid #cfcfcf;
+			border: 1rpx solid #cfcfcf;
 		}
 
 		image {
-			width: 80upx;
-			height: 80upx;
-			border-radius: 4upx;
+			width: 80rpx;
+			height: 80rpx;
+			border-radius: 4rpx;
 		}
 
 		.g-item {
@@ -139,16 +139,16 @@
 
 		.left {
 			flex: 0.3;
-			margin-right: 24upx;
-			padding-right: 24upx;
-			border-right: 1upx solid #cfcfcf;
+			margin-right: 24rpx;
+			padding-right: 24rpx;
+			border-right: 1rpx solid #cfcfcf;
 			display: flex;
 			align-items: center;
 			align-content: center;
 			justify-content: center;
 
 			.t-box {
-				padding-top: 20upx;
+				padding-top: 20rpx;
 			}
 		}
 
@@ -157,13 +157,13 @@
 			flex-direction: column-reverse;
 
 			.t-box {
-				padding-top: 16upx;
+				padding-top: 16rpx;
 			}
 		}
 
 		.t-box {
-			height: 160upx;
-			font-size: $font-base+2upx;
+			height: 160rpx;
+			font-size: $font-base+2rpx;
 			color: $font-color-dark;
 			line-height: 1.6;
 		}
@@ -180,7 +180,7 @@
 			font-size: $font-base;
 			color: $font-color-dark;
 			font-weight: 600;
-			margin-right: 10upx;
+			margin-right: 10rpx;
 			/* line-height: unset; */
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -188,7 +188,7 @@
 		}
 
 		.m-cell {
-			font-size: $font-sm+2upx;
+			font-size: $font-sm+2rpx;
 			/* text-decoration: line-through; */
 			color: $font-color-light;
 		}
@@ -196,23 +196,23 @@
 		.pro-box {
 			display: flex;
 			align-items: center;
-			margin-top: 10upx;
+			margin-top: 10rpx;
 			font-size: $font-sm;
 			color: $font-base;
-			/* padding-right: 10upx; */
+			/* padding-right: 10rpx; */
 		}
 
 		.martb10 {
-			margin-top: 20upx;
-			margin-bottom: 20upx;
+			margin-top: 20rpx;
+			margin-bottom: 20rpx;
 		}
 
 		.progress-box {
 			flex: 1;
-			border-radius: 10upx;
+			border-radius: 10rpx;
 			overflow: hidden;
-			/* margin-right: 8upx; */
-			/* padding-right: 12upx; */
+			/* margin-right: 8rpx; */
+			/* padding-right: 12rpx; */
 		}
 	}
 </style>

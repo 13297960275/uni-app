@@ -40,8 +40,8 @@
 		},
 		methods: {
 			setPosition() {
-				this.left = Math.random() * uni.upx2px(320) + 'px'
-				this.top = Math.random() * uni.upx2px(320) + 'px'
+				this.left = Math.random() * uni.rpx2px(320) + 'px'
+				this.top = Math.random() * uni.rpx2px(320) + 'px'
 				this.getNodeInfo()
 			},
 			getNodeInfo() {

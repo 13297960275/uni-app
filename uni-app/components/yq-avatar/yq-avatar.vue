@@ -136,11 +136,11 @@
 					for( let v of style ) {
 						if(!v) continue;
 						v = v.trim().split(':');
-						if(v[1].indexOf('upx') >= 0) {
+						if(v[1].indexOf('rpx') >= 0) {
 							let arr = v[1].trim().split(' ');
 							for( let k in arr ) {
 								if(!arr[k]) continue;
-								if(arr[k].indexOf('upx') >= 0) {
+								if(arr[k].indexOf('rpx') >= 0) {
 									arr[k] = parseFloat(arr[k]) * this.pxRatio + 'px';
 								}
 							}
@@ -151,8 +151,8 @@
 					this.imgStyle = obj;
 				}
 				
-				this.expWidth && (this.exportWidth = this.expWidth.indexOf('upx') >= 0 ? parseInt(this.expWidth)*this.pxRatio : parseInt(this.expWidth));
-				this.expHeight && (this.exportHeight = this.expHeight.indexOf('upx') >= 0 ? parseInt(this.expHeight)*this.pxRatio : parseInt(this.expHeight));
+				this.expWidth && (this.exportWidth = this.expWidth.indexOf('rpx') >= 0 ? parseInt(this.expWidth)*this.pxRatio : parseInt(this.expWidth));
+				this.expHeight && (this.exportHeight = this.expHeight.indexOf('rpx') >= 0 ? parseInt(this.expHeight)*this.pxRatio : parseInt(this.expHeight));
 				
 				if(this.styleDisplay === 'flex') {
 					this.fDrawInit(true);
@@ -188,8 +188,8 @@
 						if( !this.hasSel ) {
 							let style = this.selStyle || {};
 							if( this.selWidth && this.selHeight ) {
-								let selWidth  = this.selWidth.indexOf('upx')  >= 0 ? parseInt(this.selWidth)  * this.pxRatio: parseInt(this.selWidth),
-									selHeight = this.selHeight.indexOf('upx') >= 0 ? parseInt(this.selHeight) * this.pxRatio: parseInt(this.selHeight);
+								let selWidth  = this.selWidth.indexOf('rpx')  >= 0 ? parseInt(this.selWidth)  * this.pxRatio: parseInt(this.selWidth),
+									selHeight = this.selHeight.indexOf('rpx') >= 0 ? parseInt(this.selHeight) * this.pxRatio: parseInt(this.selHeight);
 								style.width = selWidth + 'px';
 								style.height = selHeight + 'px';
 								style.top = (this.windowHeight - selHeight - tabHeight)/2 + 'px';
@@ -652,8 +652,8 @@
 						inner = params.inner,
 						lock = params.lock;
 						
-					expWidth && (this.exportWidth = expWidth.indexOf('upx') >= 0 ? parseInt(expWidth)*this.pxRatio : parseInt(expWidth));
-					expHeight && (this.exportHeight = expHeight.indexOf('upx') >= 0 ? parseInt(expHeight)*this.pxRatio : parseInt(expHeight));
+					expWidth && (this.exportWidth = expWidth.indexOf('rpx') >= 0 ? parseInt(expWidth)*this.pxRatio : parseInt(expWidth));
+					expHeight && (this.exportHeight = expHeight.indexOf('rpx') >= 0 ? parseInt(expHeight)*this.pxRatio : parseInt(expHeight));
 					this.letRotate = canRotate === 'false' ? 0 : 1;
 					this.letScale = canScale === 'false' ? 0 : 1;
 					this.qlty = parseInt(quality) || 0.9;
@@ -671,8 +671,8 @@
 					}
 					
 					if( selWidth && selHeight) {
-						selWidth  = selWidth.indexOf('upx')  >= 0 ? parseInt(selWidth)  * this.pxRatio: parseInt(selWidth);
-						selHeight = selHeight.indexOf('upx') >= 0 ? parseInt(selHeight) * this.pxRatio: parseInt(selHeight);
+						selWidth  = selWidth.indexOf('rpx')  >= 0 ? parseInt(selWidth)  * this.pxRatio: parseInt(selWidth);
+						selHeight = selHeight.indexOf('rpx') >= 0 ? parseInt(selHeight) * this.pxRatio: parseInt(selHeight);
 						this.selStyle.width = selWidth + 'px';
 						this.selStyle.height = selHeight + 'px';
 						this.selStyle.top = (this.windowHeight - selHeight - tabHeight)/2 + 'px';
@@ -1082,8 +1082,8 @@
 		width: 100%;
 	}
 	.my-avatar {
-		width: 1upx;
-		height: 1upx;
+		width: 1rpx;
+		height: 1rpx;
 		border-radius: 100%;
 	}
 	.oper-canvas {
@@ -1117,7 +1117,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 10upx 20upx;
+		padding: 10rpx 20rpx;
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;

@@ -35,12 +35,12 @@
 	.m-item {
 		display: flex;
 		flex-direction: row;
-		padding-top: 40upx;
+		padding-top: 40rpx;
 	}
 
 	.m-left {
 		display: flex;
-		width: 120upx;
+		width: 120rpx;
 		justify-content: center;
 		align-items: flex-start;
 	}
@@ -55,14 +55,14 @@
 
 	.m-right {
 		display: flex;
-		width: 120upx;
+		width: 120rpx;
 		justify-content: center;
 		align-items: flex-start;
 	}
 
 	.head_icon {
-		width: 80upx;
-		height: 80upx;
+		width: 80rpx;
+		height: 80rpx;
 	}
 
 	.m-content-head {
@@ -78,15 +78,15 @@
 		text-align: left;
 		background: #1482d1;
 		border: 1px #1482d1 solid;
-		border-radius: 20upx;
-		padding: 20upx;
+		border-radius: 20rpx;
+		padding: 20rpx;
 		color: white;
 	}
 
 	.m-content-head-home:before {
-		border: 15upx solid transparent;
-		border-right: 15upx solid #1482d1;
-		left: -26upx;
+		border: 15rpx solid transparent;
+		border-right: 15rpx solid #1482d1;
+		left: -26rpx;
 		width: 0;
 		height: 0;
 		position: absolute;
@@ -94,17 +94,17 @@
 	}
 
 	.m-content-head-customer {
-		border: 1upx white solid;
+		border: 1rpx white solid;
 		background: white;
-		border-radius: 20upx;
-		padding: 20upx;
+		border-radius: 20rpx;
+		padding: 20rpx;
 	}
 
 	.m-content-head-customer:after {
-		border: 15upx solid transparent;
-		border-left: 15upx solid white;
-		top: 20upx;
-		right: -26upx;
+		border: 15rpx solid transparent;
+		border-left: 15rpx solid white;
+		top: 20rpx;
+		right: -26rpx;
 		width: 0;
 		height: 0;
 		position: absolute;

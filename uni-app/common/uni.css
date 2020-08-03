@@ -1780,3 +1780,24 @@ uni-button[size=mini] {
 	background-color: #21caad !important;
 	border-color: #21caad !important;
 }
+
+.task-add uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+	color: #fff !important;
+}
+
+.task-add uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+	border-color: #fff;
+}
+
+.task-add uni-checkbox .uni-checkbox-input {
+	margin-right: 10rpx;
+	-webkit-appearance: none;
+	appearance: none;
+	outline: 0;
+	border: 1px solid #fff;
+	background-color: #21caad;
+	border-radius: 3px;
+	width: 30rpx;
+	height: 30rpx;
+	position: relative;
+}

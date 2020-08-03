@@ -54,32 +54,32 @@
 
 <style lang='scss' scoped>
 	.cell-item {
-		/* margin: 15upx 0upx; */
+		/* margin: 15rpx 0rpx; */
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: nowrap;
-		/* padding: 10upx 11upx; */
+		/* padding: 10rpx 11rpx; */
 		background: #fff;
-		border-left: 10upx #21caad solid;
+		border-left: 10rpx #21caad solid;
 	}
 
 	.cell-img {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		font-size: $font-sm + 2upx;
+		font-size: $font-sm + 2rpx;
 		color: $font-color-dark;
 	}
 
 	/* 原图标颜色太深,不想改图了,所以加了透明度 */
 	image {
-		width: 68upx;
-		height: 68upx;
-		/* margin-bottom: 14upx; */
+		width: 68rpx;
+		height: 68rpx;
+		/* margin-bottom: 14rpx; */
 		border-radius: 50%;
 		/* opacity: .7; */
-		/* box-shadow: 4upx 4upx 20upx rgba(250, 67, 106, 0.3); */
+		/* box-shadow: 4rpx 4rpx 20rpx rgba(250, 67, 106, 0.3); */
 	}
 
 	.cell {
@@ -87,7 +87,7 @@
 		font-size: $font-base;
 		color: $font-color-dark;
 		/* font-weight: 600; */
-		margin-right: 10upx;
+		margin-right: 10rpx;
 		/* line-height: unset; */
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -95,7 +95,7 @@
 	}
 
 	.m-cell {
-		font-size: $font-sm+2upx;
+		font-size: $font-sm+2rpx;
 		/* text-decoration: line-through; */
 		color: $font-color-light;
 	}

@@ -1,0 +1,38 @@
+/* 修改复选框默认样式 */
+/* #ifdef H5 */
+uni-checkbox .uni-checkbox-input {
+	border-radius: 50% !important;
+	color: #ffffff !important;
+}
+
+uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+	color: #fff;
+	background: #fff;
+}
+
+.uni-checkbox-input.uni-checkbox-input-checked {
+	border: none !important;
+}
+
+/* #endif */
+/* 微信中样式 */
+/* #ifdef APP-PLUS ||MP-WEIXIN */
+uni-checkbox .wx-checkbox-input {
+	border-radius: 50% !important;
+	color: #ffffff !important;
+}
+
+uni-checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+	color: #fff;
+	background: #fff;
+}
+
+.wx-checkbox-input.wx-checkbox-input-checked {
+	border: none !important;
+}
+
+/* #endif */
+
+
+/* 10upx = 5px */
+/* 10rpx = 5px */

@@ -81,19 +81,19 @@
 
 <style lang='scss' scoped>
 	.icon .mix-list-cell.b-b:after {
-		left: 90upx;
+		left: 90rpx;
 	}
 
 	.mix-list-border {
-		border-left: 10upx #21caad solid;
-		padding-left: 20upx;
+		border-left: 10rpx #21caad solid;
+		padding-left: 20rpx;
 	}
 
 	.mix-list-cell {
 		display: flex;
 		align-items: baseline;
-		/* padding: 20upx $page-row-spacing; */
-		line-height: 60upx;
+		/* padding: 20rpx $page-row-spacing; */
+		line-height: 60rpx;
 		position: relative;
 	}
 
@@ -102,19 +102,19 @@
 	}
 
 	.b-b:after {
-		left: 30upx;
+		left: 30rpx;
 	}
 
 	.cell-icon {
 		align-self: center;
-		width: 56upx;
-		max-height: 60upx;
-		font-size: 38upx;
+		width: 56rpx;
+		max-height: 60rpx;
+		font-size: 38rpx;
 	}
 
 	.cell-more {
 		align-self: center;
-		font-size: 30upx;
+		font-size: 30rpx;
 		color: $font-color-base;
 		margin-left: $uni-spacing-row-sm;
 	}
@@ -123,7 +123,7 @@
 		flex: 1;
 		font-size: $font-lg;
 		color: $font-color-dark;
-		margin-right: 10upx;
+		margin-right: 10rpx;
 		/* line-height: unset; */
 		overflow: hidden;
 		text-overflow: ellipsis;

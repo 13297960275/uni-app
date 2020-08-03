@@ -69,6 +69,42 @@
 			}
 		},
 		{
+			"path": "pages/projects/task-detail",
+			"style": {
+				"navigationBarTitleText": "任务详情"
+			}
+		},
+		{
+			"path": "pages/projects/task-add",
+			"style": {
+				"navigationBarTitleText": "新建任务"
+			}
+		},
+		{
+			"path": "pages/projects/task-month",
+			"style": {
+				"navigationBarTitleText": "当月已完成任务"
+			}
+		},
+		{
+			"path": "pages/projects/task-daily",
+			"style": {
+				"navigationBarTitleText": "当日已完成任务"
+			}
+		},
+		{
+			"path": "pages/projects/task-history",
+			"style": {
+				"navigationBarTitleText": "历史任务"
+			}
+		},
+		{
+			"path": "pages/projects/msg-list",
+			"style": {
+				"navigationBarTitleText": "消息列表"
+			}
+		},
+		{
 			"path": "pages/projects/index",
 			"style": {
 				"navigationBarTitleText": "首页"

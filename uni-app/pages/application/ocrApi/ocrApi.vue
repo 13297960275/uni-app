@@ -149,8 +149,8 @@
 							duration: 1500
 						});
 						this.$refs.avatar.fChooseImg(0, {
-							selWidth: '240upx', selHeight: '151upx', 
-							expWidth: '480upx', expHeight: '302upx',
+							selWidth: '240rpx', selHeight: '151rpx', 
+							expWidth: '480rpx', expHeight: '302rpx',
 							inner: 'true',
 							canRotate: 'true'
 						}, rsp.path);
@@ -212,8 +212,8 @@
 										duration: 1500
 									});
 									this.$refs.avatar.fChooseImg(0, {
-										selWidth: '240upx', selHeight: '151upx', 
-										expWidth: '480upx', expHeight: '302upx',
+										selWidth: '240rpx', selHeight: '151rpx', 
+										expWidth: '480rpx', expHeight: '302rpx',
 										avatarSrc: chooseImageRes.tempFilePaths[0],
 										inner: 'true',
 										canRotate: 'true'
@@ -323,19 +323,19 @@
 	}
 
 	.an-uploadImg-group {
-		margin: 5upx 20upx;
+		margin: 5rpx 20rpx;
 	}
 
 	.an-img {
 		float: left;
-		/* margin-right: 10upx; */
+		/* margin-right: 10rpx; */
 	}
 
 	.an-img-add {
 		float: left;
-		/* margin-right: 10upx; */
+		/* margin-right: 10rpx; */
 		height: 45vw;
-		width: calc(100vw - 40upx);
+		width: calc(100vw - 40rpx);
 		background-color: #C8C7CC;
 		text-align: center;
 		line-height: 45vw;
@@ -344,7 +344,7 @@
 	.an-img>image {
 		/* height: 45vw; */
 		/* width: 45vw; */
-		width: calc(100vw - 40upx);
+		width: calc(100vw - 40rpx);
 	}
 
 	.an-icon-close {
@@ -356,7 +356,7 @@
 	}
 
 	.c-list {
-		/* font-size: $font-sm + 2upx; */
+		/* font-size: $font-sm + 2rpx; */
 		/* color: $font-color-base; */
 		background: #fff;
 	}
@@ -364,7 +364,7 @@
 	.c-row {
 		display: flex;
 		align-items: center;
-		padding: 20upx 30upx;
+		padding: 20rpx 30rpx;
 		position: relative;
 	}
 
@@ -378,14 +378,14 @@
 	}
 
 	.bz-list {
-		height: 40upx;
-		/* font-size: $font-sm+2upx; */
+		height: 40rpx;
+		/* font-size: $font-sm+2rpx; */
 		color: dark;
 	}
 
 	.bz-list text {
 		display: inline-block;
-		margin-right: 30upx;
+		margin-right: 30rpx;
 	}
 
 	.con-list {
@@ -393,6 +393,6 @@
 		display: flex;
 		flex-direction: column;
 		color: dark;
-		line-height: 40upx;
+		line-height: 40rpx;
 	}
 </style>
