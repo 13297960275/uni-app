@@ -1,88 +1,81 @@
 <template>
 	<view class="uni-padding-wrap" style="background: #fff;">
-		<image src="../../static/teamMember/02.png" mode="aspectFill"></image>
+		<!-- <image src="../../static/teamMember/02.png" mode="aspectFill"></image> -->
 		<view class="">
-			<title-item title="当前项目" tips="合肥市福广场停车场三号口施工">
-				<view class="flex-center" slot="tipsRight">
-					<button class="mini-btn" type="primary" size="mini" @click="switchProject">切换项目</button>
-					<!-- <button class="mini-btn icon-btn" type="primary" size="mini">
-						<uni-icons :type="'gear-filled'" :color="'#fff'" size="15" />
-					</button> -->
-				</view>
-			</title-item>
-			<view class="error-box">今日任务</view>
+			<title-item title="当前项目" tips=""></title-item>
 
-			<view class="uni-card-border" v-for="(el, idx) in priceList" :key="idx">
-				<title-item :title="el.name" tips="" icon="no-border">
-					<view class="flex-center" slot="tipsRight">
-						<text style="color: #21caad">详情</text>
-						<uni-icons :type="'arrowright'" :color="'#21caad'" size="15" />
-					</view>
-				</title-item>
-				<list-item :dataList="el.dataList" :borderColor="el.borderColor">
-					<view class="flex-center" slot="tipsRight">
-						<button class="mini-btn" style="border-color: #80dd87; color: #80dd87; line-height: 2;" plain="true" size="mini"
-						 @click="switchProject">
-							<uni-icons :type="'gear-filled'" :color="'#80dd87'" size="15" />完成</button>
-					</view>
-				</list-item>
-			</view>
-
-			<view class="primary-box">已领任务</view>
-			<view class="uni-card-border" v-for="(el, idx) in priceList" :key="'1-' + idx">
-				<title-item :title="el.name" tips="" icon="no-border">
-					<view class="flex-center" slot="tipsRight">
-						<text style="color: #21caad">详情</text>
-						<uni-icons :type="'arrowright'" :color="'#21caad'" size="15" />
-					</view>
-				</title-item>
-				<list-item :dataList="el.dataList" :borderColor="el.borderColor">
-					<view class="flex-center" slot="tipsRight">
-						<button class="mini-btn" style="border-color: #80dd87; color: #80dd87; line-height: 2;" plain="true" size="mini"
-						 @click="switchProject">
-							<uni-icons :type="'gear-filled'" :color="'#80dd87'" size="15" />完成</button>
-					</view>
-				</list-item>
-			</view>
-
-		</view>
-		<view class="uni-common-mt task-add">
-			<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-				<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)"
-				 @touchmove.stop="">
-					<view class="">
-						<text class="uni-panel-text">{{item.name}}</text>
-						<checkbox style="margin-left: 25rpx;" :checked="seletedAll" @tap.stop="_seletedAll">全选</checkbox>
-					</view>
-					<uni-icons :type="item.open ? 'arrowdown' : 'arrowup'" :color="'#fff'" size="15" />
-					<!-- <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text> -->
-				</view>
-				<view class="uni-panel-c" v-if="item.open">
-					<checkbox-group class="checkbox-group" @change="seletedStatus" checked @touchmove.stop="">
-						<label class="checkbox-label-box" v-for="(item2,key) in item.items" :key="key">
-							<view class="checkbox-name">{{item2.name}}</view>
-							<view class="checkbox-label">
-								<numSelect style="padding: 0rpx 10rpx;;" model="5" size="30" icoSshrink="0.8" bgColor="#cefef6" color="#21caad"
-								 @getValue="getValue"></numSelect>
-								<checkbox :value="item2.value" style="margin-left: 10rpx;" :checked="item.checkList.includes(String(item2.value))" />
+			<view class="uni-common-mt">
+				<view class="uni-card-border">
+					<form @submit="formSubmit" @reset="formReset">
+						<view class="uni-form-item uni-row">
+							<view class="title">物资需求总数：</view>
+							<view class="content">
+								<input class="uni-input" v-model="form.cost" placeholder="请输入" />
 							</view>
-						</label>
-						<!-- <checkbox v-for="(item2,key) in item.items" :key="key" :value="item2.value" :checked="item.checkList.includes(String(item2.value))">
-							<view class="">{{item2.name}}</view>
-						</checkbox> -->
-					</checkbox-group>
-					<!-- <view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item2)">
-						<view style="width: 20%;">
-							<numSelect model="2" size="20" color="#c1faf0" @getValue="getValue"></numSelect>
 						</view>
-						<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
-						<text class="uni-navigate-icon uni-icon">&#xe470;</text>
-					</view> -->
+						<view class="uni-form-item uni-row">
+							<view class="title">运输中：</view>
+							<view class="content">
+								<input class="uni-input" v-model="form.cost" placeholder="请输入" />
+							</view>
+						</view>
+						<view class="uni-form-item uni-row">
+							<view class="title">库存：</view>
+							<view class="content">
+								<input class="uni-input" v-model="form.cost" placeholder="请输入" />
+							</view>
+						</view>
+						<view class="uni-form-item uni-row">
+							<view class="title">已使用：</view>
+							<view class="content">
+								<input class="uni-input" v-model="form.cost" placeholder="请输入" />
+							</view>
+						</view>
+					</form>
+				</view>
+			</view>
+		</view>
+		<view class="uni-common-mt">
+			<view class="uni-card-border">
+				<view class="uni-form-item uni-row" style="align-items: flex-start;">
+					<view class="title" style="display: inline-block; flex: 1;">工艺：</view>
+					<view class="content" style="display: inline-block;">
+						<view class="tag-view" >
+							<uni-tag v-for="(el, idx) in workTypes" :key="idx" :text="el.name" type="primary" :inverted="inverted != el.id" @click="inverted = el.id" />
+						</view>
+					</view>
+				</view>
+				<view class="uni-form-item uni-row task-add" style="align-items: flex-start;">
+					<view class="title" style="display: inline-block; flex: 1;">区域：</view>
+					<view class="content" style="display: inline-block;">
+						<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
+							<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)"
+							 @touchmove.stop="">
+								<view class="">
+									<text class="uni-panel-text">{{item.name}}</text>
+									<checkbox style="margin-left: 25rpx;" :checked="seletedAll" @tap.stop="_seletedAll">全选</checkbox>
+								</view>
+								<uni-icons :type="item.open ? 'arrowdown' : 'arrowup'" :color="'#fff'" size="15" />
+							</view>
+							<view class="uni-panel-c" v-if="item.open">
+								<checkbox-group class="checkbox-group" @change="seletedStatus" checked @touchmove.stop="">
+									<label class="checkbox-label-box" v-for="(item2,key) in item.items" :key="key">
+										<view class="checkbox-name">{{item2.name}}</view>
+										<view class="checkbox-label">
+											<numSelect style="padding: 0rpx 10rpx;;" model="5" size="30" :iconShrink="0.8" bgColor="#cefef6" color="#21caad"
+											 @getValue="getValue"></numSelect>
+											<checkbox :value="item2.value" style="margin-left: 10rpx;" :checked="item.checkList.includes(String(item2.value))" />
+										</view>
+									</label>
+								</checkbox-group>
+							</view>
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
 
-		<view class="content">
+		<!-- <view class="content">
 			<view class="top">
 				<checkbox-group @change="seletedStatus" checked>
 					<checkbox :value="item.value" v-for="(item,index) in items" :key="index" :checked="checkList.includes(String(item.value))">{{item.name}}</checkbox>
@@ -143,7 +136,9 @@
 					</view>
 				</view>
 			</view>
-		</view>
+
+		</view> -->
+
 		<view class="uni-common-mt">
 			<button class="mini-btn" type="primary">新建任务</button>
 		</view>
@@ -187,6 +182,25 @@
 		},
 		data() {
 			return {
+				workTypes: [
+					{id: 1, name: '横梁'},
+					{id: 2, name: '立柱'},
+					{id: 3, name: '打孔'},
+					{id: 4, name: '放线'},
+					{id: 5, name: '上车板'},
+					{id: 6, name: '下车板'},
+					{id: 7, name: '行程开关'},
+				],
+				inverted: 1,
+				form: {
+					cost: '',
+					beginDate: '',
+					endDate: '',
+					swIndex: 0,
+					swPhone: '',
+					khIndex: 0,
+					khPhone: '',
+				},
 				value: null,
 
 				seletedAll: false,
@@ -245,85 +259,7 @@
 							}
 						],
 						checkList: [], //选中值
-					}, {
-						id: 'content',
-						name: '基础内容',
-						open: false,
-						pages: ['text', 'rich-text', 'progress']
-					}, {
-						id: 'form',
-						name: '表单组件',
-						open: false,
-						pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
-							'slider',
-							'switch', 'textarea',
-							// #ifdef APP-PLUS || MP-WEIXIN || H5
-							'editor',
-							// #endif
-						]
-					}, {
-						id: 'nav',
-						name: '导航',
-						open: false,
-						pages: ['navigator']
-					}, {
-						id: 'media',
-						name: '媒体组件',
-						open: false,
-						pages: [
-							'image',
-							'video',
-							// #ifndef MP-ALIPAY || MP-TOUTIAO
-							'audio',
-							// #endif
-						],
-					},
-					// #ifndef MP-TOUTIAO
-					{
-						id: 'map',
-						name: '地图',
-						open: false,
-						pages: ['map']
-
-					},
-					// #endif
-					// #ifndef QUICKAPP-WEBVIEW-UNION
-					{
-						id: 'canvas',
-						name: '画布',
-						open: false,
-						pages: ['canvas']
-					},
-					// #endif
-					// #ifdef APP-PLUS || H5
-					{
-						id: 'web-view',
-						name: '网页',
-						open: false,
-						pages: [{
-							name: '网络网页',
-							url: '/pages/component/web-view/web-view'
-						}, {
-							name: '本地网页',
-							url: '/pages/component/web-view-local/web-view-local'
-						}]
-					},
-					// #endif
-					// #ifndef APP-PLUS || H5
-					{
-						id: 'web-view',
-						name: '网页',
-						open: false,
-						pages: ['web-view']
-					},
-					// #endif
-					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
-					{
-						url: 'ad',
-						name: 'AD组件',
-						open: false
-					},
-					// #endif
+					}
 				],
 				navigateFlag: false,
 
@@ -514,6 +450,47 @@
 			...mapState(['hasLogin', 'userInfo'])
 		},
 		methods: {
+			formSubmit: function(e) {
+				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+				//定义表单规则
+				var rule = [{
+						name: "nickname",
+						checkType: "string",
+						checkRule: "1,3",
+						errorMsg: "姓名应为1-3个字符"
+					},
+					{
+						name: "gender",
+						checkType: "in",
+						checkRule: "男,女",
+						errorMsg: "请选择性别"
+					},
+					{
+						name: "loves",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: "请选择爱好"
+					}
+				];
+				//进行表单检查
+				var formData = e.detail.value;
+				// var checkRes = graceChecker.check(formData, rule);
+				var checkRes = true;
+				if (checkRes) {
+					uni.showToast({
+						title: "验证通过!",
+						icon: "none"
+					});
+				} else {
+					uni.showToast({
+						title: '验证失败！',
+						icon: "none"
+					});
+				}
+			},
+			formReset: function(e) {
+				console.log('清空数据')
+			},
 			getValue(e) {
 				this.value = e;
 			},
@@ -582,6 +559,39 @@
 	}
 </script>
 <style lang='scss' scoped>
+	.tag-view {
+		/* #ifndef APP-PLUS-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		margin: 10rpx 0rpx;
+		justify-content: center;
+	}
+	
+	.uni-form-item {
+		align-items: center;
+	}
+
+	.uni-form-item .title {
+		padding: 10rpx 15rpx;
+		flex: 3;
+		text-align: right;
+	}
+
+	.uni-form-item .content {
+		padding: 10rpx 15rpx;
+		flex: 6;
+		display: flex;
+	}
+
+	.picker-content {
+		flex: 2;
+	}
+
+	.number-content {
+		flex: 3;
+	}
+
 	.uni-panel {
 		margin-bottom: 12rpx;
 	}

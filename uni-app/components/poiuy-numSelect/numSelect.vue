@@ -1,47 +1,47 @@
 <template>
 	<view class="num-view">
 		<view class="box style1" v-if="model==='1'">
-			<text class="iconfont icon-wuuiconsuoxiao" :class="disable?'disable':closeMinus?'disable':''" :style="{color:color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-wuuiconsuoxiao" :class="disable?'disable':closeMinus?'disable':''" :style="{color:color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="minus"></text>
 			<input v-model="num" :style="{'font-size':(size*1)+'rpx'}" type="digit" @input.stop="numInput" @blur.stop="blur" :maxlength="maxlength"
 			 :disabled="disable?true:!input" class="num" :class="disable?'disable':''" />
-			<text class="iconfont icon-wuuiconxiangjifangda" :class="disable?'disable':closeAdd?'disable':''" :style="{color:color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-wuuiconxiangjifangda" :class="disable?'disable':closeAdd?'disable':''" :style="{color:color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="add"></text>
 		</view>
 
 		<view class="box style2" v-if="model==='2'" :style="{border:'1rpx solid '+(disable?'#cccccc':color)}">
-			<text class="iconfont icon-jianshao" :class="disable?'disable-txt':closeMinus?'disable-txt':''" :style="{'background-color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-jianshao" :class="disable?'disable-txt':closeMinus?'disable-txt':''" :style="{'background-color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="minus"></text>
 			<input v-model="num" :style="{'font-size':(size*1)+'rpx'}" type="digit" @input.stop="numInput" @blur.stop="blur" :maxlength="maxlength"
 			 :disabled="disable?true:!input" class="num" :class="disable?'disable':''" />
-			<text class="iconfont icon-jia" :class="disable?'disable-txt':closeAdd?'disable-txt':''" :style="{'background-color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-jia" :class="disable?'disable-txt':closeAdd?'disable-txt':''" :style="{'background-color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="add"></text>
 		</view>
 
 		<view class="box style3" v-if="model==='3'">
-			<text class="iconfont icon-fangkuang-jian" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-fangkuang-jian" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="minus"></text>
 			<input v-model="num" :style="{'font-size':(size*1)+'rpx'}" type="digit" @input.stop="numInput" @blur.stop="blur" :maxlength="maxlength"
 			 :disabled="disable?true:!input" class="num" :class="disable?'disable':''" />
-			<text class="iconfont icon-fangkuang-jia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-fangkuang-jia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="add"></text>
 		</view>
 
 		<view class="box style4" v-if="model==='4'" :style="{border:'1rpx solid '+(disable?'#cccccc':color)}">
-			<text class="iconfont icon-jianshao" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx','border-right':'1rpx solid '+color}"
+			<text class="iconfont icon-jianshao" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx','border-right':'1rpx solid '+color}"
 			 @click.stop="minus"></text>
 			<input v-model="num" :style="{'font-size':(size*1)+'rpx'}" type="digit" @input.stop="numInput" @blur.stop="blur" :maxlength="maxlength"
 			 :disabled="disable?true:!input" class="num" :class="disable?'disable':''" />
-			<text class="iconfont icon-jia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx','border-left':'1rpx solid '+color}"
+			<text class="iconfont icon-jia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx','border-left':'1rpx solid '+color}"
 			 @click.stop="add"></text>
 		</view>
 
 		<view class="box style3" v-if="model==='5'">
-			<text class="iconfont  icon-jianshaoshuzi" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont  icon-jianshaoshuzi" :class="disable?'disable':closeMinus?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="minus"></text>
 			<input v-model="num" :style="{'font-size':(size*1)+'rpx'}" type="digit" @input.stop="numInput" @blur.stop="blur" :maxlength="maxlength"
 			 :disabled="disable?true:!input" class="num" :class="disable?'disable':''" />
-			<text class="iconfont icon-tianjia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*icoSshrink)+'rpx'}"
+			<text class="iconfont icon-tianjia" :class="disable?'disable':closeAdd?'disable':''" :style="{'color':color,'font-size':(size*iconShrink)+'rpx'}"
 			 @click.stop="add"></text>
 		</view>
 
@@ -84,7 +84,7 @@
 				type: String,
 				default: '#ea5a59'
 			},
-			icoSshrink: { //图表相对于字体的大小
+			iconShrink: { //图表相对于字体的大小
 				type: Number,
 				default: 1
 			},

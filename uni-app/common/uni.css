@@ -1801,3 +1801,23 @@ uni-button[size=mini] {
 	height: 30rpx;
 	position: relative;
 }
+
+.uni-tag--primary {
+	color: #fff !important;
+	background-color: #21caad !important;
+	border-width: 0.5px;
+	border-style: solid;
+	border-color: #21caad !important;
+}
+
+.uni-tag--primary.primary-uni-tag--inverted {
+	color: #21caad !important;
+	background-color: #e8fdf9 !important;
+	border-width: 0.5px;
+	border-style: solid;
+	border-color: #21caad !important;
+}
+
+.uni-tag--primary.primary-uni-tag--inverted .uni-tag-text--primary {
+    color: #21caad !important;
+}
