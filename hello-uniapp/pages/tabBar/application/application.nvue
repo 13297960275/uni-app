@@ -1,0 +1,209 @@
+<template>
+	<view class="uni-container">
+		<view v-if="!hasLeftWin" class="uni-header-logo">
+			<image class="uni-header-image" src="/static/applicationIndex.png"></image>
+		</view>
+
+		<view v-if="!hasLeftWin" class="uni-hello-text">
+			<text class="hello-text">以下是uni-app应用示例：</text>
+			<!-- <u-link class="hello-link" href="https://ext.dcloud.net.cn" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link> -->
+		</view>
+		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel"
+			v-for="(item, index) in list" :key="item.id">
+			<view
+				:class="{'left-win-active': leftWinActive === item.url  && hasLeftWin, 'uni-panel-h-on': activeOpen === item.id}"
+				class="uni-panel-h" @click="triggerCollapse(index, item.id)">
+				<text class="uni-panel-text">{{item.name}}</text>
+				<text class="uni-panel-icon uni-icon"
+					:class="activeOpen === item.id  ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+			</view>
+			<view class="uni-panel-c" v-if="activeOpen === item.id ">
+				<view
+					:class="{'left-win-active': leftWinActive === item2.url  && hasLeftWin, 'pc-hide': hideList.indexOf(item2.url) !== -1  && hasLeftWin}"
+					class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item2)">
+					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
+					<text class="uni-navigate-icon uni-icon">&#xe470;</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+<script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	export default {
+		data() {
+			return {
+				hideList: [
+					'ucharts',
+					'nav-city-dropdown'
+				],
+				list: [
+					{
+						url: '/pages/application/ocrApi/ocrApi',
+						name: 'OCR测试'
+					},
+					{
+						url: '/pages/application/imgCut/imgCut',
+						name: '图片裁剪'
+					},
+					{
+						url: '/pages/application/vue-cropper/vue-cropper',
+						name: 'vue-cropper'
+					},
+					// #ifdef APP-PLUS || H5 || MP
+					{
+						url: '/pages/projects/demo',
+						name: 'demo'
+					},
+					{
+						url: '/pages/projects/tabbar',
+						name: 'tabbar'
+					},
+					{
+						url: '/pages/projects/login',
+						name: '登录'
+					},
+					{
+						url: '/pages/projects/index',
+						name: '首页'
+					},
+					{
+						url: '/pages/projects/cost',
+						name: '项目费用表'
+					},
+					{
+						url: '/pages/projects/project',
+						name: '附加项目'
+					},
+					{
+						url: '/pages/projects/person',
+						name: '人员计件费用表'
+					},
+					{
+						url: '/pages/projects/project-mgt',
+						name: '项目管理'
+					},
+					{
+						url: '/pages/projects/logistics-mgt',
+						name: '物流管理'
+					},
+					{
+						url: '/pages/projects/material-mgt',
+						name: '物资管理'
+					},
+					{
+						url: '/pages/projects/address',
+						name: '设定施工地点'
+					},
+					{
+						url: '/pages/projects/index2',
+						name: '首页'
+					},
+					{
+						url: '/pages/projects/task-detail',
+						name: '任务详情'
+					},
+					{
+						url: '/pages/projects/task-add',
+						name: '新建任务'
+					},
+					{
+						url: '/pages/projects/task-month',
+						name: '当月已完成任务'
+					},
+					{
+						url: '/pages/projects/task-daily',
+						name: '当日已完成任务'
+					},
+					{
+						url: '/pages/projects/task-history',
+						name: '历史任务'
+					},
+					{
+						url: '/pages/projects/msg-list',
+						name: '消息列表'
+					},
+					// #endif
+				]
+			}
+		},
+		onShareAppMessage() {
+			return {
+				title: '欢迎体验uni-app',
+				path: '/pages/tabBar/application/application'
+			}
+		},
+		onNavigationBarButtonTap(e) {
+			uni.navigateTo({
+				url: '/pages/about/about'
+			});
+		},
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		// #ifdef H5
+		watch: {
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+						let path = newRoute.path.split('/')[3]
+						for (const item of this.list) {
+							if (Array.isArray(item.pages)) {
+								for (const page of item.pages) {
+									if (page === path) {
+										this.setActiveOpen(item.id)
+									}
+									if (page.url && page.url === path) {
+										this.setActiveOpen(item.id)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		// #endif
+		methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+			triggerCollapse(e, id) {
+				if (!this.list[e].pages) {
+					this.goDetailPage(this.list[e].url);
+					return;
+				}
+				if (id === this.activeOpen) {
+					id = ''
+				}
+				this.setActiveOpen(id)
+			},
+			goDetailPage(e) {
+				let path = e.url ? e.url : e;
+				// let url = ~path.indexOf('platform') ? path : '/pages/application/' + path + '/' + path;
+				let url = path;
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
+				return false;
+			}
+		}
+	}
+</script>
+
+<style>
+	@import '../../../common/uni-nvue.css';
+</style>
